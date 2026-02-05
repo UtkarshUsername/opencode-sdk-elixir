@@ -46,7 +46,7 @@ defmodule OpenCode.MixProject do
     [
       name: :opencode_sdk,
       files: ["lib", "priv", "mix.exs", "README.md", "LICENSE"],
-      maintainers: ["Community Maintainers"],
+      maintainers: ["UtkarshUsername"],
       licenses: ["MIT"],
       links: %{
         "GitHub" => @source_url,
