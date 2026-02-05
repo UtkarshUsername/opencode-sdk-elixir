@@ -1,0 +1,17 @@
+defmodule OpenCode.Generated.SubtaskPartModel do
+  @moduledoc """
+  Provides struct and type for a SubtaskPartModel
+  """
+
+  @type t :: %__MODULE__{model_id: String.t(), provider_id: String.t()}
+
+  defstruct [:model_id, :provider_id]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [model_id: :string, provider_id: :string]
+  end
+end

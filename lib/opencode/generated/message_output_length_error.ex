@@ -1,0 +1,17 @@
+defmodule OpenCode.Generated.MessageOutputLengthError do
+  @moduledoc """
+  Provides struct and type for a MessageOutputLengthError
+  """
+
+  @type t :: %__MODULE__{data: map, name: String.t()}
+
+  defstruct [:data, :name]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [data: :map, name: {:const, "MessageOutputLengthError"}]
+  end
+end

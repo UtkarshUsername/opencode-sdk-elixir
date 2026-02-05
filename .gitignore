@@ -1,0 +1,11 @@
+# .gitignore for opencode package
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+erl_crash.dump
+*.ez
+opencode-*.tar
+/tmp/
+.elixir_ls/

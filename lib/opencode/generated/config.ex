@@ -1,0 +1,119 @@
+defmodule OpenCode.Generated.Config do
+  @moduledoc """
+  Provides struct and type for a Config
+  """
+
+  @type t :: %__MODULE__{
+          agent: OpenCode.Generated.ConfigAgent.t() | nil,
+          autoshare: boolean | nil,
+          autoupdate: boolean | String.t() | nil,
+          command: map | nil,
+          compaction: OpenCode.Generated.ConfigCompaction.t() | nil,
+          default_agent: String.t() | nil,
+          disabled_providers: [String.t()] | nil,
+          enabled_providers: [String.t()] | nil,
+          enterprise: OpenCode.Generated.ConfigEnterprise.t() | nil,
+          experimental: OpenCode.Generated.ConfigExperimental.t() | nil,
+          formatter: false | map | nil,
+          instructions: [String.t()] | nil,
+          keybinds: OpenCode.Generated.KeybindsConfig.t() | nil,
+          layout: String.t() | nil,
+          log_level: String.t() | nil,
+          lsp: false | map | nil,
+          mcp: map | nil,
+          mode: OpenCode.Generated.ConfigMode.t() | nil,
+          model: String.t() | nil,
+          permission: map | String.t() | nil,
+          plugin: [String.t()] | nil,
+          provider: map | nil,
+          schema: String.t() | nil,
+          server: OpenCode.Generated.ServerConfig.t() | nil,
+          share: String.t() | nil,
+          skills: OpenCode.Generated.ConfigSkills.t() | nil,
+          small_model: String.t() | nil,
+          snapshot: boolean | nil,
+          theme: String.t() | nil,
+          tools: map | nil,
+          tui: OpenCode.Generated.ConfigTui.t() | nil,
+          username: String.t() | nil,
+          watcher: OpenCode.Generated.ConfigWatcher.t() | nil
+        }
+
+  defstruct [
+    :agent,
+    :autoshare,
+    :autoupdate,
+    :command,
+    :compaction,
+    :default_agent,
+    :disabled_providers,
+    :enabled_providers,
+    :enterprise,
+    :experimental,
+    :formatter,
+    :instructions,
+    :keybinds,
+    :layout,
+    :log_level,
+    :lsp,
+    :mcp,
+    :mode,
+    :model,
+    :permission,
+    :plugin,
+    :provider,
+    :schema,
+    :server,
+    :share,
+    :skills,
+    :small_model,
+    :snapshot,
+    :theme,
+    :tools,
+    :tui,
+    :username,
+    :watcher
+  ]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [
+      agent: {OpenCode.Generated.ConfigAgent, :t},
+      autoshare: :boolean,
+      autoupdate: {:union, [:boolean, const: "notify"]},
+      command: :map,
+      compaction: {OpenCode.Generated.ConfigCompaction, :t},
+      default_agent: :string,
+      disabled_providers: [:string],
+      enabled_providers: [:string],
+      enterprise: {OpenCode.Generated.ConfigEnterprise, :t},
+      experimental: {OpenCode.Generated.ConfigExperimental, :t},
+      formatter: {:union, [:map, const: false]},
+      instructions: [:string],
+      keybinds: {OpenCode.Generated.KeybindsConfig, :t},
+      layout: {:enum, ["auto", "stretch"]},
+      log_level: {:enum, ["DEBUG", "INFO", "WARN", "ERROR"]},
+      lsp: {:union, [:map, const: false]},
+      mcp: :map,
+      mode: {OpenCode.Generated.ConfigMode, :t},
+      model: :string,
+      permission: {:union, [:map, enum: ["ask", "allow", "deny"]]},
+      plugin: [:string],
+      provider: :map,
+      schema: :string,
+      server: {OpenCode.Generated.ServerConfig, :t},
+      share: {:enum, ["manual", "auto", "disabled"]},
+      skills: {OpenCode.Generated.ConfigSkills, :t},
+      small_model: :string,
+      snapshot: :boolean,
+      theme: :string,
+      tools: :map,
+      tui: {OpenCode.Generated.ConfigTui, :t},
+      username: :string,
+      watcher: {OpenCode.Generated.ConfigWatcher, :t}
+    ]
+  end
+end
