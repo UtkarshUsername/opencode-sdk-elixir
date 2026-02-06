@@ -57,6 +57,11 @@ jobs:
           sed -i "s/@version \"$current\"/@version \"$new\"/" mix.exs
           echo "version=$new" >> $GITHUB_OUTPUT
 
+      - name: Update README version
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          sed -i 's/{:opencode_sdk, "~> [^"]*"}/{:opencode_sdk, "~> ${{ steps.version.outputs.version }}"}/' README.md
+
       - name: Commit, tag, and push
         if: steps.changes.outputs.changed == 'true'
         run: |
