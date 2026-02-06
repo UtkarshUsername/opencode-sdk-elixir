@@ -3,6 +3,8 @@
 An unofficial Elixir SDK for OpenCode that mirrors the JS SDK (`@opencode-ai/sdk`).
 The API surface is generated from the OpenCode OpenAPI spec.
 
+hex.pm link: https://hex.pm/packages/opencode_sdk/
+
 ## Installation
 
 Add `opencode` to your list of dependencies in `mix.exs`:
