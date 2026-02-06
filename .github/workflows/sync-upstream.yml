@@ -1,0 +1,74 @@
+name: Sync Upstream OpenAPI
+
+on:
+  schedule:
+    # Run daily at 06:00 UTC (after upstream's generate workflow typically runs)
+    - cron: "0 6 * * *"
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch upstream OpenAPI spec
+        run: |
+          curl -sSL "https://raw.githubusercontent.com/opencode-ai/opencode/dev/packages/sdk/openapi.json" \
+            -o priv/opencode_openapi.json
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet priv/opencode_openapi.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Elixir
+        if: steps.changes.outputs.changed == 'true'
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.15"
+          otp-version: "26"
+
+      - name: Install dependencies
+        if: steps.changes.outputs.changed == 'true'
+        run: mix deps.get
+
+      - name: Regenerate SDK
+        if: steps.changes.outputs.changed == 'true'
+        run: mix opencode.gen.client --spec priv/opencode_openapi.json
+
+      - name: Bump patch version
+        if: steps.changes.outputs.changed == 'true'
+        id: version
+        run: |
+          # Extract current version
+          current=$(grep -oP '@version "\K[^"]+' mix.exs)
+          # Bump patch version
+          new=$(echo "$current" | awk -F. '{print $1"."$2"."$3+1}')
+          # Update mix.exs
+          sed -i "s/@version \"$current\"/@version \"$new\"/" mix.exs
+          echo "version=$new" >> $GITHUB_OUTPUT
+
+      - name: Commit, tag, and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: sync upstream openapi spec (v${{ steps.version.outputs.version }})"
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin HEAD --tags
+
+      - name: Publish to Hex
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+        run: mix hex.publish --yes
