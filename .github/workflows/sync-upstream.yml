@@ -18,7 +18,7 @@ jobs:
 
       - name: Fetch upstream OpenAPI spec
         run: |
-          curl -sSL "https://raw.githubusercontent.com/opencode-ai/opencode/dev/packages/sdk/openapi.json" \
+          curl -sSL "https://raw.githubusercontent.com/anomalyco/opencode/dev/packages/sdk/openapi.json" \
             -o priv/opencode_openapi.json
 
       - name: Check for changes
