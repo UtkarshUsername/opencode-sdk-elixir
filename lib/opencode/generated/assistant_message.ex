@@ -24,7 +24,8 @@ defmodule OpenCode.Generated.AssistantMessage do
           session_id: String.t(),
           summary: boolean | nil,
           time: OpenCode.Generated.AssistantMessageTime.t(),
-          tokens: OpenCode.Generated.AssistantMessageTokens.t()
+          tokens: OpenCode.Generated.AssistantMessageTokens.t(),
+          variant: String.t() | nil
         }
 
   defstruct [
@@ -42,7 +43,8 @@ defmodule OpenCode.Generated.AssistantMessage do
     :session_id,
     :summary,
     :time,
-    :tokens
+    :tokens,
+    :variant
   ]
 
   @doc false
@@ -73,7 +75,8 @@ defmodule OpenCode.Generated.AssistantMessage do
       session_id: :string,
       summary: :boolean,
       time: {OpenCode.Generated.AssistantMessageTime, :t},
-      tokens: {OpenCode.Generated.AssistantMessageTokens, :t}
+      tokens: {OpenCode.Generated.AssistantMessageTokens, :t},
+      variant: :string
     ]
   end
 end
