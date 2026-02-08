@@ -424,7 +424,8 @@ defmodule Chat do
 
   defp display_messages(messages) when is_list(messages) do
     Enum.each(messages, fn msg ->
-      role = field(msg, :role) || "unknown"
+      info = field(msg, :info) || %{}
+      role = field(info, :role) || "unknown"
       parts = field(msg, :parts) || []
 
       IO.puts("\n  [#{role}]")
