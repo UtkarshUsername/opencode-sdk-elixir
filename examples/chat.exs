@@ -31,8 +31,8 @@ defmodule Chat do
     IO.puts("""
 
     ╔══════════════════════════════════════════╗
-    ║       OpenCode Chat CLI (Elixir)         ║
-    ║   Powered by opencode_sdk ~> 0.1.2       ║
+    ║        OpenCode Chat CLI (Elixir)        ║
+    ║         Powered by opencode_sdk          ║
     ╚══════════════════════════════════════════╝
 
     Type /help for commands, or just type a message.
