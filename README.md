@@ -66,7 +66,7 @@ Pass a `:config` map to override settings. The server still reads your `opencode
 
 ```elixir
 {:ok, %{client: client, server: server}} =
-  OpenCode.create(config: %{model: "anthropic/claude-sonnet-4-20250514"})
+  OpenCode.create(config: %{model: "opencode/big-pickle"})
 ```
 
 ## API Reference
@@ -154,7 +154,7 @@ IO.inspect(info["tokens"])
   Operations.session_prompt(
     session["id"],
     %{
-      model: %{providerID: "anthropic", modelID: "claude-sonnet-4-20250514"},
+      model: %{providerID: "opencode", modelID: "big-pickle"},
       parts: [%{type: "text", text: "Hello!"}]
     },
     client
