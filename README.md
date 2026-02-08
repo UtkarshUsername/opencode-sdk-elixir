@@ -186,8 +186,8 @@ IO.inspect(info["tokens"])
 | `"reasoning"` | `"text"` | Model reasoning/thinking |
 | `"step-start"` | — | Start of a multi-step sequence |
 | `"step-finish"` | — | End of a multi-step sequence |
-| `"file"` | `"path"`, `"content"` | File content reference |
-| `"patch"` | `"path"`, `"content"` | File diff/patch |
+| `"file"` | `"filename"`, `"url"`, `"mime"`, `"source"` | File attachment |
+| `"patch"` | `"files"`, `"hash"` | File diff/patch |
 
 ### App
 
