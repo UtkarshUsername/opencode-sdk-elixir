@@ -57,7 +57,7 @@ defmodule OpenCode.MixProject do
 
   defp docs do
     [
-      main: "OpenCode",
+      main: "README",
       extras: ["README.md"],
       source_ref: "v#{@version}",
       source_url: @source_url
