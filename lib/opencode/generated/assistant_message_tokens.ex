@@ -7,10 +7,11 @@ defmodule OpenCode.Generated.AssistantMessageTokens do
           cache: OpenCode.Generated.AssistantMessageTokensCache.t(),
           input: number,
           output: number,
-          reasoning: number
+          reasoning: number,
+          total: number | nil
         }
 
-  defstruct [:cache, :input, :output, :reasoning]
+  defstruct [:cache, :input, :output, :reasoning, :total]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -21,7 +22,8 @@ defmodule OpenCode.Generated.AssistantMessageTokens do
       cache: {OpenCode.Generated.AssistantMessageTokensCache, :t},
       input: :number,
       output: :number,
-      reasoning: :number
+      reasoning: :number,
+      total: :number
     ]
   end
 end
