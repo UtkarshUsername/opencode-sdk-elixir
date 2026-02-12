@@ -10,6 +10,7 @@ defmodule OpenCode.Generated.EventSessionErrorProperties do
             | OpenCode.Generated.MessageAbortedError.t()
             | OpenCode.Generated.MessageOutputLengthError.t()
             | OpenCode.Generated.ProviderAuthError.t()
+            | OpenCode.Generated.StructuredOutputError.t()
             | OpenCode.Generated.UnknownError.t()
             | nil,
           session_id: String.t() | nil
@@ -31,6 +32,7 @@ defmodule OpenCode.Generated.EventSessionErrorProperties do
            {OpenCode.Generated.MessageAbortedError, :t},
            {OpenCode.Generated.MessageOutputLengthError, :t},
            {OpenCode.Generated.ProviderAuthError, :t},
+           {OpenCode.Generated.StructuredOutputError, :t},
            {OpenCode.Generated.UnknownError, :t}
          ]},
       session_id: :string

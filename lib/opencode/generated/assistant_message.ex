@@ -12,6 +12,7 @@ defmodule OpenCode.Generated.AssistantMessage do
             | OpenCode.Generated.MessageAbortedError.t()
             | OpenCode.Generated.MessageOutputLengthError.t()
             | OpenCode.Generated.ProviderAuthError.t()
+            | OpenCode.Generated.StructuredOutputError.t()
             | OpenCode.Generated.UnknownError.t()
             | nil,
           finish: String.t() | nil,
@@ -23,6 +24,7 @@ defmodule OpenCode.Generated.AssistantMessage do
           provider_id: String.t(),
           role: String.t(),
           session_id: String.t(),
+          structured: map | nil,
           summary: boolean | nil,
           time: OpenCode.Generated.AssistantMessageTime.t(),
           tokens: OpenCode.Generated.AssistantMessageTokens.t(),
@@ -42,6 +44,7 @@ defmodule OpenCode.Generated.AssistantMessage do
     :provider_id,
     :role,
     :session_id,
+    :structured,
     :summary,
     :time,
     :tokens,
@@ -64,6 +67,7 @@ defmodule OpenCode.Generated.AssistantMessage do
            {OpenCode.Generated.MessageAbortedError, :t},
            {OpenCode.Generated.MessageOutputLengthError, :t},
            {OpenCode.Generated.ProviderAuthError, :t},
+           {OpenCode.Generated.StructuredOutputError, :t},
            {OpenCode.Generated.UnknownError, :t}
          ]},
       finish: :string,
@@ -75,6 +79,7 @@ defmodule OpenCode.Generated.AssistantMessage do
       provider_id: :string,
       role: {:const, "assistant"},
       session_id: :string,
+      structured: :map,
       summary: :boolean,
       time: {OpenCode.Generated.AssistantMessageTime, :t},
       tokens: {OpenCode.Generated.AssistantMessageTokens, :t},
