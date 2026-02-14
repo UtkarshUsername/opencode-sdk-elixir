@@ -4,7 +4,6 @@ defmodule OpenCode.Generated.EventMessagePartUpdatedProperties do
   """
 
   @type t :: %__MODULE__{
-          delta: String.t() | nil,
           part:
             OpenCode.Generated.AgentPart.t()
             | OpenCode.Generated.CompactionPart.t()
@@ -20,7 +19,7 @@ defmodule OpenCode.Generated.EventMessagePartUpdatedProperties do
             | OpenCode.Generated.ToolPart.t()
         }
 
-  defstruct [:delta, :part]
+  defstruct [:part]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -28,7 +27,6 @@ defmodule OpenCode.Generated.EventMessagePartUpdatedProperties do
 
   def __fields__(:t) do
     [
-      delta: :string,
       part:
         {:union,
          [

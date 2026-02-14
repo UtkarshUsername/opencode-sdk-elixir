@@ -298,6 +298,7 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.EventLspUpdated.t()
            | OpenCode.Generated.EventMcpBrowserOpenFailed.t()
            | OpenCode.Generated.EventMcpToolsChanged.t()
+           | OpenCode.Generated.EventMessagePartDelta.t()
            | OpenCode.Generated.EventMessagePartRemoved.t()
            | OpenCode.Generated.EventMessagePartUpdated.t()
            | OpenCode.Generated.EventMessageRemoved.t()
@@ -355,6 +356,7 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.EventLspUpdated, :t},
             {OpenCode.Generated.EventMcpBrowserOpenFailed, :t},
             {OpenCode.Generated.EventMcpToolsChanged, :t},
+            {OpenCode.Generated.EventMessagePartDelta, :t},
             {OpenCode.Generated.EventMessagePartRemoved, :t},
             {OpenCode.Generated.EventMessagePartUpdated, :t},
             {OpenCode.Generated.EventMessageRemoved, :t},
