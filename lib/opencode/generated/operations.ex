@@ -422,6 +422,39 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @doc """
+  List sessions
+
+  Get a list of all OpenCode sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.
+
+  ## Options
+
+    * `directory`: Filter sessions by project directory
+    * `roots`: Only return root sessions (no parentID)
+    * `start`: Filter sessions updated on or after this timestamp (milliseconds since epoch)
+    * `cursor`: Return sessions updated before this timestamp (milliseconds since epoch)
+    * `search`: Filter sessions by title (case-insensitive)
+    * `limit`: Maximum number of sessions to return
+    * `archived`: Include archived sessions (default false)
+
+  """
+  @spec experimental_session_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.GlobalSession.t()]} | :error
+  def experimental_session_list(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:archived, :cursor, :directory, :limit, :roots, :search, :start])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_session_list},
+      url: "/experimental/session",
+      method: :get,
+      query: query,
+      response: [{200, [{OpenCode.Generated.GlobalSession, :t}]}],
+      opts: opts
+    })
+  end
+
+  @doc """
   List files
 
   List files and directories in a specified path.
