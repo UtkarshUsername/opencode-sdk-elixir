@@ -2034,6 +2034,39 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @doc """
+  Delete message
+
+  Permanently delete a specific message (and all of its parts) from a session. This does not revert any file changes that may have been made while processing the message.
+
+  ## Options
+
+    * `directory`
+
+  """
+  @spec session_delete_message(sessionID :: String.t(), messageID :: String.t(), opts :: keyword) ::
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+  def session_delete_message(sessionID, messageID, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory])
+
+    client.request(%{
+      args: [sessionID: sessionID, messageID: messageID],
+      call: {OpenCode.Generated.Operations, :session_delete_message},
+      url: "/session/#{sessionID}/message/#{messageID}",
+      method: :delete,
+      query: query,
+      response: [
+        {200, :boolean},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {404, {OpenCode.Generated.NotFoundError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
   Get message diff
 
   Get the file changes (diff) that resulted from a specific user message in the session.

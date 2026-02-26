@@ -16,7 +16,6 @@ defmodule OpenCode.Generated.Config do
           experimental: OpenCode.Generated.ConfigExperimental.t() | nil,
           formatter: false | map | nil,
           instructions: [String.t()] | nil,
-          keybinds: OpenCode.Generated.KeybindsConfig.t() | nil,
           layout: String.t() | nil,
           log_level: String.t() | nil,
           lsp: false | map | nil,
@@ -32,9 +31,7 @@ defmodule OpenCode.Generated.Config do
           skills: OpenCode.Generated.ConfigSkills.t() | nil,
           small_model: String.t() | nil,
           snapshot: boolean | nil,
-          theme: String.t() | nil,
           tools: map | nil,
-          tui: OpenCode.Generated.ConfigTui.t() | nil,
           username: String.t() | nil,
           watcher: OpenCode.Generated.ConfigWatcher.t() | nil
         }
@@ -52,7 +49,6 @@ defmodule OpenCode.Generated.Config do
     :experimental,
     :formatter,
     :instructions,
-    :keybinds,
     :layout,
     :log_level,
     :lsp,
@@ -68,9 +64,7 @@ defmodule OpenCode.Generated.Config do
     :skills,
     :small_model,
     :snapshot,
-    :theme,
     :tools,
-    :tui,
     :username,
     :watcher
   ]
@@ -93,7 +87,6 @@ defmodule OpenCode.Generated.Config do
       experimental: {OpenCode.Generated.ConfigExperimental, :t},
       formatter: {:union, [:map, const: false]},
       instructions: [:string],
-      keybinds: {OpenCode.Generated.KeybindsConfig, :t},
       layout: {:enum, ["auto", "stretch"]},
       log_level: {:enum, ["DEBUG", "INFO", "WARN", "ERROR"]},
       lsp: {:union, [:map, const: false]},
@@ -109,9 +102,7 @@ defmodule OpenCode.Generated.Config do
       skills: {OpenCode.Generated.ConfigSkills, :t},
       small_model: :string,
       snapshot: :boolean,
-      theme: :string,
       tools: :map,
-      tui: {OpenCode.Generated.ConfigTui, :t},
       username: :string,
       watcher: {OpenCode.Generated.ConfigWatcher, :t}
     ]
