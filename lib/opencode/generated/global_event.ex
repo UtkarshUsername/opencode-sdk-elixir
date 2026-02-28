@@ -47,6 +47,8 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.EventTuiSessionSelect.t()
             | OpenCode.Generated.EventTuiToastShow.t()
             | OpenCode.Generated.EventVcsBranchUpdated.t()
+            | OpenCode.Generated.EventWorkspaceFailed.t()
+            | OpenCode.Generated.EventWorkspaceReady.t()
             | OpenCode.Generated.EventWorktreeFailed.t()
             | OpenCode.Generated.EventWorktreeReady.t()
         }
@@ -104,6 +106,8 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.EventTuiSessionSelect, :t},
            {OpenCode.Generated.EventTuiToastShow, :t},
            {OpenCode.Generated.EventVcsBranchUpdated, :t},
+           {OpenCode.Generated.EventWorkspaceFailed, :t},
+           {OpenCode.Generated.EventWorkspaceReady, :t},
            {OpenCode.Generated.EventWorktreeFailed, :t},
            {OpenCode.Generated.EventWorktreeReady, :t}
          ]}

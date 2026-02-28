@@ -329,6 +329,8 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.EventTuiSessionSelect.t()
            | OpenCode.Generated.EventTuiToastShow.t()
            | OpenCode.Generated.EventVcsBranchUpdated.t()
+           | OpenCode.Generated.EventWorkspaceFailed.t()
+           | OpenCode.Generated.EventWorkspaceReady.t()
            | OpenCode.Generated.EventWorktreeFailed.t()
            | OpenCode.Generated.EventWorktreeReady.t()}
           | :error
@@ -387,6 +389,8 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.EventTuiSessionSelect, :t},
             {OpenCode.Generated.EventTuiToastShow, :t},
             {OpenCode.Generated.EventVcsBranchUpdated, :t},
+            {OpenCode.Generated.EventWorkspaceFailed, :t},
+            {OpenCode.Generated.EventWorkspaceReady, :t},
             {OpenCode.Generated.EventWorktreeFailed, :t},
             {OpenCode.Generated.EventWorktreeReady, :t}
           ]}}
@@ -450,6 +454,100 @@ defmodule OpenCode.Generated.Operations do
       method: :get,
       query: query,
       response: [{200, [{OpenCode.Generated.GlobalSession, :t}]}],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Create workspace
+
+  Create a workspace for the current project.
+
+  ## Options
+
+    * `directory`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec experimental_workspace_create(id :: String.t(), body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Workspace.t()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_workspace_create(id, body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory])
+
+    client.request(%{
+      args: [id: id, body: body],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_create},
+      url: "/experimental/workspace/#{id}",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Workspace, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
+  List workspaces
+
+  List all workspaces.
+
+  ## Options
+
+    * `directory`
+
+  """
+  @spec experimental_workspace_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Workspace.t()]} | :error
+  def experimental_workspace_list(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_list},
+      url: "/experimental/workspace",
+      method: :get,
+      query: query,
+      response: [{200, [{OpenCode.Generated.Workspace, :t}]}],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Remove workspace
+
+  Remove an existing workspace.
+
+  ## Options
+
+    * `directory`
+
+  """
+  @spec experimental_workspace_remove(id :: String.t(), opts :: keyword) ::
+          {:ok, OpenCode.Generated.Workspace.t()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_workspace_remove(id, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory])
+
+    client.request(%{
+      args: [id: id],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_remove},
+      url: "/experimental/workspace/#{id}",
+      method: :delete,
+      query: query,
+      response: [
+        {200, {OpenCode.Generated.Workspace, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
