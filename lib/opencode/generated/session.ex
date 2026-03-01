@@ -13,6 +13,7 @@ defmodule OpenCode.Generated.Session do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_children(sessionID :: String.t(), opts :: keyword) ::
@@ -21,7 +22,7 @@ defmodule OpenCode.Generated.Session do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_children(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -46,6 +47,7 @@ defmodule OpenCode.Generated.Session do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_get(sessionID :: String.t(), opts :: keyword) ::
@@ -54,7 +56,7 @@ defmodule OpenCode.Generated.Session do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_get(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -83,7 +85,8 @@ defmodule OpenCode.Generated.Session do
           summary: OpenCode.Generated.SessionSummary.t() | nil,
           time: OpenCode.Generated.SessionTime.t(),
           title: String.t(),
-          version: String.t()
+          version: String.t(),
+          workspace_id: String.t() | nil
         }
 
   defstruct [
@@ -98,7 +101,8 @@ defmodule OpenCode.Generated.Session do
     :summary,
     :time,
     :title,
-    :version
+    :version,
+    :workspace_id
   ]
 
   @doc false
@@ -118,7 +122,8 @@ defmodule OpenCode.Generated.Session do
       summary: {OpenCode.Generated.SessionSummary, :t},
       time: {OpenCode.Generated.SessionTime, :t},
       title: :string,
-      version: :string
+      version: :string,
+      workspace_id: :string
     ]
   end
 end

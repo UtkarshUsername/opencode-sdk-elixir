@@ -16,7 +16,8 @@ defmodule OpenCode.Generated.GlobalSession do
           summary: OpenCode.Generated.GlobalSessionSummary.t() | nil,
           time: OpenCode.Generated.GlobalSessionTime.t(),
           title: String.t(),
-          version: String.t()
+          version: String.t(),
+          workspace_id: String.t() | nil
         }
 
   defstruct [
@@ -32,7 +33,8 @@ defmodule OpenCode.Generated.GlobalSession do
     :summary,
     :time,
     :title,
-    :version
+    :version,
+    :workspace_id
   ]
 
   @doc false
@@ -53,7 +55,8 @@ defmodule OpenCode.Generated.GlobalSession do
       summary: {OpenCode.Generated.GlobalSessionSummary, :t},
       time: {OpenCode.Generated.GlobalSessionTime, :t},
       title: :string,
-      version: :string
+      version: :string,
+      workspace_id: :string
     ]
   end
 end

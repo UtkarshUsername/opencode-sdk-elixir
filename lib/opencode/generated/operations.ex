@@ -13,12 +13,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec app_agents(opts :: keyword) :: {:ok, [OpenCode.Generated.Agent.t()]} | :error
   def app_agents(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -39,6 +40,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -48,7 +50,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def app_log(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -78,13 +80,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec app_skills(opts :: keyword) ::
           {:ok, [OpenCode.Generated.Operations.app_skills_200_json_resp()]} | :error
   def app_skills(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -165,12 +168,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec command_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Command.t()]} | :error
   def command_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -191,12 +195,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec config_get(opts :: keyword) :: {:ok, OpenCode.Generated.Config.t()} | :error
   def config_get(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -222,13 +227,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec config_providers(opts :: keyword) ::
           {:ok, OpenCode.Generated.Operations.config_providers_200_json_resp()} | :error
   def config_providers(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -249,6 +255,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -258,7 +265,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def config_update(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -284,6 +291,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec event_subscribe(opts :: keyword) ::
@@ -336,7 +344,7 @@ defmodule OpenCode.Generated.Operations do
           | :error
   def event_subscribe(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -407,12 +415,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec experimental_resource_list(opts :: keyword) :: {:ok, map} | :error
   def experimental_resource_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -433,6 +442,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`: Filter sessions by project directory
+    * `workspace`
     * `roots`: Only return root sessions (no parentID)
     * `start`: Filter sessions updated on or after this timestamp (milliseconds since epoch)
     * `cursor`: Return sessions updated before this timestamp (milliseconds since epoch)
@@ -445,7 +455,18 @@ defmodule OpenCode.Generated.Operations do
           {:ok, [OpenCode.Generated.GlobalSession.t()]} | :error
   def experimental_session_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:archived, :cursor, :directory, :limit, :roots, :search, :start])
+
+    query =
+      Keyword.take(opts, [
+        :archived,
+        :cursor,
+        :directory,
+        :limit,
+        :roots,
+        :search,
+        :start,
+        :workspace
+      ])
 
     client.request(%{
       args: [],
@@ -466,6 +487,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -476,7 +498,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_create(id, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [id: id, body: body],
@@ -502,13 +524,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec experimental_workspace_list(opts :: keyword) ::
           {:ok, [OpenCode.Generated.Workspace.t()]} | :error
   def experimental_workspace_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -529,6 +552,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec experimental_workspace_remove(id :: String.t(), opts :: keyword) ::
@@ -536,7 +560,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_remove(id, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [id: id],
@@ -560,13 +584,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `path`
 
   """
   @spec file_list(opts :: keyword) :: {:ok, [OpenCode.Generated.FileNode.t()]} | :error
   def file_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :path])
+    query = Keyword.take(opts, [:directory, :path, :workspace])
 
     client.request(%{
       args: [],
@@ -587,13 +612,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `path`
 
   """
   @spec file_read(opts :: keyword) :: {:ok, OpenCode.Generated.FileContent.t()} | :error
   def file_read(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :path])
+    query = Keyword.take(opts, [:directory, :path, :workspace])
 
     client.request(%{
       args: [],
@@ -614,12 +640,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec file_status(opts :: keyword) :: {:ok, [OpenCode.Generated.File.t()]} | :error
   def file_status(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -640,6 +667,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `query`
     * `dirs`
     * `type`
@@ -649,7 +677,7 @@ defmodule OpenCode.Generated.Operations do
   @spec find_files(opts :: keyword) :: {:ok, [String.t()]} | :error
   def find_files(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :dirs, :limit, :query, :type])
+    query = Keyword.take(opts, [:directory, :dirs, :limit, :query, :type, :workspace])
 
     client.request(%{
       args: [],
@@ -670,13 +698,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `query`
 
   """
   @spec find_symbols(opts :: keyword) :: {:ok, [OpenCode.Generated.Symbol.t()]} | :error
   def find_symbols(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :query])
+    query = Keyword.take(opts, [:directory, :query, :workspace])
 
     client.request(%{
       args: [],
@@ -717,6 +746,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `pattern`
 
   """
@@ -724,7 +754,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, [OpenCode.Generated.Operations.find_text_200_json_resp()]} | :error
   def find_text(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :pattern])
+    query = Keyword.take(opts, [:directory, :pattern, :workspace])
 
     client.request(%{
       args: [],
@@ -745,13 +775,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec formatter_status(opts :: keyword) ::
           {:ok, [OpenCode.Generated.FormatterStatus.t()]} | :error
   def formatter_status(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -880,12 +911,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec instance_dispose(opts :: keyword) :: {:ok, boolean} | :error
   def instance_dispose(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -906,12 +938,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec lsp_status(opts :: keyword) :: {:ok, [OpenCode.Generated.LSPStatus.t()]} | :error
   def lsp_status(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -932,6 +965,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -941,7 +975,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, map} | {:error, OpenCode.Generated.BadRequestError.t()}
   def mcp_add(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -964,6 +998,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_auth_authenticate(name :: String.t(), opts :: keyword) ::
@@ -977,7 +1012,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_authenticate(name, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name],
@@ -1010,6 +1045,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1026,7 +1062,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_callback(name, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name, body: body],
@@ -1063,6 +1099,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_auth_remove(name :: String.t(), opts :: keyword) ::
@@ -1070,7 +1107,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_remove(name, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name],
@@ -1096,6 +1133,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_auth_start(name :: String.t(), opts :: keyword) ::
@@ -1104,7 +1142,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_start(name, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name],
@@ -1129,12 +1167,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_connect(name :: String.t(), opts :: keyword) :: {:ok, boolean} | :error
   def mcp_connect(name, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name],
@@ -1155,12 +1194,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_disconnect(name :: String.t(), opts :: keyword) :: {:ok, boolean} | :error
   def mcp_disconnect(name, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [name: name],
@@ -1181,12 +1221,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec mcp_status(opts :: keyword) :: {:ok, map} | :error
   def mcp_status(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1207,6 +1248,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec part_delete(
@@ -1220,7 +1262,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def part_delete(sessionID, messageID, partID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, messageID: messageID, partID: partID],
@@ -1245,6 +1287,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1286,7 +1329,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def part_update(sessionID, messageID, partID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, messageID: messageID, partID: partID, body: body],
@@ -1345,12 +1388,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec path_get(opts :: keyword) :: {:ok, OpenCode.Generated.Path.t()} | :error
   def path_get(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1371,13 +1415,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec permission_list(opts :: keyword) ::
           {:ok, [OpenCode.Generated.PermissionRequest.t()]} | :error
   def permission_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1398,6 +1443,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1409,7 +1455,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def permission_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [requestID: requestID, body: body],
@@ -1436,6 +1482,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1452,7 +1499,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def permission_respond(sessionID, permissionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, permissionID: permissionID, body: body],
@@ -1479,12 +1526,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec project_current(opts :: keyword) :: {:ok, OpenCode.Generated.Project.t()} | :error
   def project_current(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1505,12 +1553,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec project_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Project.t()]} | :error
   def project_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1531,6 +1580,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1542,7 +1592,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def project_update(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [projectID: projectID, body: body],
@@ -1569,12 +1619,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec provider_auth(opts :: keyword) :: {:ok, map} | :error
   def provider_auth(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1610,13 +1661,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec provider_list(opts :: keyword) ::
           {:ok, OpenCode.Generated.Operations.provider_list_200_json_resp()} | :error
   def provider_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1637,6 +1689,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1647,7 +1700,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def provider_oauth_authorize(providerID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [providerID: providerID, body: body],
@@ -1673,6 +1726,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1682,7 +1736,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def provider_oauth_callback(providerID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [providerID: providerID, body: body],
@@ -1705,13 +1759,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec pty_connect(ptyID :: String.t(), opts :: keyword) ::
           {:ok, boolean} | {:error, OpenCode.Generated.NotFoundError.t()}
   def pty_connect(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [ptyID: ptyID],
@@ -1732,6 +1787,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1741,7 +1797,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def pty_create(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -1767,13 +1823,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec pty_get(ptyID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.NotFoundError.t()}
   def pty_get(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [ptyID: ptyID],
@@ -1797,12 +1854,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec pty_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Pty.t()]} | :error
   def pty_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1823,13 +1881,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec pty_remove(ptyID :: String.t(), opts :: keyword) ::
           {:ok, boolean} | {:error, OpenCode.Generated.NotFoundError.t()}
   def pty_remove(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [ptyID: ptyID],
@@ -1850,6 +1909,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1859,7 +1919,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def pty_update(ptyID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [ptyID: ptyID, body: body],
@@ -1885,12 +1945,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec question_list(opts :: keyword) :: {:ok, [OpenCode.Generated.QuestionRequest.t()]} | :error
   def question_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -1911,6 +1972,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec question_reject(requestID :: String.t(), opts :: keyword) ::
@@ -1919,7 +1981,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def question_reject(requestID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [requestID: requestID],
@@ -1944,6 +2006,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -1955,7 +2018,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def question_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [requestID: requestID, body: body],
@@ -1982,6 +2045,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_abort(sessionID :: String.t(), opts :: keyword) ::
@@ -1990,7 +2054,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_abort(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2033,6 +2097,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2044,7 +2109,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_command(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2071,6 +2136,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2080,7 +2146,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, OpenCode.Generated.Session.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def session_create(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -2106,6 +2172,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_delete(sessionID :: String.t(), opts :: keyword) ::
@@ -2114,7 +2181,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_delete(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2139,6 +2206,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_delete_message(sessionID :: String.t(), messageID :: String.t(), opts :: keyword) ::
@@ -2147,7 +2215,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_delete_message(sessionID, messageID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, messageID: messageID],
@@ -2172,6 +2240,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `messageID`
 
   """
@@ -2179,7 +2248,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, [OpenCode.Generated.FileDiff.t()]} | :error
   def session_diff(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :messageID])
+    query = Keyword.take(opts, [:directory, :messageID, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2200,6 +2269,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2209,7 +2279,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, OpenCode.Generated.Session.t()} | :error
   def session_fork(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2232,6 +2302,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2243,7 +2314,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_init(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2270,6 +2341,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`: Filter sessions by project directory
+    * `workspace`
     * `roots`: Only return root sessions (no parentID)
     * `start`: Filter sessions updated on or after this timestamp (milliseconds since epoch)
     * `search`: Filter sessions by title (case-insensitive)
@@ -2279,7 +2351,7 @@ defmodule OpenCode.Generated.Operations do
   @spec session_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Session.t()]} | :error
   def session_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :limit, :roots, :search, :start])
+    query = Keyword.take(opts, [:directory, :limit, :roots, :search, :start, :workspace])
 
     client.request(%{
       args: [],
@@ -2318,6 +2390,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_message(sessionID :: String.t(), messageID :: String.t(), opts :: keyword) ::
@@ -2326,7 +2399,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_message(sessionID, messageID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, messageID: messageID],
@@ -2369,6 +2442,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `limit`
 
   """
@@ -2378,7 +2452,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :limit])
+    query = Keyword.take(opts, [:directory, :limit, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2421,6 +2495,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2432,7 +2507,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_prompt(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2459,6 +2534,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2470,7 +2546,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_prompt_async(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2497,6 +2573,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2508,7 +2585,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_revert(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2535,6 +2612,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_share(sessionID :: String.t(), opts :: keyword) ::
@@ -2543,7 +2621,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_share(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2568,6 +2646,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2579,7 +2658,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_shell(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2606,13 +2685,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_status(opts :: keyword) ::
           {:ok, map} | {:error, OpenCode.Generated.BadRequestError.t()}
   def session_status(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -2633,6 +2713,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2644,7 +2725,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_summarize(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2671,6 +2752,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_todo(sessionID :: String.t(), opts :: keyword) ::
@@ -2679,7 +2761,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_todo(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2704,6 +2786,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_unrevert(sessionID :: String.t(), opts :: keyword) ::
@@ -2712,7 +2795,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_unrevert(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2737,6 +2820,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec session_unshare(sessionID :: String.t(), opts :: keyword) ::
@@ -2745,7 +2829,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_unshare(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
@@ -2770,6 +2854,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2781,7 +2866,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_update(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -2808,13 +2893,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tool_ids(opts :: keyword) ::
           {:ok, [String.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tool_ids(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -2835,6 +2921,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
     * `provider`
     * `model`
 
@@ -2844,7 +2931,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def tool_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :model, :provider])
+    query = Keyword.take(opts, [:directory, :model, :provider, :workspace])
 
     client.request(%{
       args: [],
@@ -2868,6 +2955,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2877,7 +2965,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_append_prompt(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -2900,12 +2988,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_clear_prompt(opts :: keyword) :: {:ok, boolean} | :error
   def tui_clear_prompt(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -2928,13 +3017,14 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_control_next(opts :: keyword) ::
           {:ok, OpenCode.Generated.Operations.tui_control_next_200_json_resp()} | :error
   def tui_control_next(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -2955,6 +3045,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2963,7 +3054,7 @@ defmodule OpenCode.Generated.Operations do
   @spec tui_control_response(body :: map, opts :: keyword) :: {:ok, boolean} | :error
   def tui_control_response(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -2986,6 +3077,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -2995,7 +3087,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_execute_command(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3018,12 +3110,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_open_help(opts :: keyword) :: {:ok, boolean} | :error
   def tui_open_help(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3044,12 +3137,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_open_models(opts :: keyword) :: {:ok, boolean} | :error
   def tui_open_models(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3070,12 +3164,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_open_sessions(opts :: keyword) :: {:ok, boolean} | :error
   def tui_open_sessions(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3096,12 +3191,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_open_themes(opts :: keyword) :: {:ok, boolean} | :error
   def tui_open_themes(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3122,6 +3218,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3137,7 +3234,7 @@ defmodule OpenCode.Generated.Operations do
         ) :: {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_publish(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3169,6 +3266,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3180,7 +3278,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def tui_select_session(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3207,6 +3305,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3215,7 +3314,7 @@ defmodule OpenCode.Generated.Operations do
   @spec tui_show_toast(body :: map, opts :: keyword) :: {:ok, boolean} | :error
   def tui_show_toast(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3238,12 +3337,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec tui_submit_prompt(opts :: keyword) :: {:ok, boolean} | :error
   def tui_submit_prompt(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3264,12 +3364,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec vcs_get(opts :: keyword) :: {:ok, OpenCode.Generated.VcsInfo.t()} | :error
   def vcs_get(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3290,6 +3391,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3300,7 +3402,7 @@ defmodule OpenCode.Generated.Operations do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def worktree_create(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3326,12 +3428,13 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   """
   @spec worktree_list(opts :: keyword) :: {:ok, [String.t()]} | :error
   def worktree_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
@@ -3352,6 +3455,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3361,7 +3465,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def worktree_remove(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
@@ -3384,6 +3488,7 @@ defmodule OpenCode.Generated.Operations do
   ## Options
 
     * `directory`
+    * `workspace`
 
   ## Request Body
 
@@ -3393,7 +3498,7 @@ defmodule OpenCode.Generated.Operations do
           {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def worktree_reset(body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [body: body],
