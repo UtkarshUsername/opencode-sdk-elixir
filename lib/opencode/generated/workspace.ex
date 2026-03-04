@@ -5,12 +5,15 @@ defmodule OpenCode.Generated.Workspace do
 
   @type t :: %__MODULE__{
           branch: String.t() | nil,
-          config: OpenCode.Generated.WorkspaceConfig.t(),
+          directory: String.t() | nil,
+          extra: map | nil,
           id: String.t(),
-          project_id: String.t()
+          name: String.t() | nil,
+          project_id: String.t(),
+          type: String.t()
         }
 
-  defstruct [:branch, :config, :id, :project_id]
+  defstruct [:branch, :directory, :extra, :id, :name, :project_id, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -19,9 +22,12 @@ defmodule OpenCode.Generated.Workspace do
   def __fields__(:t) do
     [
       branch: {:union, [:string, :null]},
-      config: {OpenCode.Generated.WorkspaceConfig, :t},
+      directory: {:union, [:string, :null]},
+      extra: {:union, [:map, :null]},
       id: :string,
-      project_id: :string
+      name: {:union, [:string, :null]},
+      project_id: :string,
+      type: :string
     ]
   end
 end

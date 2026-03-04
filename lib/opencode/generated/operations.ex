@@ -493,17 +493,17 @@ defmodule OpenCode.Generated.Operations do
 
   **Content Types**: `application/json`
   """
-  @spec experimental_workspace_create(id :: String.t(), body :: map, opts :: keyword) ::
+  @spec experimental_workspace_create(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Workspace.t()}
           | {:error, OpenCode.Generated.BadRequestError.t()}
-  def experimental_workspace_create(id, body, opts \\ []) do
+  def experimental_workspace_create(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
-      args: [id: id, body: body],
+      args: [body: body],
       call: {OpenCode.Generated.Operations, :experimental_workspace_create},
-      url: "/experimental/workspace/#{id}",
+      url: "/experimental/workspace",
       body: body,
       method: :post,
       query: query,
