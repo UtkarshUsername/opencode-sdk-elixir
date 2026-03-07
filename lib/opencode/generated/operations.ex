@@ -1546,6 +1546,33 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @doc """
+  Initialize git repository
+
+  Create a git repository for the current project and return the refreshed project info.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec project_init_git(opts :: keyword) :: {:ok, OpenCode.Generated.Project.t()} | :error
+  def project_init_git(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :project_init_git},
+      url: "/project/git/init",
+      method: :post,
+      query: query,
+      response: [{200, {OpenCode.Generated.Project, :t}}],
+      opts: opts
+    })
+  end
+
+  @doc """
   List all projects
 
   Get a list of projects that have been opened with OpenCode.
