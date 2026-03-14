@@ -2470,7 +2470,8 @@ defmodule OpenCode.Generated.Operations do
 
     * `directory`
     * `workspace`
-    * `limit`
+    * `limit`: Maximum number of messages to return
+    * `before`
 
   """
   @spec session_messages(sessionID :: String.t(), opts :: keyword) ::
@@ -2479,7 +2480,7 @@ defmodule OpenCode.Generated.Operations do
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :limit, :workspace])
+    query = Keyword.take(opts, [:before, :directory, :limit, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
