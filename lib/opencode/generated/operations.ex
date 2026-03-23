@@ -903,6 +903,42 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type global_upgrade_200_json_resp :: %{
+          error: String.t(),
+          success: false | true,
+          version: String.t()
+        }
+
+  @doc """
+  Upgrade opencode
+
+  Upgrade opencode to the specified version or latest if not specified.
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec global_upgrade(body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Operations.global_upgrade_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def global_upgrade(body, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Operations, :global_upgrade},
+      url: "/global/upgrade",
+      body: body,
+      method: :post,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Operations, :global_upgrade_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   Dispose instance
 
@@ -3583,6 +3619,10 @@ defmodule OpenCode.Generated.Operations do
 
   def __fields__(:global_health_200_json_resp) do
     [healthy: {:const, true}, version: :string]
+  end
+
+  def __fields__(:global_upgrade_200_json_resp) do
+    [error: :string, success: {:enum, [false, true]}, version: :string]
   end
 
   def __fields__(:mcp_auth_remove_200_json_resp) do
