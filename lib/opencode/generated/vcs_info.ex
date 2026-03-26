@@ -3,15 +3,15 @@ defmodule OpenCode.Generated.VcsInfo do
   Provides struct and type for a VcsInfo
   """
 
-  @type t :: %__MODULE__{branch: String.t()}
+  @type t :: %__MODULE__{branch: String.t() | nil, default_branch: String.t() | nil}
 
-  defstruct [:branch]
+  defstruct [:branch, :default_branch]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [branch: :string]
+    [branch: :string, default_branch: :string]
   end
 end

@@ -16,10 +16,12 @@ defmodule OpenCode.Generated.EventMessagePartUpdatedProperties do
             | OpenCode.Generated.StepStartPart.t()
             | OpenCode.Generated.SubtaskPart.t()
             | OpenCode.Generated.TextPart.t()
-            | OpenCode.Generated.ToolPart.t()
+            | OpenCode.Generated.ToolPart.t(),
+          session_id: String.t(),
+          time: number
         }
 
-  defstruct [:part]
+  defstruct [:part, :session_id, :time]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -42,7 +44,9 @@ defmodule OpenCode.Generated.EventMessagePartUpdatedProperties do
            {OpenCode.Generated.SubtaskPart, :t},
            {OpenCode.Generated.TextPart, :t},
            {OpenCode.Generated.ToolPart, :t}
-         ]}
+         ]},
+      session_id: :string,
+      time: :number
     ]
   end
 end

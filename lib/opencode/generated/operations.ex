@@ -903,6 +903,26 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @doc """
+  Subscribe to global sync events
+
+  Get global sync events
+  """
+  @spec global_sync_event_subscribe(opts :: keyword) ::
+          {:ok, OpenCode.Generated.SyncEvent.t()} | :error
+  def global_sync_event_subscribe(opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :global_sync_event_subscribe},
+      url: "/global/sync-event",
+      method: :get,
+      response: [{200, {OpenCode.Generated.SyncEvent, :t}}],
+      opts: opts
+    })
+  end
+
   @type global_upgrade_200_json_resp :: %{
           error: String.t(),
           success: false | true,
@@ -3416,6 +3436,34 @@ defmodule OpenCode.Generated.Operations do
       method: :post,
       query: query,
       response: [{200, :boolean}],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Get VCS diff
+
+  Retrieve the current git diff for the working tree or against the default branch.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+    * `mode`
+
+  """
+  @spec vcs_diff(opts :: keyword) :: {:ok, [OpenCode.Generated.FileDiff.t()]} | :error
+  def vcs_diff(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :mode, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :vcs_diff},
+      url: "/vcs/diff",
+      method: :get,
+      query: query,
+      response: [{200, [{OpenCode.Generated.FileDiff, :t}]}],
       opts: opts
     })
   end

@@ -4,10 +4,11 @@ defmodule OpenCode.Generated.EventMessageUpdatedProperties do
   """
 
   @type t :: %__MODULE__{
-          info: OpenCode.Generated.AssistantMessage.t() | OpenCode.Generated.UserMessage.t()
+          info: OpenCode.Generated.AssistantMessage.t() | OpenCode.Generated.UserMessage.t(),
+          session_id: String.t()
         }
 
-  defstruct [:info]
+  defstruct [:info, :session_id]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -17,7 +18,8 @@ defmodule OpenCode.Generated.EventMessageUpdatedProperties do
     [
       info:
         {:union,
-         [{OpenCode.Generated.AssistantMessage, :t}, {OpenCode.Generated.UserMessage, :t}]}
+         [{OpenCode.Generated.AssistantMessage, :t}, {OpenCode.Generated.UserMessage, :t}]},
+      session_id: :string
     ]
   end
 end
