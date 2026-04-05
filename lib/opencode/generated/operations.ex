@@ -407,6 +407,118 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type experimental_console_get_200_json_resp :: %{
+          active_org_name: String.t() | nil,
+          console_managed_providers: [String.t()],
+          switchable_org_count: integer
+        }
+
+  @doc """
+  Get active Console provider metadata
+
+  Get the active Console org name and the set of provider IDs managed by that Console org.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_console_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Operations.experimental_console_get_200_json_resp()} | :error
+  def experimental_console_get(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_console_get},
+      url: "/experimental/console",
+      method: :get,
+      query: query,
+      response: [{200, {OpenCode.Generated.Operations, :experimental_console_get_200_json_resp}}],
+      opts: opts
+    })
+  end
+
+  @type experimental_console_list_orgs_200_json_resp :: %{
+          orgs: [
+            OpenCode.Generated.Operations.experimental_console_list_orgs_200_json_resp_orgs()
+          ]
+        }
+
+  @type experimental_console_list_orgs_200_json_resp_orgs :: %{
+          account_email: String.t(),
+          account_id: String.t(),
+          account_url: String.t(),
+          active: boolean,
+          org_id: String.t(),
+          org_name: String.t()
+        }
+
+  @doc """
+  List switchable Console orgs
+
+  Get the available Console orgs across logged-in accounts, including the current active org.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_console_list_orgs(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Operations.experimental_console_list_orgs_200_json_resp()}
+          | :error
+  def experimental_console_list_orgs(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_console_list_orgs},
+      url: "/experimental/console/orgs",
+      method: :get,
+      query: query,
+      response: [
+        {200, {OpenCode.Generated.Operations, :experimental_console_list_orgs_200_json_resp}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Switch active Console org
+
+  Persist a new active Console account/org selection for the current local OpenCode state.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec experimental_console_switch_org(body :: map, opts :: keyword) :: {:ok, boolean} | :error
+  def experimental_console_switch_org(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Operations, :experimental_console_switch_org},
+      url: "/experimental/console/switch",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [{200, :boolean}],
+      opts: opts
+    })
+  end
+
   @doc """
   Get MCP resources
 
@@ -3633,6 +3745,29 @@ defmodule OpenCode.Generated.Operations do
 
   def __fields__(:config_providers_200_json_resp) do
     [default: :map, providers: [{OpenCode.Generated.Provider, :t}]]
+  end
+
+  def __fields__(:experimental_console_get_200_json_resp) do
+    [
+      active_org_name: :string,
+      console_managed_providers: [:string],
+      switchable_org_count: :integer
+    ]
+  end
+
+  def __fields__(:experimental_console_list_orgs_200_json_resp) do
+    [orgs: [{OpenCode.Generated.Operations, :experimental_console_list_orgs_200_json_resp_orgs}]]
+  end
+
+  def __fields__(:experimental_console_list_orgs_200_json_resp_orgs) do
+    [
+      account_email: :string,
+      account_id: :string,
+      account_url: :string,
+      active: :boolean,
+      org_id: :string,
+      org_name: :string
+    ]
   end
 
   def __fields__(:find_text_200_json_resp) do
