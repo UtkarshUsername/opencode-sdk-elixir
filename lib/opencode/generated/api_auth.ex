@@ -3,15 +3,15 @@ defmodule OpenCode.Generated.ApiAuth do
   Provides struct and type for a ApiAuth
   """
 
-  @type t :: %__MODULE__{key: String.t(), type: String.t()}
+  @type t :: %__MODULE__{key: String.t(), metadata: map | nil, type: String.t()}
 
-  defstruct [:key, :type]
+  defstruct [:key, :metadata, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [key: :string, type: {:const, "api"}]
+    [key: :string, metadata: :map, type: {:const, "api"}]
   end
 end
