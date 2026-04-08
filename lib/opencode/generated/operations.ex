@@ -2440,7 +2440,7 @@ defmodule OpenCode.Generated.Operations do
 
   """
   @spec session_diff(sessionID :: String.t(), opts :: keyword) ::
-          {:ok, [OpenCode.Generated.FileDiff.t()]} | :error
+          {:ok, [OpenCode.Generated.SnapshotFileDiff.t()]} | :error
   def session_diff(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :messageID, :workspace])
@@ -2451,7 +2451,7 @@ defmodule OpenCode.Generated.Operations do
       url: "/session/#{sessionID}/diff",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.FileDiff, :t}]}],
+      response: [{200, [{OpenCode.Generated.SnapshotFileDiff, :t}]}],
       opts: opts
     })
   end
@@ -3564,7 +3564,7 @@ defmodule OpenCode.Generated.Operations do
     * `mode`
 
   """
-  @spec vcs_diff(opts :: keyword) :: {:ok, [OpenCode.Generated.FileDiff.t()]} | :error
+  @spec vcs_diff(opts :: keyword) :: {:ok, [OpenCode.Generated.VcsFileDiff.t()]} | :error
   def vcs_diff(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :mode, :workspace])
@@ -3575,7 +3575,7 @@ defmodule OpenCode.Generated.Operations do
       url: "/vcs/diff",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.FileDiff, :t}]}],
+      response: [{200, [{OpenCode.Generated.VcsFileDiff, :t}]}],
       opts: opts
     })
   end

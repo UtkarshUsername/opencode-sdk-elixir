@@ -6,7 +6,7 @@ defmodule OpenCode.Generated.SessionSummary do
   @type t :: %__MODULE__{
           additions: number,
           deletions: number,
-          diffs: [OpenCode.Generated.FileDiff.t()] | nil,
+          diffs: [OpenCode.Generated.SnapshotFileDiff.t()] | nil,
           files: number
         }
 
@@ -20,7 +20,7 @@ defmodule OpenCode.Generated.SessionSummary do
     [
       additions: :number,
       deletions: :number,
-      diffs: [{OpenCode.Generated.FileDiff, :t}],
+      diffs: [{OpenCode.Generated.SnapshotFileDiff, :t}],
       files: :number
     ]
   end

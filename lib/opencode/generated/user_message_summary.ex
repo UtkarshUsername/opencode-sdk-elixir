@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.UserMessageSummary do
 
   @type t :: %__MODULE__{
           body: String.t() | nil,
-          diffs: [OpenCode.Generated.FileDiff.t()],
+          diffs: [OpenCode.Generated.SnapshotFileDiff.t()],
           title: String.t() | nil
         }
 
@@ -16,6 +16,6 @@ defmodule OpenCode.Generated.UserMessageSummary do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [body: :string, diffs: [{OpenCode.Generated.FileDiff, :t}], title: :string]
+    [body: :string, diffs: [{OpenCode.Generated.SnapshotFileDiff, :t}], title: :string]
   end
 end

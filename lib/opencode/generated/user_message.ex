@@ -16,23 +16,10 @@ defmodule OpenCode.Generated.UserMessage do
           summary: OpenCode.Generated.UserMessageSummary.t() | nil,
           system: String.t() | nil,
           time: OpenCode.Generated.UserMessageTime.t(),
-          tools: map | nil,
-          variant: String.t() | nil
+          tools: map | nil
         }
 
-  defstruct [
-    :agent,
-    :format,
-    :id,
-    :model,
-    :role,
-    :session_id,
-    :summary,
-    :system,
-    :time,
-    :tools,
-    :variant
-  ]
+  defstruct [:agent, :format, :id, :model, :role, :session_id, :summary, :system, :time, :tools]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -54,8 +41,7 @@ defmodule OpenCode.Generated.UserMessage do
       summary: {OpenCode.Generated.UserMessageSummary, :t},
       system: :string,
       time: {OpenCode.Generated.UserMessageTime, :t},
-      tools: :map,
-      variant: :string
+      tools: :map
     ]
   end
 end
