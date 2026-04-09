@@ -1834,18 +1834,9 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @type provider_list_200_json_resp :: %{
-          all: [OpenCode.Generated.Operations.provider_list_200_json_resp_all()],
+          all: [OpenCode.Generated.Provider.t()],
           connected: [String.t()],
           default: map
-        }
-
-  @type provider_list_200_json_resp_all :: %{
-          api: String.t() | nil,
-          env: [String.t()],
-          id: String.t(),
-          models: map,
-          name: String.t(),
-          npm: String.t() | nil
         }
 
   @doc """
@@ -2834,6 +2825,24 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type session_shell_200_json_resp :: %{
+          info: OpenCode.Generated.AssistantMessage.t() | OpenCode.Generated.UserMessage.t(),
+          parts: [
+            OpenCode.Generated.AgentPart.t()
+            | OpenCode.Generated.CompactionPart.t()
+            | OpenCode.Generated.FilePart.t()
+            | OpenCode.Generated.PatchPart.t()
+            | OpenCode.Generated.ReasoningPart.t()
+            | OpenCode.Generated.RetryPart.t()
+            | OpenCode.Generated.SnapshotPart.t()
+            | OpenCode.Generated.StepFinishPart.t()
+            | OpenCode.Generated.StepStartPart.t()
+            | OpenCode.Generated.SubtaskPart.t()
+            | OpenCode.Generated.TextPart.t()
+            | OpenCode.Generated.ToolPart.t()
+          ]
+        }
+
   @doc """
   Run shell command
 
@@ -2849,7 +2858,7 @@ defmodule OpenCode.Generated.Operations do
   **Content Types**: `application/json`
   """
   @spec session_shell(sessionID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok, OpenCode.Generated.AssistantMessage.t()}
+          {:ok, OpenCode.Generated.Operations.session_shell_200_json_resp()}
           | {:error,
              OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def session_shell(sessionID, body, opts \\ []) do
@@ -2865,7 +2874,7 @@ defmodule OpenCode.Generated.Operations do
       query: query,
       request: [{"application/json", :map}],
       response: [
-        {200, {OpenCode.Generated.AssistantMessage, :t}},
+        {200, {OpenCode.Generated.Operations, :session_shell_200_json_resp}},
         {400, {OpenCode.Generated.BadRequestError, :t}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
@@ -3817,15 +3826,7 @@ defmodule OpenCode.Generated.Operations do
   end
 
   def __fields__(:provider_list_200_json_resp) do
-    [
-      all: [{OpenCode.Generated.Operations, :provider_list_200_json_resp_all}],
-      connected: [:string],
-      default: :map
-    ]
-  end
-
-  def __fields__(:provider_list_200_json_resp_all) do
-    [api: :string, env: [:string], id: :string, models: :map, name: :string, npm: :string]
+    [all: [{OpenCode.Generated.Provider, :t}], connected: [:string], default: :map]
   end
 
   def __fields__(:session_command_200_json_resp) do
@@ -3901,6 +3902,30 @@ defmodule OpenCode.Generated.Operations do
   def __fields__(:session_prompt_200_json_resp) do
     [
       info: {OpenCode.Generated.AssistantMessage, :t},
+      parts: [
+        union: [
+          {OpenCode.Generated.AgentPart, :t},
+          {OpenCode.Generated.CompactionPart, :t},
+          {OpenCode.Generated.FilePart, :t},
+          {OpenCode.Generated.PatchPart, :t},
+          {OpenCode.Generated.ReasoningPart, :t},
+          {OpenCode.Generated.RetryPart, :t},
+          {OpenCode.Generated.SnapshotPart, :t},
+          {OpenCode.Generated.StepFinishPart, :t},
+          {OpenCode.Generated.StepStartPart, :t},
+          {OpenCode.Generated.SubtaskPart, :t},
+          {OpenCode.Generated.TextPart, :t},
+          {OpenCode.Generated.ToolPart, :t}
+        ]
+      ]
+    ]
+  end
+
+  def __fields__(:session_shell_200_json_resp) do
+    [
+      info:
+        {:union,
+         [{OpenCode.Generated.AssistantMessage, :t}, {OpenCode.Generated.UserMessage, :t}]},
       parts: [
         union: [
           {OpenCode.Generated.AgentPart, :t},
