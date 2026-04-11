@@ -49,11 +49,14 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.EventVcsBranchUpdated.t()
             | OpenCode.Generated.EventWorkspaceFailed.t()
             | OpenCode.Generated.EventWorkspaceReady.t()
+            | OpenCode.Generated.EventWorkspaceStatus.t()
             | OpenCode.Generated.EventWorktreeFailed.t()
-            | OpenCode.Generated.EventWorktreeReady.t()
+            | OpenCode.Generated.EventWorktreeReady.t(),
+          project: String.t() | nil,
+          workspace: String.t() | nil
         }
 
-  defstruct [:directory, :payload]
+  defstruct [:directory, :payload, :project, :workspace]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -108,9 +111,12 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.EventVcsBranchUpdated, :t},
            {OpenCode.Generated.EventWorkspaceFailed, :t},
            {OpenCode.Generated.EventWorkspaceReady, :t},
+           {OpenCode.Generated.EventWorkspaceStatus, :t},
            {OpenCode.Generated.EventWorktreeFailed, :t},
            {OpenCode.Generated.EventWorktreeReady, :t}
-         ]}
+         ]},
+      project: :string,
+      workspace: :string
     ]
   end
 end

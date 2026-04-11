@@ -339,6 +339,7 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.EventVcsBranchUpdated.t()
            | OpenCode.Generated.EventWorkspaceFailed.t()
            | OpenCode.Generated.EventWorkspaceReady.t()
+           | OpenCode.Generated.EventWorkspaceStatus.t()
            | OpenCode.Generated.EventWorktreeFailed.t()
            | OpenCode.Generated.EventWorktreeReady.t()}
           | :error
@@ -399,6 +400,7 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.EventVcsBranchUpdated, :t},
             {OpenCode.Generated.EventWorkspaceFailed, :t},
             {OpenCode.Generated.EventWorkspaceReady, :t},
+            {OpenCode.Generated.EventWorkspaceStatus, :t},
             {OpenCode.Generated.EventWorktreeFailed, :t},
             {OpenCode.Generated.EventWorktreeReady, :t}
           ]}}
@@ -683,6 +685,43 @@ defmodule OpenCode.Generated.Operations do
       response: [
         {200, {OpenCode.Generated.Workspace, :t}},
         {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @type experimental_workspace_status_200_json_resp :: %{
+          error: String.t() | nil,
+          status: String.t(),
+          workspace_id: String.t()
+        }
+
+  @doc """
+  Workspace status
+
+  Get connection status for workspaces in the current project.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_workspace_status(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Operations.experimental_workspace_status_200_json_resp()]}
+          | :error
+  def experimental_workspace_status(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_status},
+      url: "/experimental/workspace/status",
+      method: :get,
+      query: query,
+      response: [
+        {200, [{OpenCode.Generated.Operations, :experimental_workspace_status_200_json_resp}]}
       ],
       opts: opts
     })
@@ -3776,6 +3815,14 @@ defmodule OpenCode.Generated.Operations do
       active: :boolean,
       org_id: :string,
       org_name: :string
+    ]
+  end
+
+  def __fields__(:experimental_workspace_status_200_json_resp) do
+    [
+      error: :string,
+      status: {:enum, ["connected", "connecting", "disconnected", "error"]},
+      workspace_id: :string
     ]
   end
 
