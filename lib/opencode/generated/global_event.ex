@@ -51,7 +51,14 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.EventWorkspaceReady.t()
             | OpenCode.Generated.EventWorkspaceStatus.t()
             | OpenCode.Generated.EventWorktreeFailed.t()
-            | OpenCode.Generated.EventWorktreeReady.t(),
+            | OpenCode.Generated.EventWorktreeReady.t()
+            | OpenCode.Generated.SyncEventMessagePartRemoved.t()
+            | OpenCode.Generated.SyncEventMessagePartUpdated.t()
+            | OpenCode.Generated.SyncEventMessageRemoved.t()
+            | OpenCode.Generated.SyncEventMessageUpdated.t()
+            | OpenCode.Generated.SyncEventSessionCreated.t()
+            | OpenCode.Generated.SyncEventSessionDeleted.t()
+            | OpenCode.Generated.SyncEventSessionUpdated.t(),
           project: String.t() | nil,
           workspace: String.t() | nil
         }
@@ -113,7 +120,14 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.EventWorkspaceReady, :t},
            {OpenCode.Generated.EventWorkspaceStatus, :t},
            {OpenCode.Generated.EventWorktreeFailed, :t},
-           {OpenCode.Generated.EventWorktreeReady, :t}
+           {OpenCode.Generated.EventWorktreeReady, :t},
+           {OpenCode.Generated.SyncEventMessagePartRemoved, :t},
+           {OpenCode.Generated.SyncEventMessagePartUpdated, :t},
+           {OpenCode.Generated.SyncEventMessageRemoved, :t},
+           {OpenCode.Generated.SyncEventMessageUpdated, :t},
+           {OpenCode.Generated.SyncEventSessionCreated, :t},
+           {OpenCode.Generated.SyncEventSessionDeleted, :t},
+           {OpenCode.Generated.SyncEventSessionUpdated, :t}
          ]},
       project: :string,
       workspace: :string

@@ -593,6 +593,45 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type experimental_workspace_adaptor_list_200_json_resp :: %{
+          description: String.t(),
+          name: String.t(),
+          type: String.t()
+        }
+
+  @doc """
+  List workspace adaptors
+
+  List all available workspace adaptors for the current project.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_workspace_adaptor_list(opts :: keyword) ::
+          {:ok,
+           [OpenCode.Generated.Operations.experimental_workspace_adaptor_list_200_json_resp()]}
+          | :error
+  def experimental_workspace_adaptor_list(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_adaptor_list},
+      url: "/experimental/workspace/adaptor",
+      method: :get,
+      query: query,
+      response: [
+        {200,
+         [{OpenCode.Generated.Operations, :experimental_workspace_adaptor_list_200_json_resp}]}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   Create workspace
 
@@ -1050,26 +1089,6 @@ defmodule OpenCode.Generated.Operations do
       url: "/global/health",
       method: :get,
       response: [{200, {OpenCode.Generated.Operations, :global_health_200_json_resp}}],
-      opts: opts
-    })
-  end
-
-  @doc """
-  Subscribe to global sync events
-
-  Get global sync events
-  """
-  @spec global_sync_event_subscribe(opts :: keyword) ::
-          {:ok, OpenCode.Generated.SyncEvent.t()} | :error
-  def global_sync_event_subscribe(opts \\ []) do
-    client = opts[:client] || @default_client
-
-    client.request(%{
-      args: [],
-      call: {OpenCode.Generated.Operations, :global_sync_event_subscribe},
-      url: "/global/sync-event",
-      method: :get,
-      response: [{200, {OpenCode.Generated.SyncEvent, :t}}],
       opts: opts
     })
   end
@@ -3816,6 +3835,10 @@ defmodule OpenCode.Generated.Operations do
       org_id: :string,
       org_name: :string
     ]
+  end
+
+  def __fields__(:experimental_workspace_adaptor_list_200_json_resp) do
+    [description: :string, name: :string, type: :string]
   end
 
   def __fields__(:experimental_workspace_status_200_json_resp) do

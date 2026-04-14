@@ -8,7 +8,7 @@ defmodule OpenCode.Generated.Workspace do
           directory: String.t() | nil,
           extra: map | nil,
           id: String.t(),
-          name: String.t() | nil,
+          name: String.t(),
           project_id: String.t(),
           type: String.t()
         }
@@ -25,7 +25,7 @@ defmodule OpenCode.Generated.Workspace do
       directory: {:union, [:string, :null]},
       extra: {:union, [:map, :null]},
       id: :string,
-      name: {:union, [:string, :null]},
+      name: :string,
       project_id: :string,
       type: :string
     ]
