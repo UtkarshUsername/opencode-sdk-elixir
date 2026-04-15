@@ -3,10 +3,7 @@ defmodule OpenCode.Generated.EventQuestionReplied do
   Provides struct and type for a EventQuestionReplied
   """
 
-  @type t :: %__MODULE__{
-          properties: OpenCode.Generated.EventQuestionRepliedProperties.t(),
-          type: String.t()
-        }
+  @type t :: %__MODULE__{properties: OpenCode.Generated.QuestionReplied.t(), type: String.t()}
 
   defstruct [:properties, :type]
 
@@ -15,9 +12,6 @@ defmodule OpenCode.Generated.EventQuestionReplied do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      properties: {OpenCode.Generated.EventQuestionRepliedProperties, :t},
-      type: {:const, "question.replied"}
-    ]
+    [properties: {OpenCode.Generated.QuestionReplied, :t}, type: {:const, "question.replied"}]
   end
 end

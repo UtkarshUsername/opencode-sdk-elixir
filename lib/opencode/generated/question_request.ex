@@ -7,7 +7,7 @@ defmodule OpenCode.Generated.QuestionRequest do
           id: String.t(),
           questions: [OpenCode.Generated.QuestionInfo.t()],
           session_id: String.t(),
-          tool: OpenCode.Generated.QuestionRequestTool.t() | nil
+          tool: OpenCode.Generated.QuestionTool.t() | nil
         }
 
   defstruct [:id, :questions, :session_id, :tool]
@@ -21,7 +21,7 @@ defmodule OpenCode.Generated.QuestionRequest do
       id: :string,
       questions: [{OpenCode.Generated.QuestionInfo, :t}],
       session_id: :string,
-      tool: {OpenCode.Generated.QuestionRequestTool, :t}
+      tool: {OpenCode.Generated.QuestionTool, :t}
     ]
   end
 end

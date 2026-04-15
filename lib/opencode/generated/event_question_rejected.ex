@@ -3,10 +3,7 @@ defmodule OpenCode.Generated.EventQuestionRejected do
   Provides struct and type for a EventQuestionRejected
   """
 
-  @type t :: %__MODULE__{
-          properties: OpenCode.Generated.EventQuestionRejectedProperties.t(),
-          type: String.t()
-        }
+  @type t :: %__MODULE__{properties: OpenCode.Generated.QuestionRejected.t(), type: String.t()}
 
   defstruct [:properties, :type]
 
@@ -15,9 +12,6 @@ defmodule OpenCode.Generated.EventQuestionRejected do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      properties: {OpenCode.Generated.EventQuestionRejectedProperties, :t},
-      type: {:const, "question.rejected"}
-    ]
+    [properties: {OpenCode.Generated.QuestionRejected, :t}, type: {:const, "question.rejected"}]
   end
 end
