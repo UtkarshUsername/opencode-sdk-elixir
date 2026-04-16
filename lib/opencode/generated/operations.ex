@@ -339,6 +339,7 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.EventVcsBranchUpdated.t()
            | OpenCode.Generated.EventWorkspaceFailed.t()
            | OpenCode.Generated.EventWorkspaceReady.t()
+           | OpenCode.Generated.EventWorkspaceRestore.t()
            | OpenCode.Generated.EventWorkspaceStatus.t()
            | OpenCode.Generated.EventWorktreeFailed.t()
            | OpenCode.Generated.EventWorktreeReady.t()}
@@ -400,6 +401,7 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.EventVcsBranchUpdated, :t},
             {OpenCode.Generated.EventWorkspaceFailed, :t},
             {OpenCode.Generated.EventWorkspaceReady, :t},
+            {OpenCode.Generated.EventWorkspaceRestore, :t},
             {OpenCode.Generated.EventWorkspaceStatus, :t},
             {OpenCode.Generated.EventWorktreeFailed, :t},
             {OpenCode.Generated.EventWorktreeReady, :t}
@@ -723,6 +725,47 @@ defmodule OpenCode.Generated.Operations do
       query: query,
       response: [
         {200, {OpenCode.Generated.Workspace, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @type experimental_workspace_session_restore_200_json_resp :: %{total: integer}
+
+  @doc """
+  Restore session into workspace
+
+  Replay a session's sync events into the target workspace in batches.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec experimental_workspace_session_restore(id :: String.t(), body :: map, opts :: keyword) ::
+          {:ok,
+           OpenCode.Generated.Operations.experimental_workspace_session_restore_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_workspace_session_restore(id, body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [id: id, body: body],
+      call: {OpenCode.Generated.Operations, :experimental_workspace_session_restore},
+      url: "/experimental/workspace/#{id}/session-restore",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200,
+         {OpenCode.Generated.Operations, :experimental_workspace_session_restore_200_json_resp}},
         {400, {OpenCode.Generated.BadRequestError, :t}}
       ],
       opts: opts
@@ -3148,6 +3191,90 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type sync_history_list_200_json_resp :: %{
+          aggregate_id: String.t(),
+          data: map,
+          id: String.t(),
+          seq: number,
+          type: String.t()
+        }
+
+  @doc """
+  List sync events
+
+  List sync events for all aggregates. Keys are aggregate IDs the client already knows about, values are the last known sequence ID. Events with seq > value are returned for those aggregates. Aggregates not listed in the input get their full history.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec sync_history_list(body :: map, opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Operations.sync_history_list_200_json_resp()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def sync_history_list(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Operations, :sync_history_list},
+      url: "/sync/history",
+      body: body,
+      method: :get,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200, [{OpenCode.Generated.Operations, :sync_history_list_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @type sync_replay_200_json_resp :: %{session_id: String.t()}
+
+  @doc """
+  Replay sync events
+
+  Validate and replay a complete sync event history.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec sync_replay(body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Operations.sync_replay_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def sync_replay(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Operations, :sync_replay},
+      url: "/sync/replay",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Operations, :sync_replay_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   List tool IDs
 
@@ -3841,6 +3968,10 @@ defmodule OpenCode.Generated.Operations do
     [description: :string, name: :string, type: :string]
   end
 
+  def __fields__(:experimental_workspace_session_restore_200_json_resp) do
+    [total: :integer]
+  end
+
   def __fields__(:experimental_workspace_status_200_json_resp) do
     [
       error: :string,
@@ -4013,6 +4144,14 @@ defmodule OpenCode.Generated.Operations do
         ]
       ]
     ]
+  end
+
+  def __fields__(:sync_history_list_200_json_resp) do
+    [aggregate_id: :string, data: :map, id: :string, seq: :number, type: :string]
+  end
+
+  def __fields__(:sync_replay_200_json_resp) do
+    [session_id: :string]
   end
 
   def __fields__(:tui_control_next_200_json_resp) do

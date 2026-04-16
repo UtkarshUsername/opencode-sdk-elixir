@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ProviderAuthAuthorization do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [instructions: :string, method: {:union, const: "auto", const: "code"}, url: :string]
+    [instructions: :string, method: {:enum, ["auto", "code"]}, url: :string]
   end
 end
