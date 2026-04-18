@@ -411,12 +411,6 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
-  @type experimental_console_get_200_json_resp :: %{
-          active_org_name: String.t() | nil,
-          console_managed_providers: [String.t()],
-          switchable_org_count: integer
-        }
-
   @doc """
   Get active Console provider metadata
 
@@ -429,7 +423,7 @@ defmodule OpenCode.Generated.Operations do
 
   """
   @spec experimental_console_get(opts :: keyword) ::
-          {:ok, OpenCode.Generated.Operations.experimental_console_get_200_json_resp()} | :error
+          {:ok, OpenCode.Generated.ConsoleState.t()} | :error
   def experimental_console_get(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -440,7 +434,7 @@ defmodule OpenCode.Generated.Operations do
       url: "/experimental/console",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Operations, :experimental_console_get_200_json_resp}}],
+      response: [{200, {OpenCode.Generated.ConsoleState, :t}}],
       opts: opts
     })
   end
@@ -773,7 +767,6 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @type experimental_workspace_status_200_json_resp :: %{
-          error: String.t() | nil,
           status: String.t(),
           workspace_id: String.t()
         }
@@ -3225,7 +3218,7 @@ defmodule OpenCode.Generated.Operations do
       call: {OpenCode.Generated.Operations, :sync_history_list},
       url: "/sync/history",
       body: body,
-      method: :get,
+      method: :post,
       query: query,
       request: [{"application/json", :map}],
       response: [
@@ -3271,6 +3264,33 @@ defmodule OpenCode.Generated.Operations do
         {200, {OpenCode.Generated.Operations, :sync_replay_200_json_resp}},
         {400, {OpenCode.Generated.BadRequestError, :t}}
       ],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Start workspace sync
+
+  Start sync loops for workspaces in the current project that have active sessions.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec sync_start(opts :: keyword) :: {:ok, boolean} | :error
+  def sync_start(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :sync_start},
+      url: "/sync/start",
+      method: :post,
+      query: query,
+      response: [{200, :boolean}],
       opts: opts
     })
   end
@@ -3941,14 +3961,6 @@ defmodule OpenCode.Generated.Operations do
     [default: :map, providers: [{OpenCode.Generated.Provider, :t}]]
   end
 
-  def __fields__(:experimental_console_get_200_json_resp) do
-    [
-      active_org_name: :string,
-      console_managed_providers: [:string],
-      switchable_org_count: :integer
-    ]
-  end
-
   def __fields__(:experimental_console_list_orgs_200_json_resp) do
     [orgs: [{OpenCode.Generated.Operations, :experimental_console_list_orgs_200_json_resp_orgs}]]
   end
@@ -3973,11 +3985,7 @@ defmodule OpenCode.Generated.Operations do
   end
 
   def __fields__(:experimental_workspace_status_200_json_resp) do
-    [
-      error: :string,
-      status: {:enum, ["connected", "connecting", "disconnected", "error"]},
-      workspace_id: :string
-    ]
+    [status: {:enum, ["connected", "connecting", "disconnected", "error"]}, workspace_id: :string]
   end
 
   def __fields__(:find_text_200_json_resp) do
