@@ -9,10 +9,11 @@ defmodule OpenCode.Generated.CompactionPart do
           message_id: String.t(),
           overflow: boolean | nil,
           session_id: String.t(),
+          tail_start_id: String.t() | nil,
           type: String.t()
         }
 
-  defstruct [:auto, :id, :message_id, :overflow, :session_id, :type]
+  defstruct [:auto, :id, :message_id, :overflow, :session_id, :tail_start_id, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -25,6 +26,7 @@ defmodule OpenCode.Generated.CompactionPart do
       message_id: :string,
       overflow: :boolean,
       session_id: :string,
+      tail_start_id: :string,
       type: {:const, "compaction"}
     ]
   end
