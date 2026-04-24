@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.EventFileWatcherUpdatedProperties do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [event: {:union, const: "add", const: "change", const: "unlink"}, file: :string]
+    [event: {:enum, ["add", "change", "unlink"]}, file: :string]
   end
 end

@@ -31,6 +31,7 @@ defmodule OpenCode.Generated.Config do
           skills: OpenCode.Generated.ConfigSkills.t() | nil,
           small_model: String.t() | nil,
           snapshot: boolean | nil,
+          tool_output: OpenCode.Generated.ConfigToolOutput.t() | nil,
           tools: map | nil,
           username: String.t() | nil,
           watcher: OpenCode.Generated.ConfigWatcher.t() | nil
@@ -64,6 +65,7 @@ defmodule OpenCode.Generated.Config do
     :skills,
     :small_model,
     :snapshot,
+    :tool_output,
     :tools,
     :username,
     :watcher
@@ -102,6 +104,7 @@ defmodule OpenCode.Generated.Config do
       skills: {OpenCode.Generated.ConfigSkills, :t},
       small_model: :string,
       snapshot: :boolean,
+      tool_output: {OpenCode.Generated.ConfigToolOutput, :t},
       tools: :map,
       username: :string,
       watcher: {OpenCode.Generated.ConfigWatcher, :t}
