@@ -14,7 +14,7 @@ defmodule OpenCode.Generated.Agent do
           options: map,
           permission: [OpenCode.Generated.PermissionRule.t()],
           prompt: String.t() | nil,
-          steps: integer | nil,
+          steps: number | nil,
           temperature: number | nil,
           top_p: number | nil,
           variant: String.t() | nil
@@ -53,7 +53,7 @@ defmodule OpenCode.Generated.Agent do
       options: :map,
       permission: [{OpenCode.Generated.PermissionRule, :t}],
       prompt: :string,
-      steps: :integer,
+      steps: :number,
       temperature: :number,
       top_p: :number,
       variant: :string
