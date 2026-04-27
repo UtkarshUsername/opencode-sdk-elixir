@@ -2181,6 +2181,36 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
+  @type pty_shells_200_json_resp :: %{acceptable: boolean, name: String.t(), path: String.t()}
+
+  @doc """
+  List available shells
+
+  Get a list of available shells on the system.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec pty_shells(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Operations.pty_shells_200_json_resp()]} | :error
+  def pty_shells(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Operations, :pty_shells},
+      url: "/pty/shells",
+      method: :get,
+      query: query,
+      response: [{200, [{OpenCode.Generated.Operations, :pty_shells_200_json_resp}]}],
+      opts: opts
+    })
+  end
+
   @doc """
   Update PTY session
 
@@ -4036,6 +4066,10 @@ defmodule OpenCode.Generated.Operations do
 
   def __fields__(:provider_list_200_json_resp) do
     [all: [{OpenCode.Generated.Provider, :t}], connected: [:string], default: :map]
+  end
+
+  def __fields__(:pty_shells_200_json_resp) do
+    [acceptable: :boolean, name: :string, path: :string]
   end
 
   def __fields__(:session_command_200_json_resp) do
