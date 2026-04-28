@@ -1271,7 +1271,8 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.MCPStatusNeedsAuth.t()
            | OpenCode.Generated.MCPStatusNeedsClientRegistration.t()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.McpUnsupportedOAuthError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_authenticate(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -1292,7 +1293,7 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.MCPStatusNeedsAuth, :t},
             {OpenCode.Generated.MCPStatusNeedsClientRegistration, :t}
           ]}},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400, {OpenCode.Generated.McpUnsupportedOAuthError, :t}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
@@ -1401,7 +1402,8 @@ defmodule OpenCode.Generated.Operations do
   @spec mcp_auth_start(name :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Operations.mcp_auth_start_200_json_resp()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.McpUnsupportedOAuthError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def mcp_auth_start(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -1414,7 +1416,7 @@ defmodule OpenCode.Generated.Operations do
       query: query,
       response: [
         {200, {OpenCode.Generated.Operations, :mcp_auth_start_200_json_resp}},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400, {OpenCode.Generated.McpUnsupportedOAuthError, :t}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
