@@ -2652,8 +2652,10 @@ defmodule OpenCode.Generated.Operations do
 
   ## Options
 
-    * `directory`: Filter sessions by project directory
+    * `directory`: Filter sessions by directory
     * `workspace`
+    * `scope`: List all sessions for the current project
+    * `path`: Filter sessions by project-relative path
     * `roots`: Only return root sessions (no parentID)
     * `start`: Filter sessions updated on or after this timestamp (milliseconds since epoch)
     * `search`: Filter sessions by title (case-insensitive)
@@ -2663,7 +2665,9 @@ defmodule OpenCode.Generated.Operations do
   @spec session_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Session.t()]} | :error
   def session_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :limit, :roots, :search, :start, :workspace])
+
+    query =
+      Keyword.take(opts, [:directory, :limit, :path, :roots, :scope, :search, :start, :workspace])
 
     client.request(%{
       args: [],
