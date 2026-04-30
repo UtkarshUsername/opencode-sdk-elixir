@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.AssistantMessageTokensCache do
   Provides struct and type for a AssistantMessageTokensCache
   """
 
-  @type t :: %__MODULE__{read: number, write: number}
+  @type t :: %__MODULE__{read: integer, write: integer}
 
   defstruct [:read, :write]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.AssistantMessageTokensCache do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [read: :number, write: :number]
+    [read: :integer, write: :integer]
   end
 end

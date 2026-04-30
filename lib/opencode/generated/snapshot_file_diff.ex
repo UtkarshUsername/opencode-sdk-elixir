@@ -4,8 +4,8 @@ defmodule OpenCode.Generated.SnapshotFileDiff do
   """
 
   @type t :: %__MODULE__{
-          additions: number,
-          deletions: number,
+          additions: integer,
+          deletions: integer,
           file: String.t(),
           patch: String.t(),
           status: String.t() | nil
@@ -19,8 +19,8 @@ defmodule OpenCode.Generated.SnapshotFileDiff do
 
   def __fields__(:t) do
     [
-      additions: :number,
-      deletions: :number,
+      additions: :integer,
+      deletions: :integer,
       file: :string,
       patch: :string,
       status: {:enum, ["added", "deleted", "modified"]}

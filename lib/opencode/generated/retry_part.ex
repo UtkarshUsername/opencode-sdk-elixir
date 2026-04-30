@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.RetryPart do
   """
 
   @type t :: %__MODULE__{
-          attempt: number,
+          attempt: integer,
           error: OpenCode.Generated.APIError.t(),
           id: String.t(),
           message_id: String.t(),
@@ -21,7 +21,7 @@ defmodule OpenCode.Generated.RetryPart do
 
   def __fields__(:t) do
     [
-      attempt: :number,
+      attempt: :integer,
       error: {OpenCode.Generated.APIError, :t},
       id: :string,
       message_id: :string,

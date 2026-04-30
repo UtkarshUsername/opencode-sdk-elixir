@@ -4,10 +4,10 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfoTime do
   """
 
   @type t :: %__MODULE__{
-          archived: number | nil,
-          compacting: number | nil,
-          created: number | nil,
-          updated: number | nil
+          archived: integer | nil,
+          compacting: integer | nil,
+          created: integer | nil,
+          updated: integer | nil
         }
 
   defstruct [:archived, :compacting, :created, :updated]
@@ -18,10 +18,10 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfoTime do
 
   def __fields__(:t) do
     [
-      archived: {:union, [:number, :null]},
-      compacting: {:union, [:number, :null]},
-      created: {:union, [:number, :null]},
-      updated: {:union, [:number, :null]}
+      archived: {:union, [:integer, :null]},
+      compacting: {:union, [:integer, :null]},
+      created: {:union, [:integer, :null]},
+      updated: {:union, [:integer, :null]}
     ]
   end
 end

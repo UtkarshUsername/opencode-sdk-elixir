@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.RangeEnd do
   Provides struct and type for a RangeEnd
   """
 
-  @type t :: %__MODULE__{character: number, line: number}
+  @type t :: %__MODULE__{character: integer, line: integer}
 
   defstruct [:character, :line]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.RangeEnd do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [character: :number, line: :number]
+    [character: :integer, line: :integer]
   end
 end

@@ -7,7 +7,7 @@ defmodule OpenCode.Generated.McpRemoteConfig do
           enabled: boolean | nil,
           headers: map | nil,
           oauth: false | OpenCode.Generated.McpOAuthConfig.t() | nil,
-          timeout: number | nil,
+          timeout: integer | nil,
           type: String.t(),
           url: String.t()
         }
@@ -23,7 +23,7 @@ defmodule OpenCode.Generated.McpRemoteConfig do
       enabled: :boolean,
       headers: :map,
       oauth: {:union, [{OpenCode.Generated.McpOAuthConfig, :t}, const: false]},
-      timeout: :number,
+      timeout: :integer,
       type: {:const, "remote"},
       url: :string
     ]

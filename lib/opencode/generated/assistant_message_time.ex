@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.AssistantMessageTime do
   Provides struct and type for a AssistantMessageTime
   """
 
-  @type t :: %__MODULE__{completed: number | nil, created: number}
+  @type t :: %__MODULE__{completed: integer | nil, created: integer}
 
   defstruct [:completed, :created]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.AssistantMessageTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [completed: :number, created: :number]
+    [completed: :integer, created: :integer]
   end
 end

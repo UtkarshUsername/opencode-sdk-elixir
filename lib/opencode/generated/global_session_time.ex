@@ -4,10 +4,10 @@ defmodule OpenCode.Generated.GlobalSessionTime do
   """
 
   @type t :: %__MODULE__{
-          archived: number | nil,
-          compacting: number | nil,
-          created: number,
-          updated: number
+          archived: integer | nil,
+          compacting: integer | nil,
+          created: integer,
+          updated: integer
         }
 
   defstruct [:archived, :compacting, :created, :updated]
@@ -17,6 +17,6 @@ defmodule OpenCode.Generated.GlobalSessionTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [archived: :number, compacting: :number, created: :number, updated: :number]
+    [archived: :integer, compacting: :integer, created: :integer, updated: :integer]
   end
 end

@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.ProjectTime do
   Provides struct and type for a ProjectTime
   """
 
-  @type t :: %__MODULE__{created: number, initialized: number | nil, updated: number}
+  @type t :: %__MODULE__{created: integer, initialized: integer | nil, updated: integer}
 
   defstruct [:created, :initialized, :updated]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ProjectTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [created: :number, initialized: :number, updated: :number]
+    [created: :integer, initialized: :integer, updated: :integer]
   end
 end

@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.StructuredOutputErrorData do
   Provides struct and type for a StructuredOutputErrorData
   """
 
-  @type t :: %__MODULE__{message: String.t(), retries: number}
+  @type t :: %__MODULE__{message: String.t(), retries: integer}
 
   defstruct [:message, :retries]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.StructuredOutputErrorData do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [message: :string, retries: :number]
+    [message: :string, retries: :integer]
   end
 end

@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.EventTuiToastShowProperties do
   """
 
   @type t :: %__MODULE__{
-          duration: number | nil,
+          duration: integer | nil,
           message: String.t(),
           title: String.t() | nil,
           variant: String.t()
@@ -18,7 +18,7 @@ defmodule OpenCode.Generated.EventTuiToastShowProperties do
 
   def __fields__(:t) do
     [
-      duration: :number,
+      duration: :integer,
       message: :string,
       title: :string,
       variant: {:enum, ["info", "success", "warning", "error"]}

@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.ReasoningPartTime do
   Provides struct and type for a ReasoningPartTime
   """
 
-  @type t :: %__MODULE__{end: number | nil, start: number}
+  @type t :: %__MODULE__{end: integer | nil, start: integer}
 
   defstruct [:end, :start]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ReasoningPartTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [end: :number, start: :number]
+    [end: :integer, start: :integer]
   end
 end

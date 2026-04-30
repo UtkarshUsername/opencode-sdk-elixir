@@ -8,7 +8,7 @@ defmodule OpenCode.Generated.Pty do
           command: String.t(),
           cwd: String.t(),
           id: String.t(),
-          pid: number,
+          pid: integer,
           status: String.t(),
           title: String.t()
         }
@@ -25,7 +25,7 @@ defmodule OpenCode.Generated.Pty do
       command: :string,
       cwd: :string,
       id: :string,
-      pid: :number,
+      pid: :integer,
       status: {:enum, ["running", "exited"]},
       title: :string
     ]

@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.ToolStateCompletedTime do
   Provides struct and type for a ToolStateCompletedTime
   """
 
-  @type t :: %__MODULE__{compacted: number | nil, end: number, start: number}
+  @type t :: %__MODULE__{compacted: integer | nil, end: integer, start: integer}
 
   defstruct [:compacted, :end, :start]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ToolStateCompletedTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [compacted: :number, end: :number, start: :number]
+    [compacted: :integer, end: :integer, start: :integer]
   end
 end

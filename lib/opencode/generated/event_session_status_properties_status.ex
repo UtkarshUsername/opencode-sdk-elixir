@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.EventSessionStatusPropertiesStatus do
   Provides struct and types for a EventSessionStatusPropertiesStatus
   """
 
-  @type t :: %__MODULE__{attempt: number, message: String.t(), next: number, type: String.t()}
+  @type t :: %__MODULE__{attempt: integer, message: String.t(), next: integer, type: String.t()}
 
   defstruct [:attempt, :message, :next, :type]
 
@@ -12,6 +12,11 @@ defmodule OpenCode.Generated.EventSessionStatusPropertiesStatus do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [attempt: :number, message: :string, next: :number, type: {:enum, ["busy", "idle", "retry"]}]
+    [
+      attempt: :integer,
+      message: :string,
+      next: :integer,
+      type: {:enum, ["busy", "idle", "retry"]}
+    ]
   end
 end

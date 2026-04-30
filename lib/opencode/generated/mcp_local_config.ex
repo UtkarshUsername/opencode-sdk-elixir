@@ -7,7 +7,7 @@ defmodule OpenCode.Generated.McpLocalConfig do
           command: [String.t()],
           enabled: boolean | nil,
           environment: map | nil,
-          timeout: number | nil,
+          timeout: integer | nil,
           type: String.t()
         }
 
@@ -22,7 +22,7 @@ defmodule OpenCode.Generated.McpLocalConfig do
       command: [:string],
       enabled: :boolean,
       environment: :map,
-      timeout: :number,
+      timeout: :integer,
       type: {:const, "local"}
     ]
   end

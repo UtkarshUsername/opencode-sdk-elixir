@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.RetryPartTime do
   Provides struct and type for a RetryPartTime
   """
 
-  @type t :: %__MODULE__{created: number}
+  @type t :: %__MODULE__{created: integer}
 
   defstruct [:created]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.RetryPartTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [created: :number]
+    [created: :integer]
   end
 end

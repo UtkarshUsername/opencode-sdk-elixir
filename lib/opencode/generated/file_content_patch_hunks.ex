@@ -5,10 +5,10 @@ defmodule OpenCode.Generated.FileContentPatchHunks do
 
   @type t :: %__MODULE__{
           lines: [String.t()],
-          new_lines: number,
-          new_start: number,
-          old_lines: number,
-          old_start: number
+          new_lines: integer,
+          new_start: integer,
+          old_lines: integer,
+          old_start: integer
         }
 
   defstruct [:lines, :new_lines, :new_start, :old_lines, :old_start]
@@ -20,10 +20,10 @@ defmodule OpenCode.Generated.FileContentPatchHunks do
   def __fields__(:t) do
     [
       lines: [:string],
-      new_lines: :number,
-      new_start: :number,
-      old_lines: :number,
-      old_start: :number
+      new_lines: :integer,
+      new_start: :integer,
+      old_lines: :integer,
+      old_start: :integer
     ]
   end
 end

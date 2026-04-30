@@ -945,8 +945,8 @@ defmodule OpenCode.Generated.Operations do
   end
 
   @type find_text_200_json_resp :: %{
-          absolute_offset: number,
-          line_number: number,
+          absolute_offset: integer,
+          line_number: integer,
           lines: OpenCode.Generated.Operations.find_text_200_json_resp_lines(),
           path: OpenCode.Generated.Operations.find_text_200_json_resp_path(),
           submatches: [OpenCode.Generated.Operations.find_text_200_json_resp_submatches()]
@@ -957,9 +957,9 @@ defmodule OpenCode.Generated.Operations do
   @type find_text_200_json_resp_path :: %{text: String.t()}
 
   @type find_text_200_json_resp_submatches :: %{
-          end: number,
+          end: integer,
           match: OpenCode.Generated.Operations.find_text_200_json_resp_submatches_match(),
-          start: number
+          start: integer
         }
 
   @type find_text_200_json_resp_submatches_match :: %{text: String.t()}
@@ -4026,8 +4026,8 @@ defmodule OpenCode.Generated.Operations do
 
   def __fields__(:find_text_200_json_resp) do
     [
-      absolute_offset: :number,
-      line_number: :number,
+      absolute_offset: :integer,
+      line_number: :integer,
       lines: {OpenCode.Generated.Operations, :find_text_200_json_resp_lines},
       path: {OpenCode.Generated.Operations, :find_text_200_json_resp_path},
       submatches: [{OpenCode.Generated.Operations, :find_text_200_json_resp_submatches}]
@@ -4044,9 +4044,9 @@ defmodule OpenCode.Generated.Operations do
 
   def __fields__(:find_text_200_json_resp_submatches) do
     [
-      end: :number,
+      end: :integer,
       match: {OpenCode.Generated.Operations, :find_text_200_json_resp_submatches_match},
-      start: :number
+      start: :integer
     ]
   end
 

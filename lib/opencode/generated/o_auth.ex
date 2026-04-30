@@ -7,7 +7,7 @@ defmodule OpenCode.Generated.OAuth do
           access: String.t(),
           account_id: String.t() | nil,
           enterprise_url: String.t() | nil,
-          expires: number,
+          expires: integer,
           refresh: String.t(),
           type: String.t()
         }
@@ -23,7 +23,7 @@ defmodule OpenCode.Generated.OAuth do
       access: :string,
       account_id: :string,
       enterprise_url: :string,
-      expires: :number,
+      expires: :integer,
       refresh: :string,
       type: {:const, "oauth"}
     ]

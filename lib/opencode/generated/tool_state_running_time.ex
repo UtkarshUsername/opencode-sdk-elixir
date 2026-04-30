@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.ToolStateRunningTime do
   Provides struct and type for a ToolStateRunningTime
   """
 
-  @type t :: %__MODULE__{start: number}
+  @type t :: %__MODULE__{start: integer}
 
   defstruct [:start]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ToolStateRunningTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [start: :number]
+    [start: :integer]
   end
 end

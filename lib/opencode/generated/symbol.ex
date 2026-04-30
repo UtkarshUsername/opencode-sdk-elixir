@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.Symbol do
   """
 
   @type t :: %__MODULE__{
-          kind: number,
+          kind: integer,
           location: OpenCode.Generated.SymbolLocation.t(),
           name: String.t()
         }
@@ -16,6 +16,6 @@ defmodule OpenCode.Generated.Symbol do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [kind: :number, location: {OpenCode.Generated.SymbolLocation, :t}, name: :string]
+    [kind: :integer, location: {OpenCode.Generated.SymbolLocation, :t}, name: :string]
   end
 end
