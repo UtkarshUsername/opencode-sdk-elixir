@@ -589,16 +589,16 @@ defmodule OpenCode.Generated.Operations do
     })
   end
 
-  @type experimental_workspace_adaptor_list_200_json_resp :: %{
+  @type experimental_workspace_adapter_list_200_json_resp :: %{
           description: String.t(),
           name: String.t(),
           type: String.t()
         }
 
   @doc """
-  List workspace adaptors
+  List workspace adapters
 
-  List all available workspace adaptors for the current project.
+  List all available workspace adapters for the current project.
 
   ## Options
 
@@ -606,23 +606,23 @@ defmodule OpenCode.Generated.Operations do
     * `workspace`
 
   """
-  @spec experimental_workspace_adaptor_list(opts :: keyword) ::
+  @spec experimental_workspace_adapter_list(opts :: keyword) ::
           {:ok,
-           [OpenCode.Generated.Operations.experimental_workspace_adaptor_list_200_json_resp()]}
+           [OpenCode.Generated.Operations.experimental_workspace_adapter_list_200_json_resp()]}
           | :error
-  def experimental_workspace_adaptor_list(opts \\ []) do
+  def experimental_workspace_adapter_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [],
-      call: {OpenCode.Generated.Operations, :experimental_workspace_adaptor_list},
-      url: "/experimental/workspace/adaptor",
+      call: {OpenCode.Generated.Operations, :experimental_workspace_adapter_list},
+      url: "/experimental/workspace/adapter",
       method: :get,
       query: query,
       response: [
         {200,
-         [{OpenCode.Generated.Operations, :experimental_workspace_adaptor_list_200_json_resp}]}
+         [{OpenCode.Generated.Operations, :experimental_workspace_adapter_list_200_json_resp}]}
       ],
       opts: opts
     })
@@ -4012,7 +4012,7 @@ defmodule OpenCode.Generated.Operations do
     ]
   end
 
-  def __fields__(:experimental_workspace_adaptor_list_200_json_resp) do
+  def __fields__(:experimental_workspace_adapter_list_200_json_resp) do
     [description: :string, name: :string, type: :string]
   end
 
