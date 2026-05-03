@@ -4,17 +4,22 @@ defmodule OpenCode.Generated.EventPtyExited do
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventPtyExitedProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [properties: {OpenCode.Generated.EventPtyExitedProperties, :t}, type: {:const, "pty.exited"}]
+    [
+      id: :string,
+      properties: {OpenCode.Generated.EventPtyExitedProperties, :t},
+      type: {:const, "pty.exited"}
+    ]
   end
 end

@@ -4,11 +4,12 @@ defmodule OpenCode.Generated.EventPtyUpdated do
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventPtyUpdatedProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventPtyUpdated do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventPtyUpdatedProperties, :t},
       type: {:const, "pty.updated"}
     ]

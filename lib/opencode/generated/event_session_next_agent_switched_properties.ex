@@ -1,0 +1,17 @@
+defmodule OpenCode.Generated.EventSessionNextAgentSwitchedProperties do
+  @moduledoc """
+  Provides struct and type for a EventSessionNextAgentSwitchedProperties
+  """
+
+  @type t :: %__MODULE__{agent: String.t(), session_id: String.t(), timestamp: number}
+
+  defstruct [:agent, :session_id, :timestamp]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [agent: :string, session_id: :string, timestamp: :number]
+  end
+end

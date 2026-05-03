@@ -3,15 +3,23 @@ defmodule OpenCode.Generated.EventQuestionAsked do
   Provides struct and type for a EventQuestionAsked
   """
 
-  @type t :: %__MODULE__{properties: OpenCode.Generated.QuestionRequest.t(), type: String.t()}
+  @type t :: %__MODULE__{
+          id: String.t(),
+          properties: OpenCode.Generated.QuestionRequest.t(),
+          type: String.t()
+        }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [properties: {OpenCode.Generated.QuestionRequest, :t}, type: {:const, "question.asked"}]
+    [
+      id: :string,
+      properties: {OpenCode.Generated.QuestionRequest, :t},
+      type: {:const, "question.asked"}
+    ]
   end
 end

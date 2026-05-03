@@ -39,6 +39,31 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.EventSessionDiff.t()
             | OpenCode.Generated.EventSessionError.t()
             | OpenCode.Generated.EventSessionIdle.t()
+            | OpenCode.Generated.EventSessionNextAgentSwitched.t()
+            | OpenCode.Generated.EventSessionNextCompactionDelta.t()
+            | OpenCode.Generated.EventSessionNextCompactionEnded.t()
+            | OpenCode.Generated.EventSessionNextCompactionStarted.t()
+            | OpenCode.Generated.EventSessionNextModelSwitched.t()
+            | OpenCode.Generated.EventSessionNextPrompted.t()
+            | OpenCode.Generated.EventSessionNextReasoningDelta.t()
+            | OpenCode.Generated.EventSessionNextReasoningEnded.t()
+            | OpenCode.Generated.EventSessionNextReasoningStarted.t()
+            | OpenCode.Generated.EventSessionNextRetried.t()
+            | OpenCode.Generated.EventSessionNextShellEnded.t()
+            | OpenCode.Generated.EventSessionNextShellStarted.t()
+            | OpenCode.Generated.EventSessionNextStepEnded.t()
+            | OpenCode.Generated.EventSessionNextStepStarted.t()
+            | OpenCode.Generated.EventSessionNextSynthetic.t()
+            | OpenCode.Generated.EventSessionNextTextDelta.t()
+            | OpenCode.Generated.EventSessionNextTextEnded.t()
+            | OpenCode.Generated.EventSessionNextTextStarted.t()
+            | OpenCode.Generated.EventSessionNextToolCalled.t()
+            | OpenCode.Generated.EventSessionNextToolError.t()
+            | OpenCode.Generated.EventSessionNextToolInputDelta.t()
+            | OpenCode.Generated.EventSessionNextToolInputEnded.t()
+            | OpenCode.Generated.EventSessionNextToolInputStarted.t()
+            | OpenCode.Generated.EventSessionNextToolProgress.t()
+            | OpenCode.Generated.EventSessionNextToolSuccess.t()
             | OpenCode.Generated.EventSessionStatus.t()
             | OpenCode.Generated.EventSessionUpdated.t()
             | OpenCode.Generated.EventTodoUpdated.t()
@@ -59,6 +84,31 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.SyncEventMessageUpdated.t()
             | OpenCode.Generated.SyncEventSessionCreated.t()
             | OpenCode.Generated.SyncEventSessionDeleted.t()
+            | OpenCode.Generated.SyncEventSessionNextAgentSwitched.t()
+            | OpenCode.Generated.SyncEventSessionNextCompactionDelta.t()
+            | OpenCode.Generated.SyncEventSessionNextCompactionEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextCompactionStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextModelSwitched.t()
+            | OpenCode.Generated.SyncEventSessionNextPrompted.t()
+            | OpenCode.Generated.SyncEventSessionNextReasoningDelta.t()
+            | OpenCode.Generated.SyncEventSessionNextReasoningEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextReasoningStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextRetried.t()
+            | OpenCode.Generated.SyncEventSessionNextShellEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextShellStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextStepEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextStepStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextSynthetic.t()
+            | OpenCode.Generated.SyncEventSessionNextTextDelta.t()
+            | OpenCode.Generated.SyncEventSessionNextTextEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextTextStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextToolCalled.t()
+            | OpenCode.Generated.SyncEventSessionNextToolError.t()
+            | OpenCode.Generated.SyncEventSessionNextToolInputDelta.t()
+            | OpenCode.Generated.SyncEventSessionNextToolInputEnded.t()
+            | OpenCode.Generated.SyncEventSessionNextToolInputStarted.t()
+            | OpenCode.Generated.SyncEventSessionNextToolProgress.t()
+            | OpenCode.Generated.SyncEventSessionNextToolSuccess.t()
             | OpenCode.Generated.SyncEventSessionUpdated.t(),
           project: String.t() | nil,
           workspace: String.t() | nil
@@ -109,6 +159,31 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.EventSessionDiff, :t},
            {OpenCode.Generated.EventSessionError, :t},
            {OpenCode.Generated.EventSessionIdle, :t},
+           {OpenCode.Generated.EventSessionNextAgentSwitched, :t},
+           {OpenCode.Generated.EventSessionNextCompactionDelta, :t},
+           {OpenCode.Generated.EventSessionNextCompactionEnded, :t},
+           {OpenCode.Generated.EventSessionNextCompactionStarted, :t},
+           {OpenCode.Generated.EventSessionNextModelSwitched, :t},
+           {OpenCode.Generated.EventSessionNextPrompted, :t},
+           {OpenCode.Generated.EventSessionNextReasoningDelta, :t},
+           {OpenCode.Generated.EventSessionNextReasoningEnded, :t},
+           {OpenCode.Generated.EventSessionNextReasoningStarted, :t},
+           {OpenCode.Generated.EventSessionNextRetried, :t},
+           {OpenCode.Generated.EventSessionNextShellEnded, :t},
+           {OpenCode.Generated.EventSessionNextShellStarted, :t},
+           {OpenCode.Generated.EventSessionNextStepEnded, :t},
+           {OpenCode.Generated.EventSessionNextStepStarted, :t},
+           {OpenCode.Generated.EventSessionNextSynthetic, :t},
+           {OpenCode.Generated.EventSessionNextTextDelta, :t},
+           {OpenCode.Generated.EventSessionNextTextEnded, :t},
+           {OpenCode.Generated.EventSessionNextTextStarted, :t},
+           {OpenCode.Generated.EventSessionNextToolCalled, :t},
+           {OpenCode.Generated.EventSessionNextToolError, :t},
+           {OpenCode.Generated.EventSessionNextToolInputDelta, :t},
+           {OpenCode.Generated.EventSessionNextToolInputEnded, :t},
+           {OpenCode.Generated.EventSessionNextToolInputStarted, :t},
+           {OpenCode.Generated.EventSessionNextToolProgress, :t},
+           {OpenCode.Generated.EventSessionNextToolSuccess, :t},
            {OpenCode.Generated.EventSessionStatus, :t},
            {OpenCode.Generated.EventSessionUpdated, :t},
            {OpenCode.Generated.EventTodoUpdated, :t},
@@ -129,6 +204,31 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.SyncEventMessageUpdated, :t},
            {OpenCode.Generated.SyncEventSessionCreated, :t},
            {OpenCode.Generated.SyncEventSessionDeleted, :t},
+           {OpenCode.Generated.SyncEventSessionNextAgentSwitched, :t},
+           {OpenCode.Generated.SyncEventSessionNextCompactionDelta, :t},
+           {OpenCode.Generated.SyncEventSessionNextCompactionEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextCompactionStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextModelSwitched, :t},
+           {OpenCode.Generated.SyncEventSessionNextPrompted, :t},
+           {OpenCode.Generated.SyncEventSessionNextReasoningDelta, :t},
+           {OpenCode.Generated.SyncEventSessionNextReasoningEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextReasoningStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextRetried, :t},
+           {OpenCode.Generated.SyncEventSessionNextShellEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextShellStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextStepEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextStepStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextSynthetic, :t},
+           {OpenCode.Generated.SyncEventSessionNextTextDelta, :t},
+           {OpenCode.Generated.SyncEventSessionNextTextEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextTextStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolCalled, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolError, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolInputDelta, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolInputEnded, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolInputStarted, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolProgress, :t},
+           {OpenCode.Generated.SyncEventSessionNextToolSuccess, :t},
            {OpenCode.Generated.SyncEventSessionUpdated, :t}
          ]},
       project: :string,

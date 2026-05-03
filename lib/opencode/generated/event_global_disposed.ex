@@ -3,15 +3,15 @@ defmodule OpenCode.Generated.EventGlobalDisposed do
   Provides struct and type for a EventGlobalDisposed
   """
 
-  @type t :: %__MODULE__{properties: map, type: String.t()}
+  @type t :: %__MODULE__{id: String.t(), properties: map, type: String.t()}
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [properties: :map, type: {:const, "global.disposed"}]
+    [id: :string, properties: :map, type: {:const, "global.disposed"}]
   end
 end

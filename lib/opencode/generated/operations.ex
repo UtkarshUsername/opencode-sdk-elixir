@@ -329,6 +329,31 @@ defmodule OpenCode.Generated.Operations do
            | OpenCode.Generated.EventSessionDiff.t()
            | OpenCode.Generated.EventSessionError.t()
            | OpenCode.Generated.EventSessionIdle.t()
+           | OpenCode.Generated.EventSessionNextAgentSwitched.t()
+           | OpenCode.Generated.EventSessionNextCompactionDelta.t()
+           | OpenCode.Generated.EventSessionNextCompactionEnded.t()
+           | OpenCode.Generated.EventSessionNextCompactionStarted.t()
+           | OpenCode.Generated.EventSessionNextModelSwitched.t()
+           | OpenCode.Generated.EventSessionNextPrompted.t()
+           | OpenCode.Generated.EventSessionNextReasoningDelta.t()
+           | OpenCode.Generated.EventSessionNextReasoningEnded.t()
+           | OpenCode.Generated.EventSessionNextReasoningStarted.t()
+           | OpenCode.Generated.EventSessionNextRetried.t()
+           | OpenCode.Generated.EventSessionNextShellEnded.t()
+           | OpenCode.Generated.EventSessionNextShellStarted.t()
+           | OpenCode.Generated.EventSessionNextStepEnded.t()
+           | OpenCode.Generated.EventSessionNextStepStarted.t()
+           | OpenCode.Generated.EventSessionNextSynthetic.t()
+           | OpenCode.Generated.EventSessionNextTextDelta.t()
+           | OpenCode.Generated.EventSessionNextTextEnded.t()
+           | OpenCode.Generated.EventSessionNextTextStarted.t()
+           | OpenCode.Generated.EventSessionNextToolCalled.t()
+           | OpenCode.Generated.EventSessionNextToolError.t()
+           | OpenCode.Generated.EventSessionNextToolInputDelta.t()
+           | OpenCode.Generated.EventSessionNextToolInputEnded.t()
+           | OpenCode.Generated.EventSessionNextToolInputStarted.t()
+           | OpenCode.Generated.EventSessionNextToolProgress.t()
+           | OpenCode.Generated.EventSessionNextToolSuccess.t()
            | OpenCode.Generated.EventSessionStatus.t()
            | OpenCode.Generated.EventSessionUpdated.t()
            | OpenCode.Generated.EventTodoUpdated.t()
@@ -391,6 +416,31 @@ defmodule OpenCode.Generated.Operations do
             {OpenCode.Generated.EventSessionDiff, :t},
             {OpenCode.Generated.EventSessionError, :t},
             {OpenCode.Generated.EventSessionIdle, :t},
+            {OpenCode.Generated.EventSessionNextAgentSwitched, :t},
+            {OpenCode.Generated.EventSessionNextCompactionDelta, :t},
+            {OpenCode.Generated.EventSessionNextCompactionEnded, :t},
+            {OpenCode.Generated.EventSessionNextCompactionStarted, :t},
+            {OpenCode.Generated.EventSessionNextModelSwitched, :t},
+            {OpenCode.Generated.EventSessionNextPrompted, :t},
+            {OpenCode.Generated.EventSessionNextReasoningDelta, :t},
+            {OpenCode.Generated.EventSessionNextReasoningEnded, :t},
+            {OpenCode.Generated.EventSessionNextReasoningStarted, :t},
+            {OpenCode.Generated.EventSessionNextRetried, :t},
+            {OpenCode.Generated.EventSessionNextShellEnded, :t},
+            {OpenCode.Generated.EventSessionNextShellStarted, :t},
+            {OpenCode.Generated.EventSessionNextStepEnded, :t},
+            {OpenCode.Generated.EventSessionNextStepStarted, :t},
+            {OpenCode.Generated.EventSessionNextSynthetic, :t},
+            {OpenCode.Generated.EventSessionNextTextDelta, :t},
+            {OpenCode.Generated.EventSessionNextTextEnded, :t},
+            {OpenCode.Generated.EventSessionNextTextStarted, :t},
+            {OpenCode.Generated.EventSessionNextToolCalled, :t},
+            {OpenCode.Generated.EventSessionNextToolError, :t},
+            {OpenCode.Generated.EventSessionNextToolInputDelta, :t},
+            {OpenCode.Generated.EventSessionNextToolInputEnded, :t},
+            {OpenCode.Generated.EventSessionNextToolInputStarted, :t},
+            {OpenCode.Generated.EventSessionNextToolProgress, :t},
+            {OpenCode.Generated.EventSessionNextToolSuccess, :t},
             {OpenCode.Generated.EventSessionStatus, :t},
             {OpenCode.Generated.EventSessionUpdated, :t},
             {OpenCode.Generated.EventTodoUpdated, :t},

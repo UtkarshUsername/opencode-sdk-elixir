@@ -4,11 +4,12 @@ defmodule OpenCode.Generated.EventCommandExecuted do
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventCommandExecutedProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventCommandExecuted do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventCommandExecutedProperties, :t},
       type: {:const, "command.executed"}
     ]

@@ -4,11 +4,12 @@ defmodule OpenCode.Generated.EventSessionDiff do
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventSessionDiffProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventSessionDiff do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventSessionDiffProperties, :t},
       type: {:const, "session.diff"}
     ]

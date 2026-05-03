@@ -74,8 +74,10 @@ defmodule OpenCode.Generated.Session do
   end
 
   @type t :: %__MODULE__{
+          agent: String.t() | nil,
           directory: String.t(),
           id: String.t(),
+          model: OpenCode.Generated.SessionModel.t() | nil,
           parent_id: String.t() | nil,
           path: String.t() | nil,
           permission: [OpenCode.Generated.PermissionRule.t()] | nil,
@@ -91,8 +93,10 @@ defmodule OpenCode.Generated.Session do
         }
 
   defstruct [
+    :agent,
     :directory,
     :id,
+    :model,
     :parent_id,
     :path,
     :permission,
@@ -113,8 +117,10 @@ defmodule OpenCode.Generated.Session do
 
   def __fields__(:t) do
     [
+      agent: :string,
       directory: :string,
       id: :string,
+      model: {OpenCode.Generated.SessionModel, :t},
       parent_id: :string,
       path: :string,
       permission: [{OpenCode.Generated.PermissionRule, :t}],

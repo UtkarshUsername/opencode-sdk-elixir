@@ -4,11 +4,12 @@ defmodule OpenCode.Generated.EventPermissionReplied do
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventPermissionRepliedProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventPermissionReplied do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventPermissionRepliedProperties, :t},
       type: {:const, "permission.replied"}
     ]

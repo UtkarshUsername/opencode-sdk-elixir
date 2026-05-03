@@ -4,8 +4,10 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
   """
 
   @type t :: %__MODULE__{
+          agent: String.t() | nil,
           directory: String.t() | nil,
           id: String.t() | nil,
+          model: OpenCode.Generated.SyncEventSessionUpdatedDataInfoModel.t() | nil,
           parent_id: String.t() | nil,
           path: String.t() | nil,
           permission: [OpenCode.Generated.PermissionRule.t()] | nil,
@@ -21,8 +23,10 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
         }
 
   defstruct [
+    :agent,
     :directory,
     :id,
+    :model,
     :parent_id,
     :path,
     :permission,
@@ -43,8 +47,10 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
 
   def __fields__(:t) do
     [
+      agent: {:union, [:string, :null]},
       directory: {:union, [:string, :null]},
       id: {:union, [:string, :null]},
+      model: {:union, [{OpenCode.Generated.SyncEventSessionUpdatedDataInfoModel, :t}, :null]},
       parent_id: {:union, [:string, :null]},
       path: {:union, [:string, :null]},
       permission: {:union, [[{OpenCode.Generated.PermissionRule, :t}], :null]},
