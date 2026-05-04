@@ -12,11 +12,6 @@ defmodule OpenCode.Generated.LSPStatus do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      id: :string,
-      name: :string,
-      root: :string,
-      status: {:union, const: "connected", const: "error"}
-    ]
+    [id: :string, name: :string, root: :string, status: {:enum, ["connected", "error"]}]
   end
 end

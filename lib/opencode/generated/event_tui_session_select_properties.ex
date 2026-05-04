@@ -1,6 +1,6 @@
 defmodule OpenCode.Generated.EventTuiSessionSelectProperties do
   @moduledoc """
-  Provides struct and type for a EventTuiSessionSelectProperties
+  Provides struct and types for a EventTuiSessionSelectProperties
   """
 
   @type t :: %__MODULE__{session_id: String.t()}

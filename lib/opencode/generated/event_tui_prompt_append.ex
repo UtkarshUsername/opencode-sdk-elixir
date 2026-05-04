@@ -1,14 +1,15 @@
 defmodule OpenCode.Generated.EventTuiPromptAppend do
   @moduledoc """
-  Provides struct and type for a EventTuiPromptAppend
+  Provides struct and types for a EventTuiPromptAppend
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventTuiPromptAppendProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventTuiPromptAppend do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventTuiPromptAppendProperties, :t},
       type: {:const, "tui.prompt.append"}
     ]

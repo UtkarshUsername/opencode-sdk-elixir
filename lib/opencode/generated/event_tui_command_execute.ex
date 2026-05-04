@@ -1,14 +1,15 @@
 defmodule OpenCode.Generated.EventTuiCommandExecute do
   @moduledoc """
-  Provides struct and type for a EventTuiCommandExecute
+  Provides struct and types for a EventTuiCommandExecute
   """
 
   @type t :: %__MODULE__{
+          id: String.t(),
           properties: OpenCode.Generated.EventTuiCommandExecuteProperties.t(),
           type: String.t()
         }
 
-  defstruct [:properties, :type]
+  defstruct [:id, :properties, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -16,6 +17,7 @@ defmodule OpenCode.Generated.EventTuiCommandExecute do
 
   def __fields__(:t) do
     [
+      id: :string,
       properties: {OpenCode.Generated.EventTuiCommandExecuteProperties, :t},
       type: {:const, "tui.command.execute"}
     ]

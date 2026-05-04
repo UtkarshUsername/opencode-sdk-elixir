@@ -1,6 +1,6 @@
 defmodule OpenCode.Generated.EventTuiToastShowProperties do
   @moduledoc """
-  Provides struct and type for a EventTuiToastShowProperties
+  Provides struct and types for a EventTuiToastShowProperties
   """
 
   @type t :: %__MODULE__{

@@ -1,7 +1,105 @@
 defmodule OpenCode.Generated.Config do
   @moduledoc """
-  Provides struct and type for a Config
+  Provides API endpoints related to config
   """
+
+  @default_client OpenCode.Client
+
+  @doc """
+  Get configuration
+
+  Retrieve the current OpenCode configuration settings and preferences.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec config_get(opts :: keyword) :: {:ok, OpenCode.Generated.Config.t()} | :error
+  def config_get(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Config, :config_get},
+      url: "/config",
+      method: :get,
+      query: query,
+      response: [{200, {OpenCode.Generated.Config, :t}}],
+      opts: opts
+    })
+  end
+
+  @type config_providers_200_json_resp :: %{
+          default: map,
+          providers: [OpenCode.Generated.Provider.t()]
+        }
+
+  @doc """
+  List config providers
+
+  Get a list of all configured AI providers and their default models.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec config_providers(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Config.config_providers_200_json_resp()} | :error
+  def config_providers(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Config, :config_providers},
+      url: "/config/providers",
+      method: :get,
+      query: query,
+      response: [{200, {OpenCode.Generated.Config, :config_providers_200_json_resp}}],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Update configuration
+
+  Update OpenCode configuration settings and preferences.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec config_update(body :: OpenCode.Generated.Config.t(), opts :: keyword) ::
+          {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
+  def config_update(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Config, :config_update},
+      url: "/config",
+      body: body,
+      method: :patch,
+      query: query,
+      request: [{"application/json", {OpenCode.Generated.Config, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Config, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
 
   @type t :: %__MODULE__{
           agent: OpenCode.Generated.ConfigAgent.t() | nil,
@@ -76,6 +174,10 @@ defmodule OpenCode.Generated.Config do
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
+
+  def __fields__(:config_providers_200_json_resp) do
+    [default: :map, providers: [{OpenCode.Generated.Provider, :t}]]
+  end
 
   def __fields__(:t) do
     [

@@ -1,6 +1,6 @@
 defmodule OpenCode.Generated.EventTuiCommandExecuteProperties do
   @moduledoc """
-  Provides struct and type for a EventTuiCommandExecuteProperties
+  Provides struct and types for a EventTuiCommandExecuteProperties
   """
 
   @type t :: %__MODULE__{command: String.t()}

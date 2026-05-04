@@ -1,6 +1,6 @@
 defmodule OpenCode.Generated.EventTuiPromptAppendProperties do
   @moduledoc """
-  Provides struct and type for a EventTuiPromptAppendProperties
+  Provides struct and types for a EventTuiPromptAppendProperties
   """
 
   @type t :: %__MODULE__{text: String.t()}
