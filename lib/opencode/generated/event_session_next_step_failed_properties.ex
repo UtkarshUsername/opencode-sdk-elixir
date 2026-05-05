@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.EventSessionNextStepFailedProperties do
   """
 
   @type t :: %__MODULE__{
-          error: OpenCode.Generated.EventSessionNextStepFailedPropertiesError.t(),
+          error: OpenCode.Generated.SessionErrorUnknown.t(),
           session_id: String.t(),
           timestamp: number
         }
@@ -16,10 +16,6 @@ defmodule OpenCode.Generated.EventSessionNextStepFailedProperties do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      error: {OpenCode.Generated.EventSessionNextStepFailedPropertiesError, :t},
-      session_id: :string,
-      timestamp: :number
-    ]
+    [error: {OpenCode.Generated.SessionErrorUnknown, :t}, session_id: :string, timestamp: :number]
   end
 end

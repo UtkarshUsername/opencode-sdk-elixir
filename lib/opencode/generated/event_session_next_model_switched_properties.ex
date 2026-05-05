@@ -4,20 +4,22 @@ defmodule OpenCode.Generated.EventSessionNextModelSwitchedProperties do
   """
 
   @type t :: %__MODULE__{
-          id: String.t(),
-          provider_id: String.t(),
+          model: OpenCode.Generated.EventSessionNextModelSwitchedPropertiesModel.t(),
           session_id: String.t(),
-          timestamp: number,
-          variant: String.t() | nil
+          timestamp: number
         }
 
-  defstruct [:id, :provider_id, :session_id, :timestamp, :variant]
+  defstruct [:model, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [id: :string, provider_id: :string, session_id: :string, timestamp: :number, variant: :string]
+    [
+      model: {OpenCode.Generated.EventSessionNextModelSwitchedPropertiesModel, :t},
+      session_id: :string,
+      timestamp: :number
+    ]
   end
 end

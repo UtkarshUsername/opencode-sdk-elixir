@@ -7,7 +7,7 @@ defmodule OpenCode.Generated.SessionMessageToolStateError do
           content: [
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
           ],
-          error: OpenCode.Generated.SessionMessageToolStateErrorError.t(),
+          error: OpenCode.Generated.SessionErrorUnknown.t(),
           input: map,
           status: String.t(),
           structured: map
@@ -27,7 +27,7 @@ defmodule OpenCode.Generated.SessionMessageToolStateError do
           {OpenCode.Generated.ToolTextContent, :t}
         ]
       ],
-      error: {OpenCode.Generated.SessionMessageToolStateErrorError, :t},
+      error: {OpenCode.Generated.SessionErrorUnknown, :t},
       input: :map,
       status: {:const, "error"},
       structured: :map

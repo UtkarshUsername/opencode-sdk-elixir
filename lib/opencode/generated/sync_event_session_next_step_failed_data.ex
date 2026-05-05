@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextStepFailedData do
   """
 
   @type t :: %__MODULE__{
-          error: OpenCode.Generated.SyncEventSessionNextStepFailedDataError.t(),
+          error: OpenCode.Generated.SessionErrorUnknown.t(),
           session_id: String.t(),
           timestamp: number
         }
@@ -16,10 +16,6 @@ defmodule OpenCode.Generated.SyncEventSessionNextStepFailedData do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      error: {OpenCode.Generated.SyncEventSessionNextStepFailedDataError, :t},
-      session_id: :string,
-      timestamp: :number
-    ]
+    [error: {OpenCode.Generated.SessionErrorUnknown, :t}, session_id: :string, timestamp: :number]
   end
 end

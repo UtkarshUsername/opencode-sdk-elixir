@@ -11,7 +11,7 @@ defmodule OpenCode.Generated.SessionMessageAssistant do
             | OpenCode.Generated.SessionMessageAssistantTool.t()
           ],
           cost: number | nil,
-          error: OpenCode.Generated.SessionMessageAssistantError.t() | nil,
+          error: OpenCode.Generated.SessionErrorUnknown.t() | nil,
           finish: String.t() | nil,
           id: String.t(),
           metadata: map | nil,
@@ -52,7 +52,7 @@ defmodule OpenCode.Generated.SessionMessageAssistant do
         ]
       ],
       cost: :number,
-      error: {OpenCode.Generated.SessionMessageAssistantError, :t},
+      error: {OpenCode.Generated.SessionErrorUnknown, :t},
       finish: :string,
       id: :string,
       metadata: :map,

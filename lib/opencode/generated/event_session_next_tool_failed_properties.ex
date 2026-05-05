@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.EventSessionNextToolFailedProperties do
 
   @type t :: %__MODULE__{
           call_id: String.t(),
-          error: OpenCode.Generated.EventSessionNextToolFailedPropertiesError.t(),
+          error: OpenCode.Generated.SessionErrorUnknown.t(),
           provider: OpenCode.Generated.EventSessionNextToolFailedPropertiesProvider.t(),
           session_id: String.t(),
           timestamp: number
@@ -20,7 +20,7 @@ defmodule OpenCode.Generated.EventSessionNextToolFailedProperties do
   def __fields__(:t) do
     [
       call_id: :string,
-      error: {OpenCode.Generated.EventSessionNextToolFailedPropertiesError, :t},
+      error: {OpenCode.Generated.SessionErrorUnknown, :t},
       provider: {OpenCode.Generated.EventSessionNextToolFailedPropertiesProvider, :t},
       session_id: :string,
       timestamp: :number

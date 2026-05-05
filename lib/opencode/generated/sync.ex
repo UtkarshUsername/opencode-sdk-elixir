@@ -116,6 +116,45 @@ defmodule OpenCode.Generated.Sync do
     })
   end
 
+  @type sync_steal_200_json_resp :: %{session_id: String.t()}
+
+  @doc """
+  Steal session into workspace
+
+  Update a session to belong to the current workspace through the sync event system.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec sync_steal(body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Sync.sync_steal_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def sync_steal(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Sync, :sync_steal},
+      url: "/sync/steal",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Sync, :sync_steal_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(:sync_history_list_200_json_resp) do
@@ -123,6 +162,10 @@ defmodule OpenCode.Generated.Sync do
   end
 
   def __fields__(:sync_replay_200_json_resp) do
+    [session_id: :string]
+  end
+
+  def __fields__(:sync_steal_200_json_resp) do
     [session_id: :string]
   end
 end

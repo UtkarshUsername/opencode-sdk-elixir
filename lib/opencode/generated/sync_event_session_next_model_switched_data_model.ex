@@ -1,6 +1,6 @@
-defmodule OpenCode.Generated.SessionMessageModelSwitchedModel do
+defmodule OpenCode.Generated.SyncEventSessionNextModelSwitchedDataModel do
   @moduledoc """
-  Provides struct and type for a SessionMessageModelSwitchedModel
+  Provides struct and type for a SyncEventSessionNextModelSwitchedDataModel
   """
 
   @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t()}

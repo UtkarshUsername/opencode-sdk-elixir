@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.EventSessionNextStepStartedPropertiesModel do
   Provides struct and type for a EventSessionNextStepStartedPropertiesModel
   """
 
-  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t() | nil}
+  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t()}
 
   defstruct [:id, :provider_id, :variant]
 

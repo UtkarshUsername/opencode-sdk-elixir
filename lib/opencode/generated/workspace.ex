@@ -141,47 +141,6 @@ defmodule OpenCode.Generated.Workspace do
     })
   end
 
-  @type experimental_workspace_session_restore_200_json_resp :: %{total: integer}
-
-  @doc """
-  Restore session into workspace
-
-  Replay a session's sync events into the target workspace in batches.
-
-  ## Options
-
-    * `directory`
-    * `workspace`
-
-  ## Request Body
-
-  **Content Types**: `application/json`
-  """
-  @spec experimental_workspace_session_restore(id :: String.t(), body :: map, opts :: keyword) ::
-          {:ok,
-           OpenCode.Generated.Workspace.experimental_workspace_session_restore_200_json_resp()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
-  def experimental_workspace_session_restore(id, body, opts \\ []) do
-    client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
-
-    client.request(%{
-      args: [id: id, body: body],
-      call: {OpenCode.Generated.Workspace, :experimental_workspace_session_restore},
-      url: "/experimental/workspace/#{id}/session-restore",
-      body: body,
-      method: :post,
-      query: query,
-      request: [{"application/json", :map}],
-      response: [
-        {200,
-         {OpenCode.Generated.Workspace, :experimental_workspace_session_restore_200_json_resp}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
-      ],
-      opts: opts
-    })
-  end
-
   @type experimental_workspace_status_200_json_resp :: %{
           status: String.t(),
           workspace_id: String.t()
@@ -218,6 +177,39 @@ defmodule OpenCode.Generated.Workspace do
     })
   end
 
+  @doc """
+  Warp session into workspace
+
+  Move a session's sync history into the target workspace, or detach it to the local project.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec experimental_workspace_warp(body :: map, opts :: keyword) ::
+          :ok | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_workspace_warp(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Workspace, :experimental_workspace_warp},
+      url: "/experimental/workspace/warp",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [{204, :null}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      opts: opts
+    })
+  end
+
   @type t :: %__MODULE__{
           branch: String.t() | nil,
           directory: String.t() | nil,
@@ -236,10 +228,6 @@ defmodule OpenCode.Generated.Workspace do
 
   def __fields__(:experimental_workspace_adapter_list_200_json_resp) do
     [description: :string, name: :string, type: :string]
-  end
-
-  def __fields__(:experimental_workspace_session_restore_200_json_resp) do
-    [total: :integer]
   end
 
   def __fields__(:experimental_workspace_status_200_json_resp) do
