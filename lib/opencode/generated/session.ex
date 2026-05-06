@@ -462,7 +462,7 @@ defmodule OpenCode.Generated.Session do
   **Content Types**: `application/json`
   """
   @spec session_fork(sessionID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok, OpenCode.Generated.Session.t()} | :error
+          {:ok, OpenCode.Generated.Session.t()} | {:error, OpenCode.Generated.NotFoundError.t()}
   def session_fork(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -475,7 +475,10 @@ defmodule OpenCode.Generated.Session do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, {OpenCode.Generated.Session, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Session, :t}},
+        {404, {OpenCode.Generated.NotFoundError, :t}}
+      ],
       opts: opts
     })
   end
