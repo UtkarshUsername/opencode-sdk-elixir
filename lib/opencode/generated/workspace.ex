@@ -192,7 +192,9 @@ defmodule OpenCode.Generated.Workspace do
   **Content Types**: `application/json`
   """
   @spec experimental_workspace_warp(body :: map, opts :: keyword) ::
-          :ok | {:error, OpenCode.Generated.BadRequestError.t()}
+          :ok
+          | {:error,
+             OpenCode.Generated.VcsApplyError.t() | OpenCode.Generated.WorkspaceWarpError.t()}
   def experimental_workspace_warp(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -205,7 +207,12 @@ defmodule OpenCode.Generated.Workspace do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{204, :null}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {204, :null},
+        {400,
+         {:union,
+          [{OpenCode.Generated.VcsApplyError, :t}, {OpenCode.Generated.WorkspaceWarpError, :t}]}}
+      ],
       opts: opts
     })
   end

@@ -203,6 +203,45 @@ defmodule OpenCode.Generated.Instance do
     })
   end
 
+  @type vcs_apply_200_json_resp :: %{applied: boolean}
+
+  @doc """
+  Apply VCS patch
+
+  Apply a raw patch to the current working tree.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec vcs_apply(body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Instance.vcs_apply_200_json_resp()}
+          | {:error, OpenCode.Generated.VcsApplyError.t()}
+  def vcs_apply(body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Instance, :vcs_apply},
+      url: "/vcs/apply",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Instance, :vcs_apply_200_json_resp}},
+        {400, {OpenCode.Generated.VcsApplyError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   Get VCS diff
 
@@ -227,6 +266,33 @@ defmodule OpenCode.Generated.Instance do
       method: :get,
       query: query,
       response: [{200, [{OpenCode.Generated.VcsFileDiff, :t}]}],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Get raw VCS diff
+
+  Retrieve a raw patch for current uncommitted changes.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec vcs_diff_raw(opts :: keyword) :: {:ok, String.t()} | :error
+  def vcs_diff_raw(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Instance, :vcs_diff_raw},
+      url: "/vcs/diff/raw",
+      method: :get,
+      query: query,
+      response: [{200, :string}],
       opts: opts
     })
   end
@@ -258,9 +324,40 @@ defmodule OpenCode.Generated.Instance do
     })
   end
 
+  @doc """
+  Get VCS status
+
+  Retrieve changed files in the current working tree without patches.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec vcs_status(opts :: keyword) :: {:ok, [OpenCode.Generated.VcsFileStatus.t()]} | :error
+  def vcs_status(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Instance, :vcs_status},
+      url: "/vcs/status",
+      method: :get,
+      query: query,
+      response: [{200, [{OpenCode.Generated.VcsFileStatus, :t}]}],
+      opts: opts
+    })
+  end
+
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(:app_skills_200_json_resp) do
     [content: :string, description: :string, location: :string, name: :string]
+  end
+
+  def __fields__(:vcs_apply_200_json_resp) do
+    [applied: :boolean]
   end
 end

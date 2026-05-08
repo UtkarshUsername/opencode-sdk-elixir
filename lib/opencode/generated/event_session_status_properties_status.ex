@@ -3,9 +3,15 @@ defmodule OpenCode.Generated.EventSessionStatusPropertiesStatus do
   Provides struct and types for a EventSessionStatusPropertiesStatus
   """
 
-  @type t :: %__MODULE__{attempt: integer, message: String.t(), next: integer, type: String.t()}
+  @type t :: %__MODULE__{
+          action: OpenCode.Generated.EventSessionStatusPropertiesStatusAction.t() | nil,
+          attempt: integer,
+          message: String.t(),
+          next: integer,
+          type: String.t()
+        }
 
-  defstruct [:attempt, :message, :next, :type]
+  defstruct [:action, :attempt, :message, :next, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -13,6 +19,7 @@ defmodule OpenCode.Generated.EventSessionStatusPropertiesStatus do
 
   def __fields__(:t) do
     [
+      action: {OpenCode.Generated.EventSessionStatusPropertiesStatusAction, :t},
       attempt: :integer,
       message: :string,
       next: :integer,
