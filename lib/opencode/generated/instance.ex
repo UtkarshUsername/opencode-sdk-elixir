@@ -34,7 +34,7 @@ defmodule OpenCode.Generated.Instance do
 
   @type app_skills_200_json_resp :: %{
           content: String.t(),
-          description: String.t(),
+          description: String.t() | nil,
           location: String.t(),
           name: String.t()
         }

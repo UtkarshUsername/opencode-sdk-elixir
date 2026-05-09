@@ -17,7 +17,8 @@ defmodule OpenCode.Generated.Experimental do
 
   """
   @spec experimental_console_get(opts :: keyword) ::
-          {:ok, OpenCode.Generated.ConsoleState.t()} | :error
+          {:ok, OpenCode.Generated.ConsoleState.t()}
+          | {:error, OpenCode.Generated.EffectHttpApiErrorInternalServerError.t()}
   def experimental_console_get(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -28,7 +29,10 @@ defmodule OpenCode.Generated.Experimental do
       url: "/experimental/console",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.ConsoleState, :t}}],
+      response: [
+        {200, {OpenCode.Generated.ConsoleState, :t}},
+        {500, {OpenCode.Generated.EffectHttpApiErrorInternalServerError, :t}}
+      ],
       opts: opts
     })
   end
@@ -61,7 +65,7 @@ defmodule OpenCode.Generated.Experimental do
   """
   @spec experimental_console_list_orgs(opts :: keyword) ::
           {:ok, OpenCode.Generated.Experimental.experimental_console_list_orgs_200_json_resp()}
-          | :error
+          | {:error, OpenCode.Generated.EffectHttpApiErrorInternalServerError.t()}
   def experimental_console_list_orgs(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -73,7 +77,8 @@ defmodule OpenCode.Generated.Experimental do
       method: :get,
       query: query,
       response: [
-        {200, {OpenCode.Generated.Experimental, :experimental_console_list_orgs_200_json_resp}}
+        {200, {OpenCode.Generated.Experimental, :experimental_console_list_orgs_200_json_resp}},
+        {500, {OpenCode.Generated.EffectHttpApiErrorInternalServerError, :t}}
       ],
       opts: opts
     })

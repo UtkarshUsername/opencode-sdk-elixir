@@ -178,6 +178,33 @@ defmodule OpenCode.Generated.Workspace do
   end
 
   @doc """
+  Sync workspace list
+
+  Register missing workspaces returned by workspace adapters.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_workspace_sync_list(opts :: keyword) :: :ok | :error
+  def experimental_workspace_sync_list(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Workspace, :experimental_workspace_sync_list},
+      url: "/experimental/workspace/sync-list",
+      method: :post,
+      query: query,
+      response: [{204, :null}],
+      opts: opts
+    })
+  end
+
+  @doc """
   Warp session into workspace
 
   Move a session's sync history into the target workspace, or detach it to the local project.
@@ -224,10 +251,11 @@ defmodule OpenCode.Generated.Workspace do
           id: String.t(),
           name: String.t(),
           project_id: String.t(),
+          time_used: number | String.t(),
           type: String.t()
         }
 
-  defstruct [:branch, :directory, :extra, :id, :name, :project_id, :type]
+  defstruct [:branch, :directory, :extra, :id, :name, :project_id, :time_used, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -249,6 +277,15 @@ defmodule OpenCode.Generated.Workspace do
       id: :string,
       name: :string,
       project_id: :string,
+      time_used:
+        {:union,
+         [
+           :number,
+           const: "-Infinity",
+           const: "Infinity",
+           const: "NaN",
+           enum: ["Infinity", "-Infinity", "NaN"]
+         ]},
       type: :string
     ]
   end

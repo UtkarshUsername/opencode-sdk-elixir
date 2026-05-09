@@ -846,7 +846,8 @@ defmodule OpenCode.Generated.Session do
   @spec session_share(sessionID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Session.t()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorInternalServerError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def session_share(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -859,8 +860,8 @@ defmodule OpenCode.Generated.Session do
       query: query,
       response: [
         {200, {OpenCode.Generated.Session, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {500, {OpenCode.Generated.EffectHttpApiErrorInternalServerError, :t}}
       ],
       opts: opts
     })
@@ -1072,7 +1073,8 @@ defmodule OpenCode.Generated.Session do
   @spec session_unshare(sessionID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Session.t()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorInternalServerError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def session_unshare(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -1085,8 +1087,8 @@ defmodule OpenCode.Generated.Session do
       query: query,
       response: [
         {200, {OpenCode.Generated.Session, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {500, {OpenCode.Generated.EffectHttpApiErrorInternalServerError, :t}}
       ],
       opts: opts
     })
