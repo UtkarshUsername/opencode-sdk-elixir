@@ -92,6 +92,13 @@ defmodule OpenCode.Generated.V2 do
 
     * `directory`
     * `workspace`
+    * `limit`
+    * `order`
+    * `path`
+    * `roots`
+    * `start`
+    * `search`
+    * `cursor`
 
   """
   @spec v2_session_list(opts :: keyword) ::
@@ -99,7 +106,19 @@ defmodule OpenCode.Generated.V2 do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def v2_session_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+
+    query =
+      Keyword.take(opts, [
+        :cursor,
+        :directory,
+        :limit,
+        :order,
+        :path,
+        :roots,
+        :search,
+        :start,
+        :workspace
+      ])
 
     client.request(%{
       args: [],

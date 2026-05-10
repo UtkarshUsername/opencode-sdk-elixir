@@ -103,6 +103,7 @@ defmodule OpenCode.Generated.Config do
 
   @type t :: %__MODULE__{
           agent: OpenCode.Generated.ConfigAgent.t() | nil,
+          attachment: OpenCode.Generated.AttachmentConfig.t() | nil,
           autoshare: boolean | nil,
           autoupdate: boolean | String.t() | nil,
           command: map | nil,
@@ -139,6 +140,7 @@ defmodule OpenCode.Generated.Config do
 
   defstruct [
     :agent,
+    :attachment,
     :autoshare,
     :autoupdate,
     :command,
@@ -184,6 +186,7 @@ defmodule OpenCode.Generated.Config do
   def __fields__(:t) do
     [
       agent: {OpenCode.Generated.ConfigAgent, :t},
+      attachment: {OpenCode.Generated.AttachmentConfig, :t},
       autoshare: :boolean,
       autoupdate: {:union, [:boolean, const: "notify"]},
       command: :map,

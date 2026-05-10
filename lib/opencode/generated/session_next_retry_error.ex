@@ -9,7 +9,7 @@ defmodule OpenCode.Generated.SessionNextRetryError do
           metadata: map | nil,
           response_body: String.t() | nil,
           response_headers: map | nil,
-          status_code: integer | nil
+          status_code: number | nil
         }
 
   defstruct [:is_retryable, :message, :metadata, :response_body, :response_headers, :status_code]
@@ -25,7 +25,7 @@ defmodule OpenCode.Generated.SessionNextRetryError do
       metadata: :map,
       response_body: :string,
       response_headers: :map,
-      status_code: :integer
+      status_code: :number
     ]
   end
 end

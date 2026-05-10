@@ -4,10 +4,10 @@ defmodule OpenCode.Generated.SessionSummary do
   """
 
   @type t :: %__MODULE__{
-          additions: integer,
-          deletions: integer,
+          additions: number,
+          deletions: number,
           diffs: [OpenCode.Generated.SnapshotFileDiff.t()] | nil,
-          files: integer
+          files: number
         }
 
   defstruct [:additions, :deletions, :diffs, :files]
@@ -18,10 +18,10 @@ defmodule OpenCode.Generated.SessionSummary do
 
   def __fields__(:t) do
     [
-      additions: :integer,
-      deletions: :integer,
+      additions: :number,
+      deletions: :number,
       diffs: [{OpenCode.Generated.SnapshotFileDiff, :t}],
-      files: :integer
+      files: :number
     ]
   end
 end

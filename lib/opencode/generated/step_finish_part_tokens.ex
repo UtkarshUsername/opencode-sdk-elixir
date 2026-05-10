@@ -5,10 +5,10 @@ defmodule OpenCode.Generated.StepFinishPartTokens do
 
   @type t :: %__MODULE__{
           cache: OpenCode.Generated.StepFinishPartTokensCache.t(),
-          input: integer,
-          output: integer,
-          reasoning: integer,
-          total: integer | nil
+          input: number,
+          output: number,
+          reasoning: number,
+          total: number | nil
         }
 
   defstruct [:cache, :input, :output, :reasoning, :total]
@@ -20,10 +20,10 @@ defmodule OpenCode.Generated.StepFinishPartTokens do
   def __fields__(:t) do
     [
       cache: {OpenCode.Generated.StepFinishPartTokensCache, :t},
-      input: :integer,
-      output: :integer,
-      reasoning: :integer,
-      total: :integer
+      input: :number,
+      output: :number,
+      reasoning: :number,
+      total: :number
     ]
   end
 end

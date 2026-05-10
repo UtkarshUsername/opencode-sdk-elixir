@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextStepEndedDataTokensCache do
   Provides struct and type for a SyncEventSessionNextStepEndedDataTokensCache
   """
 
-  @type t :: %__MODULE__{read: integer, write: integer}
+  @type t :: %__MODULE__{read: number, write: number}
 
   defstruct [:read, :write]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.SyncEventSessionNextStepEndedDataTokensCache do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [read: :integer, write: :integer]
+    [read: :number, write: :number]
   end
 end

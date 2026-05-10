@@ -5,9 +5,9 @@ defmodule OpenCode.Generated.EventSessionNextStepEndedPropertiesTokens do
 
   @type t :: %__MODULE__{
           cache: OpenCode.Generated.EventSessionNextStepEndedPropertiesTokensCache.t(),
-          input: integer,
-          output: integer,
-          reasoning: integer
+          input: number,
+          output: number,
+          reasoning: number
         }
 
   defstruct [:cache, :input, :output, :reasoning]
@@ -19,9 +19,9 @@ defmodule OpenCode.Generated.EventSessionNextStepEndedPropertiesTokens do
   def __fields__(:t) do
     [
       cache: {OpenCode.Generated.EventSessionNextStepEndedPropertiesTokensCache, :t},
-      input: :integer,
-      output: :integer,
-      reasoning: :integer
+      input: :number,
+      output: :number,
+      reasoning: :number
     ]
   end
 end

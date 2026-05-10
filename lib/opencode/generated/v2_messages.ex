@@ -14,6 +14,9 @@ defmodule OpenCode.Generated.V2Messages do
 
     * `directory`
     * `workspace`
+    * `limit`
+    * `order`
+    * `cursor`
 
   """
   @spec v2_session_messages(sessionID :: String.t(), opts :: keyword) ::
@@ -21,7 +24,7 @@ defmodule OpenCode.Generated.V2Messages do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def v2_session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:cursor, :directory, :limit, :order, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],

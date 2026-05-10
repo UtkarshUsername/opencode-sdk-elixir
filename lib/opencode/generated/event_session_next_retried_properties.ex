@@ -4,7 +4,7 @@ defmodule OpenCode.Generated.EventSessionNextRetriedProperties do
   """
 
   @type t :: %__MODULE__{
-          attempt: integer,
+          attempt: number,
           error: OpenCode.Generated.SessionNextRetryError.t(),
           session_id: String.t(),
           timestamp: number
@@ -18,7 +18,7 @@ defmodule OpenCode.Generated.EventSessionNextRetriedProperties do
 
   def __fields__(:t) do
     [
-      attempt: :integer,
+      attempt: :number,
       error: {OpenCode.Generated.SessionNextRetryError, :t},
       session_id: :string,
       timestamp: :number

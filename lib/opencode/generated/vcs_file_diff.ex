@@ -4,10 +4,10 @@ defmodule OpenCode.Generated.VcsFileDiff do
   """
 
   @type t :: %__MODULE__{
-          additions: integer,
-          deletions: integer,
+          additions: number,
+          deletions: number,
           file: String.t(),
-          patch: String.t(),
+          patch: String.t() | nil,
           status: String.t() | nil
         }
 
@@ -19,8 +19,8 @@ defmodule OpenCode.Generated.VcsFileDiff do
 
   def __fields__(:t) do
     [
-      additions: :integer,
-      deletions: :integer,
+      additions: :number,
+      deletions: :number,
       file: :string,
       patch: :string,
       status: {:enum, ["added", "deleted", "modified"]}

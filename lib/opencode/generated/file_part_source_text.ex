@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.FilePartSourceText do
   Provides struct and type for a FilePartSourceText
   """
 
-  @type t :: %__MODULE__{end: integer, start: integer, value: String.t()}
+  @type t :: %__MODULE__{end: number, start: number, value: String.t()}
 
   defstruct [:end, :start, :value]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.FilePartSourceText do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [end: :integer, start: :integer, value: :string]
+    [end: :number, start: :number, value: :string]
   end
 end
