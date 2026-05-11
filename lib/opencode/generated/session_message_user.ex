@@ -8,12 +8,13 @@ defmodule OpenCode.Generated.SessionMessageUser do
           files: [OpenCode.Generated.PromptFileAttachment.t()] | nil,
           id: String.t(),
           metadata: map | nil,
+          references: [OpenCode.Generated.PromptReferenceAttachment.t()] | nil,
           text: String.t(),
           time: OpenCode.Generated.SessionMessageUserTime.t(),
           type: String.t()
         }
 
-  defstruct [:agents, :files, :id, :metadata, :text, :time, :type]
+  defstruct [:agents, :files, :id, :metadata, :references, :text, :time, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -25,6 +26,7 @@ defmodule OpenCode.Generated.SessionMessageUser do
       files: [{OpenCode.Generated.PromptFileAttachment, :t}],
       id: :string,
       metadata: :map,
+      references: [{OpenCode.Generated.PromptReferenceAttachment, :t}],
       text: :string,
       time: {OpenCode.Generated.SessionMessageUserTime, :t},
       type: {:const, "user"}

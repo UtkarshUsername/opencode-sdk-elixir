@@ -3,15 +3,15 @@ defmodule OpenCode.Generated.BadRequestError do
   Provides struct and type for a BadRequestError
   """
 
-  @type t :: %__MODULE__{data: map, errors: [map], success: false}
+  @type t :: %__MODULE__{data: OpenCode.Generated.BadRequestErrorData.t(), name: String.t()}
 
-  defstruct [:data, :errors, :success]
+  defstruct [:data, :name]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [data: :map, errors: [:map], success: {:const, false}]
+    [data: {OpenCode.Generated.BadRequestErrorData, :t}, name: {:const, "BadRequest"}]
   end
 end
