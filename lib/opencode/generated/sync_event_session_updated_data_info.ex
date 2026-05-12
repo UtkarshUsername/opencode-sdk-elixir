@@ -5,6 +5,7 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
 
   @type t :: %__MODULE__{
           agent: String.t() | nil,
+          cost: number | nil,
           directory: String.t() | nil,
           id: String.t() | nil,
           model: OpenCode.Generated.SyncEventSessionUpdatedDataInfoModel.t() | nil,
@@ -18,12 +19,14 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
           summary: OpenCode.Generated.SyncEventSessionUpdatedDataInfoSummary.t() | nil,
           time: OpenCode.Generated.SyncEventSessionUpdatedDataInfoTime.t() | nil,
           title: String.t() | nil,
+          tokens: OpenCode.Generated.SyncEventSessionUpdatedDataInfoTokens.t() | nil,
           version: String.t() | nil,
           workspace_id: String.t() | nil
         }
 
   defstruct [
     :agent,
+    :cost,
     :directory,
     :id,
     :model,
@@ -37,6 +40,7 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
     :summary,
     :time,
     :title,
+    :tokens,
     :version,
     :workspace_id
   ]
@@ -48,6 +52,7 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
   def __fields__(:t) do
     [
       agent: {:union, [:string, :null]},
+      cost: {:union, [:number, :null]},
       directory: {:union, [:string, :null]},
       id: {:union, [:string, :null]},
       model: {:union, [{OpenCode.Generated.SyncEventSessionUpdatedDataInfoModel, :t}, :null]},
@@ -61,6 +66,7 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedDataInfo do
       summary: {:union, [{OpenCode.Generated.SyncEventSessionUpdatedDataInfoSummary, :t}, :null]},
       time: {OpenCode.Generated.SyncEventSessionUpdatedDataInfoTime, :t},
       title: {:union, [:string, :null]},
+      tokens: {:union, [{OpenCode.Generated.SyncEventSessionUpdatedDataInfoTokens, :t}, :null]},
       version: {:union, [:string, :null]},
       workspace_id: {:union, [:string, :null]}
     ]

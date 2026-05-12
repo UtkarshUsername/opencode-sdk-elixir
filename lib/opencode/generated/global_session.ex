@@ -5,6 +5,7 @@ defmodule OpenCode.Generated.GlobalSession do
 
   @type t :: %__MODULE__{
           agent: String.t() | nil,
+          cost: number | nil,
           directory: String.t(),
           id: String.t(),
           model: OpenCode.Generated.GlobalSessionModel.t() | nil,
@@ -19,12 +20,14 @@ defmodule OpenCode.Generated.GlobalSession do
           summary: OpenCode.Generated.GlobalSessionSummary.t() | nil,
           time: OpenCode.Generated.GlobalSessionTime.t(),
           title: String.t(),
+          tokens: OpenCode.Generated.GlobalSessionTokens.t() | nil,
           version: String.t(),
           workspace_id: String.t() | nil
         }
 
   defstruct [
     :agent,
+    :cost,
     :directory,
     :id,
     :model,
@@ -39,6 +42,7 @@ defmodule OpenCode.Generated.GlobalSession do
     :summary,
     :time,
     :title,
+    :tokens,
     :version,
     :workspace_id
   ]
@@ -50,6 +54,7 @@ defmodule OpenCode.Generated.GlobalSession do
   def __fields__(:t) do
     [
       agent: :string,
+      cost: :number,
       directory: :string,
       id: :string,
       model: {OpenCode.Generated.GlobalSessionModel, :t},
@@ -64,6 +69,7 @@ defmodule OpenCode.Generated.GlobalSession do
       summary: {OpenCode.Generated.GlobalSessionSummary, :t},
       time: {OpenCode.Generated.GlobalSessionTime, :t},
       title: :string,
+      tokens: {OpenCode.Generated.GlobalSessionTokens, :t},
       version: :string,
       workspace_id: :string
     ]

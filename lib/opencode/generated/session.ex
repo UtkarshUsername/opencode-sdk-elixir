@@ -1138,6 +1138,7 @@ defmodule OpenCode.Generated.Session do
 
   @type t :: %__MODULE__{
           agent: String.t() | nil,
+          cost: number | nil,
           directory: String.t(),
           id: String.t(),
           model: OpenCode.Generated.SessionModel.t() | nil,
@@ -1151,12 +1152,14 @@ defmodule OpenCode.Generated.Session do
           summary: OpenCode.Generated.SessionSummary.t() | nil,
           time: OpenCode.Generated.SessionTime.t(),
           title: String.t(),
+          tokens: OpenCode.Generated.SessionTokens.t() | nil,
           version: String.t(),
           workspace_id: String.t() | nil
         }
 
   defstruct [
     :agent,
+    :cost,
     :directory,
     :id,
     :model,
@@ -1170,6 +1173,7 @@ defmodule OpenCode.Generated.Session do
     :summary,
     :time,
     :title,
+    :tokens,
     :version,
     :workspace_id
   ]
@@ -1297,6 +1301,7 @@ defmodule OpenCode.Generated.Session do
   def __fields__(:t) do
     [
       agent: :string,
+      cost: :number,
       directory: :string,
       id: :string,
       model: {OpenCode.Generated.SessionModel, :t},
@@ -1310,6 +1315,7 @@ defmodule OpenCode.Generated.Session do
       summary: {OpenCode.Generated.SessionSummary, :t},
       time: {OpenCode.Generated.SessionTime, :t},
       title: :string,
+      tokens: {OpenCode.Generated.SessionTokens, :t},
       version: :string,
       workspace_id: :string
     ]

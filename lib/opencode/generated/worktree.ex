@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.Worktree do
   Provides struct and type for a Worktree
   """
 
-  @type t :: %__MODULE__{branch: String.t(), directory: String.t(), name: String.t()}
+  @type t :: %__MODULE__{branch: String.t() | nil, directory: String.t(), name: String.t()}
 
   defstruct [:branch, :directory, :name]
 

@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.EventWorktreeReadyProperties do
   Provides struct and type for a EventWorktreeReadyProperties
   """
 
-  @type t :: %__MODULE__{branch: String.t(), name: String.t()}
+  @type t :: %__MODULE__{branch: String.t() | nil, name: String.t()}
 
   defstruct [:branch, :name]
 
