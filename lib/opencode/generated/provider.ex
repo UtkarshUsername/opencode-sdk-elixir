@@ -82,7 +82,7 @@ defmodule OpenCode.Generated.Provider do
   """
   @spec provider_oauth_authorize(providerID :: String.t(), body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.ProviderAuthAuthorization.t()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error, OpenCode.Generated.ProviderAuthError1.t()}
   def provider_oauth_authorize(providerID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -97,7 +97,7 @@ defmodule OpenCode.Generated.Provider do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.ProviderAuthAuthorization, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400, {OpenCode.Generated.ProviderAuthError1, :t}}
       ],
       opts: opts
     })
@@ -118,7 +118,7 @@ defmodule OpenCode.Generated.Provider do
   **Content Types**: `application/json`
   """
   @spec provider_oauth_callback(providerID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean} | {:error, OpenCode.Generated.ProviderAuthError1.t()}
   def provider_oauth_callback(providerID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -131,7 +131,7 @@ defmodule OpenCode.Generated.Provider do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.ProviderAuthError1, :t}}],
       opts: opts
     })
   end

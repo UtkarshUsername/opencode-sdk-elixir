@@ -201,9 +201,7 @@ defmodule OpenCode.Generated.Session do
 
   """
   @spec session_abort(sessionID :: String.t(), opts :: keyword) ::
-          {:ok, boolean}
-          | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def session_abort(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -214,11 +212,7 @@ defmodule OpenCode.Generated.Session do
       url: "/session/#{sessionID}/abort",
       method: :post,
       query: query,
-      response: [
-        {200, :boolean},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
-      ],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end

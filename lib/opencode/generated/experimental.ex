@@ -265,8 +265,7 @@ defmodule OpenCode.Generated.Experimental do
   **Content Types**: `application/json`
   """
   @spec worktree_create(body :: OpenCode.Generated.WorktreeCreateInput.t(), opts :: keyword) ::
-          {:ok, OpenCode.Generated.Worktree.t()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, OpenCode.Generated.Worktree.t()} | {:error, OpenCode.Generated.WorktreeError.t()}
   def worktree_create(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -281,7 +280,7 @@ defmodule OpenCode.Generated.Experimental do
       request: [{"application/json", {OpenCode.Generated.WorktreeCreateInput, :t}}],
       response: [
         {200, {OpenCode.Generated.Worktree, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400, {OpenCode.Generated.WorktreeError, :t}}
       ],
       opts: opts
     })
@@ -298,7 +297,8 @@ defmodule OpenCode.Generated.Experimental do
     * `workspace`
 
   """
-  @spec worktree_list(opts :: keyword) :: {:ok, [String.t()]} | :error
+  @spec worktree_list(opts :: keyword) ::
+          {:ok, [String.t()]} | {:error, OpenCode.Generated.WorktreeError.t()}
   def worktree_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -309,7 +309,7 @@ defmodule OpenCode.Generated.Experimental do
       url: "/experimental/worktree",
       method: :get,
       query: query,
-      response: [{200, [:string]}],
+      response: [{200, [:string]}, {400, {OpenCode.Generated.WorktreeError, :t}}],
       opts: opts
     })
   end
@@ -329,7 +329,7 @@ defmodule OpenCode.Generated.Experimental do
   **Content Types**: `application/json`
   """
   @spec worktree_remove(body :: OpenCode.Generated.WorktreeRemoveInput.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean} | {:error, OpenCode.Generated.WorktreeError.t()}
   def worktree_remove(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -342,7 +342,7 @@ defmodule OpenCode.Generated.Experimental do
       method: :delete,
       query: query,
       request: [{"application/json", {OpenCode.Generated.WorktreeRemoveInput, :t}}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.WorktreeError, :t}}],
       opts: opts
     })
   end
@@ -362,7 +362,7 @@ defmodule OpenCode.Generated.Experimental do
   **Content Types**: `application/json`
   """
   @spec worktree_reset(body :: OpenCode.Generated.WorktreeResetInput.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean} | {:error, OpenCode.Generated.WorktreeError.t()}
   def worktree_reset(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -375,7 +375,7 @@ defmodule OpenCode.Generated.Experimental do
       method: :post,
       query: query,
       request: [{"application/json", {OpenCode.Generated.WorktreeResetInput, :t}}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.WorktreeError, :t}}],
       opts: opts
     })
   end
