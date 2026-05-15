@@ -12,7 +12,7 @@ defmodule OpenCode.Generated.V2Providers do
 
   ## Options
 
-    * `instance`
+    * `location`
 
   """
   @spec v2_provider_get(providerID :: String.t(), opts :: keyword) ::
@@ -20,7 +20,7 @@ defmodule OpenCode.Generated.V2Providers do
           | {:error, OpenCode.Generated.NotFoundError.t()}
   def v2_provider_get(providerID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:instance])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [providerID: providerID],
@@ -43,14 +43,14 @@ defmodule OpenCode.Generated.V2Providers do
 
   ## Options
 
-    * `instance`
+    * `location`
 
   """
   @spec v2_provider_list(opts :: keyword) ::
           {:ok, [OpenCode.Generated.ProviderV2Info.t()]} | :error
   def v2_provider_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:instance])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [],

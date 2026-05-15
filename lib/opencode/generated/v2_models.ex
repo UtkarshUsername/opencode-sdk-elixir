@@ -12,13 +12,13 @@ defmodule OpenCode.Generated.V2Models do
 
   ## Options
 
-    * `instance`
+    * `location`
 
   """
   @spec v2_model_list(opts :: keyword) :: {:ok, [OpenCode.Generated.ModelV2Info.t()]} | :error
   def v2_model_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:instance])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [],

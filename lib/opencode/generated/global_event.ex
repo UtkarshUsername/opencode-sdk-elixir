@@ -6,7 +6,8 @@ defmodule OpenCode.Generated.GlobalEvent do
   @type t :: %__MODULE__{
           directory: String.t(),
           payload:
-            OpenCode.Generated.EventCommandExecuted.t()
+            OpenCode.Generated.EventCatalogModelUpdated.t()
+            | OpenCode.Generated.EventCommandExecuted.t()
             | OpenCode.Generated.EventFileEdited.t()
             | OpenCode.Generated.EventFileWatcherUpdated.t()
             | OpenCode.Generated.EventGlobalDisposed.t()
@@ -127,6 +128,7 @@ defmodule OpenCode.Generated.GlobalEvent do
       payload:
         {:union,
          [
+           {OpenCode.Generated.EventCatalogModelUpdated, :t},
            {OpenCode.Generated.EventCommandExecuted, :t},
            {OpenCode.Generated.EventFileEdited, :t},
            {OpenCode.Generated.EventFileWatcherUpdated, :t},
