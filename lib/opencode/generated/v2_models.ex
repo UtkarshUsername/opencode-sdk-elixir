@@ -26,7 +26,7 @@ defmodule OpenCode.Generated.V2Models do
       url: "/api/model",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.ModelV2Info, :t}]}],
+      response: [{200, [{OpenCode.Generated.ModelV2Info, :t}]}, {401, :null}],
       opts: opts
     })
   end

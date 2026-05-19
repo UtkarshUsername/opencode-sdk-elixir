@@ -30,6 +30,7 @@ defmodule OpenCode.Generated.V2Providers do
       query: query,
       response: [
         {200, {OpenCode.Generated.ProviderV2Info, :t}},
+        {401, :null},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
@@ -58,7 +59,7 @@ defmodule OpenCode.Generated.V2Providers do
       url: "/api/provider",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.ProviderV2Info, :t}]}],
+      response: [{200, [{OpenCode.Generated.ProviderV2Info, :t}]}, {401, :null}],
       opts: opts
     })
   end

@@ -27,7 +27,7 @@ defmodule OpenCode.Generated.V2 do
       url: "/api/session/#{sessionID}/compact",
       method: :post,
       query: query,
-      response: [{204, :null}],
+      response: [{204, :null}, {401, :null}],
       opts: opts
     })
   end
@@ -77,7 +77,8 @@ defmodule OpenCode.Generated.V2 do
              {OpenCode.Generated.SessionMessageSynthetic, :t},
              {OpenCode.Generated.SessionMessageUser, :t}
            ]
-         ]}
+         ]},
+        {401, :null}
       ],
       opts: opts
     })
@@ -103,7 +104,7 @@ defmodule OpenCode.Generated.V2 do
   """
   @spec v2_session_list(opts :: keyword) ::
           {:ok, OpenCode.Generated.V2SessionsResponse.t()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error, OpenCode.Generated.EffectHttpApiErrorBadRequest.t()}
   def v2_session_list(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -128,7 +129,8 @@ defmodule OpenCode.Generated.V2 do
       query: query,
       response: [
         {200, {OpenCode.Generated.V2SessionsResponse, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400, {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t}},
+        {401, :null}
       ],
       opts: opts
     })
@@ -181,7 +183,8 @@ defmodule OpenCode.Generated.V2 do
             {OpenCode.Generated.SessionMessageShell, :t},
             {OpenCode.Generated.SessionMessageSynthetic, :t},
             {OpenCode.Generated.SessionMessageUser, :t}
-          ]}}
+          ]}},
+        {401, :null}
       ],
       opts: opts
     })
@@ -209,7 +212,7 @@ defmodule OpenCode.Generated.V2 do
       url: "/api/session/#{sessionID}/wait",
       method: :post,
       query: query,
-      response: [{204, :null}],
+      response: [{204, :null}, {401, :null}],
       opts: opts
     })
   end
