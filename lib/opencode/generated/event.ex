@@ -18,7 +18,10 @@ defmodule OpenCode.Generated.Event do
   """
   @spec event_subscribe(opts :: keyword) ::
           {:ok,
-           OpenCode.Generated.EventCatalogModelUpdated.t()
+           OpenCode.Generated.EventAccountAdded.t()
+           | OpenCode.Generated.EventAccountRemoved.t()
+           | OpenCode.Generated.EventAccountSwitched.t()
+           | OpenCode.Generated.EventCatalogModelUpdated.t()
            | OpenCode.Generated.EventCommandExecuted.t()
            | OpenCode.Generated.EventFileEdited.t()
            | OpenCode.Generated.EventFileWatcherUpdated.t()
@@ -34,6 +37,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventMessagePartUpdated.t()
            | OpenCode.Generated.EventMessageRemoved.t()
            | OpenCode.Generated.EventMessageUpdated.t()
+           | OpenCode.Generated.EventModelsDevRefreshed.t()
            | OpenCode.Generated.EventPermissionAsked.t()
            | OpenCode.Generated.EventPermissionReplied.t()
            | OpenCode.Generated.EventProjectUpdated.t()
@@ -106,6 +110,9 @@ defmodule OpenCode.Generated.Event do
         {200,
          {:union,
           [
+            {OpenCode.Generated.EventAccountAdded, :t},
+            {OpenCode.Generated.EventAccountRemoved, :t},
+            {OpenCode.Generated.EventAccountSwitched, :t},
             {OpenCode.Generated.EventCatalogModelUpdated, :t},
             {OpenCode.Generated.EventCommandExecuted, :t},
             {OpenCode.Generated.EventFileEdited, :t},
@@ -122,6 +129,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventMessagePartUpdated, :t},
             {OpenCode.Generated.EventMessageRemoved, :t},
             {OpenCode.Generated.EventMessageUpdated, :t},
+            {OpenCode.Generated.EventModelsDevRefreshed, :t},
             {OpenCode.Generated.EventPermissionAsked, :t},
             {OpenCode.Generated.EventPermissionReplied, :t},
             {OpenCode.Generated.EventProjectUpdated, :t},

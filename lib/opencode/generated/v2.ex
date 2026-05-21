@@ -16,7 +16,12 @@ defmodule OpenCode.Generated.V2 do
     * `workspace`
 
   """
-  @spec v2_session_compact(sessionID :: String.t(), opts :: keyword) :: :ok | :error
+  @spec v2_session_compact(sessionID :: String.t(), opts :: keyword) ::
+          :ok
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_compact(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -27,7 +32,12 @@ defmodule OpenCode.Generated.V2 do
       url: "/api/session/#{sessionID}/compact",
       method: :post,
       query: query,
-      response: [{204, :null}, {401, :null}],
+      response: [
+        {204, :null},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+      ],
       opts: opts
     })
   end
@@ -54,7 +64,10 @@ defmodule OpenCode.Generated.V2 do
              | OpenCode.Generated.SessionMessageSynthetic.t()
              | OpenCode.Generated.SessionMessageUser.t()
            ]}
-          | :error
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_context(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -78,7 +91,9 @@ defmodule OpenCode.Generated.V2 do
              {OpenCode.Generated.SessionMessageUser, :t}
            ]
          ]},
-        {401, :null}
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -104,7 +119,10 @@ defmodule OpenCode.Generated.V2 do
   """
   @spec v2_session_list(opts :: keyword) ::
           {:ok, OpenCode.Generated.V2SessionsResponse.t()}
-          | {:error, OpenCode.Generated.EffectHttpApiErrorBadRequest.t()}
+          | {:error,
+             OpenCode.Generated.InvalidCursorError.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_list(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -129,8 +147,13 @@ defmodule OpenCode.Generated.V2 do
       query: query,
       response: [
         {200, {OpenCode.Generated.V2SessionsResponse, :t}},
-        {400, {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t}},
-        {401, :null}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.InvalidCursorError, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
       opts: opts
     })
@@ -159,7 +182,10 @@ defmodule OpenCode.Generated.V2 do
            | OpenCode.Generated.SessionMessageShell.t()
            | OpenCode.Generated.SessionMessageSynthetic.t()
            | OpenCode.Generated.SessionMessageUser.t()}
-          | :error
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_prompt(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -184,7 +210,9 @@ defmodule OpenCode.Generated.V2 do
             {OpenCode.Generated.SessionMessageSynthetic, :t},
             {OpenCode.Generated.SessionMessageUser, :t}
           ]}},
-        {401, :null}
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -201,7 +229,12 @@ defmodule OpenCode.Generated.V2 do
     * `workspace`
 
   """
-  @spec v2_session_wait(sessionID :: String.t(), opts :: keyword) :: :ok | :error
+  @spec v2_session_wait(sessionID :: String.t(), opts :: keyword) ::
+          :ok
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_wait(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -212,7 +245,12 @@ defmodule OpenCode.Generated.V2 do
       url: "/api/session/#{sessionID}/wait",
       method: :post,
       query: query,
-      response: [{204, :null}, {401, :null}],
+      response: [
+        {204, :null},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+      ],
       opts: opts
     })
   end

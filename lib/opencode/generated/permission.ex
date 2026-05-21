@@ -17,7 +17,8 @@ defmodule OpenCode.Generated.Permission do
 
   """
   @spec permission_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.PermissionRequest.t()]} | :error
+          {:ok, [OpenCode.Generated.PermissionRequest.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def permission_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -28,7 +29,10 @@ defmodule OpenCode.Generated.Permission do
       url: "/permission",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.PermissionRequest, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.PermissionRequest, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -50,7 +54,9 @@ defmodule OpenCode.Generated.Permission do
   @spec permission_reply(requestID :: String.t(), body :: map, opts :: keyword) ::
           {:ok, boolean}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def permission_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -65,7 +71,12 @@ defmodule OpenCode.Generated.Permission do
       request: [{"application/json", :map}],
       response: [
         {200, :boolean},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts

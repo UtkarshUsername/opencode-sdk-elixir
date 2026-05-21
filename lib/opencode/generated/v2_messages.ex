@@ -21,7 +21,11 @@ defmodule OpenCode.Generated.V2Messages do
   """
   @spec v2_session_messages(sessionID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.V2SessionMessagesResponse.t()}
-          | {:error, OpenCode.Generated.EffectHttpApiErrorBadRequest.t()}
+          | {:error,
+             OpenCode.Generated.InvalidCursorError.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:cursor, :directory, :limit, :order, :workspace])
@@ -34,8 +38,14 @@ defmodule OpenCode.Generated.V2Messages do
       query: query,
       response: [
         {200, {OpenCode.Generated.V2SessionMessagesResponse, :t}},
-        {400, {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t}},
-        {401, :null}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.InvalidCursorError, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
       ],
       opts: opts
     })

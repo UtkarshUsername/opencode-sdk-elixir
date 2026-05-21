@@ -15,7 +15,12 @@ defmodule OpenCode.Generated.V2Models do
     * `location`
 
   """
-  @spec v2_model_list(opts :: keyword) :: {:ok, [OpenCode.Generated.ModelV2Info.t()]} | :error
+  @spec v2_model_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.ModelV2Info.t()]}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_model_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:location])
@@ -26,7 +31,12 @@ defmodule OpenCode.Generated.V2Models do
       url: "/api/model",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.ModelV2Info, :t}]}, {401, :null}],
+      response: [
+        {200, [{OpenCode.Generated.ModelV2Info, :t}]},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
+      ],
       opts: opts
     })
   end

@@ -25,7 +25,7 @@ defmodule OpenCode.Generated.Workspace do
   @spec experimental_workspace_adapter_list(opts :: keyword) ::
           {:ok,
            [OpenCode.Generated.Workspace.experimental_workspace_adapter_list_200_json_resp()]}
-          | :error
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_adapter_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -38,7 +38,8 @@ defmodule OpenCode.Generated.Workspace do
       query: query,
       response: [
         {200,
-         [{OpenCode.Generated.Workspace, :experimental_workspace_adapter_list_200_json_resp}]}
+         [{OpenCode.Generated.Workspace, :experimental_workspace_adapter_list_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
       ],
       opts: opts
     })
@@ -60,7 +61,9 @@ defmodule OpenCode.Generated.Workspace do
   """
   @spec experimental_workspace_create(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Workspace.t()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def experimental_workspace_create(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -75,7 +78,12 @@ defmodule OpenCode.Generated.Workspace do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Workspace, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -93,7 +101,8 @@ defmodule OpenCode.Generated.Workspace do
 
   """
   @spec experimental_workspace_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.Workspace.t()]} | :error
+          {:ok, [OpenCode.Generated.Workspace.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -104,7 +113,10 @@ defmodule OpenCode.Generated.Workspace do
       url: "/experimental/workspace",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Workspace, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Workspace, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -122,7 +134,9 @@ defmodule OpenCode.Generated.Workspace do
   """
   @spec experimental_workspace_remove(id :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Workspace.t()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def experimental_workspace_remove(id, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -135,7 +149,12 @@ defmodule OpenCode.Generated.Workspace do
       query: query,
       response: [
         {200, {OpenCode.Generated.Workspace, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -159,7 +178,7 @@ defmodule OpenCode.Generated.Workspace do
   """
   @spec experimental_workspace_status(opts :: keyword) ::
           {:ok, [OpenCode.Generated.Workspace.experimental_workspace_status_200_json_resp()]}
-          | :error
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_status(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -171,7 +190,8 @@ defmodule OpenCode.Generated.Workspace do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.Workspace, :experimental_workspace_status_200_json_resp}]}
+        {200, [{OpenCode.Generated.Workspace, :experimental_workspace_status_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
       ],
       opts: opts
     })
@@ -188,7 +208,8 @@ defmodule OpenCode.Generated.Workspace do
     * `workspace`
 
   """
-  @spec experimental_workspace_sync_list(opts :: keyword) :: :ok | :error
+  @spec experimental_workspace_sync_list(opts :: keyword) ::
+          :ok | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_sync_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -199,7 +220,7 @@ defmodule OpenCode.Generated.Workspace do
       url: "/experimental/workspace/sync-list",
       method: :post,
       query: query,
-      response: [{204, :null}],
+      response: [{204, :null}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -221,7 +242,9 @@ defmodule OpenCode.Generated.Workspace do
   @spec experimental_workspace_warp(body :: map, opts :: keyword) ::
           :ok
           | {:error,
-             OpenCode.Generated.VcsApplyError.t() | OpenCode.Generated.WorkspaceWarpError.t()}
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.VcsApplyError.t()
+             | OpenCode.Generated.WorkspaceWarpError.t()}
   def experimental_workspace_warp(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -238,7 +261,11 @@ defmodule OpenCode.Generated.Workspace do
         {204, :null},
         {400,
          {:union,
-          [{OpenCode.Generated.VcsApplyError, :t}, {OpenCode.Generated.WorkspaceWarpError, :t}]}}
+          [
+            {OpenCode.Generated.InvalidRequestError, :t},
+            {OpenCode.Generated.VcsApplyError, :t},
+            {OpenCode.Generated.WorkspaceWarpError, :t}
+          ]}}
       ],
       opts: opts
     })

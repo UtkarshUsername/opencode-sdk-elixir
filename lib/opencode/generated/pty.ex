@@ -56,7 +56,8 @@ defmodule OpenCode.Generated.Pty do
   @spec pty_connect_token(ptyID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Pty.pty_connect_token_200_json_resp()}
           | {:error,
-             OpenCode.Generated.EffectHttpApiErrorForbidden.t()
+             OpenCode.Generated.BadRequestError.t()
+             | OpenCode.Generated.EffectHttpApiErrorForbidden.t()
              | OpenCode.Generated.NotFoundError.t()}
   def pty_connect_token(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
@@ -70,6 +71,7 @@ defmodule OpenCode.Generated.Pty do
       query: query,
       response: [
         {200, {OpenCode.Generated.Pty, :pty_connect_token_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
         {403, {OpenCode.Generated.EffectHttpApiErrorForbidden, :t}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
@@ -92,7 +94,10 @@ defmodule OpenCode.Generated.Pty do
   **Content Types**: `application/json`
   """
   @spec pty_create(body :: map, opts :: keyword) ::
-          {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, OpenCode.Generated.Pty.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def pty_create(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -107,7 +112,12 @@ defmodule OpenCode.Generated.Pty do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Pty, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -125,7 +135,9 @@ defmodule OpenCode.Generated.Pty do
 
   """
   @spec pty_get(ptyID :: String.t(), opts :: keyword) ::
-          {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.NotFoundError.t()}
+          {:ok, OpenCode.Generated.Pty.t()}
+          | {:error,
+             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def pty_get(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -138,6 +150,7 @@ defmodule OpenCode.Generated.Pty do
       query: query,
       response: [
         {200, {OpenCode.Generated.Pty, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
@@ -155,7 +168,8 @@ defmodule OpenCode.Generated.Pty do
     * `workspace`
 
   """
-  @spec pty_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Pty.t()]} | :error
+  @spec pty_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Pty.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
   def pty_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -166,7 +180,10 @@ defmodule OpenCode.Generated.Pty do
       url: "/pty",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Pty, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Pty, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -183,7 +200,9 @@ defmodule OpenCode.Generated.Pty do
 
   """
   @spec pty_remove(ptyID :: String.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.NotFoundError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
   def pty_remove(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -194,7 +213,11 @@ defmodule OpenCode.Generated.Pty do
       url: "/pty/#{ptyID}",
       method: :delete,
       query: query,
-      response: [{200, :boolean}, {404, {OpenCode.Generated.NotFoundError, :t}}],
+      response: [
+        {200, :boolean},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {404, {OpenCode.Generated.NotFoundError, :t}}
+      ],
       opts: opts
     })
   end
@@ -213,7 +236,8 @@ defmodule OpenCode.Generated.Pty do
 
   """
   @spec pty_shells(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.Pty.pty_shells_200_json_resp()]} | :error
+          {:ok, [OpenCode.Generated.Pty.pty_shells_200_json_resp()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def pty_shells(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -224,7 +248,10 @@ defmodule OpenCode.Generated.Pty do
       url: "/pty/shells",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Pty, :pty_shells_200_json_resp}]}],
+      response: [
+        {200, [{OpenCode.Generated.Pty, :pty_shells_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -244,7 +271,10 @@ defmodule OpenCode.Generated.Pty do
   **Content Types**: `application/json`
   """
   @spec pty_update(ptyID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok, OpenCode.Generated.Pty.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, OpenCode.Generated.Pty.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def pty_update(ptyID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -259,7 +289,12 @@ defmodule OpenCode.Generated.Pty do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Pty, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })

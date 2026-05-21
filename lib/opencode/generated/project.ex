@@ -16,7 +16,8 @@ defmodule OpenCode.Generated.Project do
     * `workspace`
 
   """
-  @spec project_current(opts :: keyword) :: {:ok, OpenCode.Generated.Project.t()} | :error
+  @spec project_current(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Project.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def project_current(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -27,7 +28,10 @@ defmodule OpenCode.Generated.Project do
       url: "/project/current",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Project, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Project, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -43,7 +47,8 @@ defmodule OpenCode.Generated.Project do
     * `workspace`
 
   """
-  @spec project_init_git(opts :: keyword) :: {:ok, OpenCode.Generated.Project.t()} | :error
+  @spec project_init_git(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Project.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def project_init_git(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -54,7 +59,10 @@ defmodule OpenCode.Generated.Project do
       url: "/project/git/init",
       method: :post,
       query: query,
-      response: [{200, {OpenCode.Generated.Project, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Project, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -70,7 +78,9 @@ defmodule OpenCode.Generated.Project do
     * `workspace`
 
   """
-  @spec project_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Project.t()]} | :error
+  @spec project_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Project.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def project_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -81,7 +91,10 @@ defmodule OpenCode.Generated.Project do
       url: "/project",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Project, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Project, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -103,7 +116,9 @@ defmodule OpenCode.Generated.Project do
   @spec project_update(projectID :: String.t(), body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Project.t()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def project_update(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -118,7 +133,12 @@ defmodule OpenCode.Generated.Project do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Project, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts

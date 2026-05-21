@@ -29,7 +29,9 @@ defmodule OpenCode.Generated.Sync do
   """
   @spec sync_history_list(body :: map, opts :: keyword) ::
           {:ok, [OpenCode.Generated.Sync.sync_history_list_200_json_resp()]}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def sync_history_list(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -44,7 +46,12 @@ defmodule OpenCode.Generated.Sync do
       request: [{"application/json", :map}],
       response: [
         {200, [{OpenCode.Generated.Sync, :sync_history_list_200_json_resp}]},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -68,7 +75,9 @@ defmodule OpenCode.Generated.Sync do
   """
   @spec sync_replay(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Sync.sync_replay_200_json_resp()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def sync_replay(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -83,7 +92,12 @@ defmodule OpenCode.Generated.Sync do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Sync, :sync_replay_200_json_resp}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -100,7 +114,8 @@ defmodule OpenCode.Generated.Sync do
     * `workspace`
 
   """
-  @spec sync_start(opts :: keyword) :: {:ok, boolean} | :error
+  @spec sync_start(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def sync_start(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -111,7 +126,7 @@ defmodule OpenCode.Generated.Sync do
       url: "/sync/start",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -134,7 +149,9 @@ defmodule OpenCode.Generated.Sync do
   """
   @spec sync_steal(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Sync.sync_steal_200_json_resp()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def sync_steal(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -149,7 +166,12 @@ defmodule OpenCode.Generated.Sync do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Sync, :sync_steal_200_json_resp}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })

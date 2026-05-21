@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.ProviderV2InfoEnabled do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [data: :map, name: :string, service: :string, via: {:enum, ["auth", "custom", "env"]}]
+    [data: :map, name: :string, service: :string, via: {:enum, ["account", "custom", "env"]}]
   end
 end

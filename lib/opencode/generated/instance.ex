@@ -16,7 +16,8 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec app_agents(opts :: keyword) :: {:ok, [OpenCode.Generated.Agent.t()]} | :error
+  @spec app_agents(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Agent.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
   def app_agents(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -27,7 +28,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/agent",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Agent, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Agent, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -51,7 +55,8 @@ defmodule OpenCode.Generated.Instance do
 
   """
   @spec app_skills(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.Instance.app_skills_200_json_resp()]} | :error
+          {:ok, [OpenCode.Generated.Instance.app_skills_200_json_resp()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def app_skills(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -62,7 +67,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/skill",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Instance, :app_skills_200_json_resp}]}],
+      response: [
+        {200, [{OpenCode.Generated.Instance, :app_skills_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -78,7 +86,9 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec command_list(opts :: keyword) :: {:ok, [OpenCode.Generated.Command.t()]} | :error
+  @spec command_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Command.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def command_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -89,7 +99,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/command",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Command, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Command, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -106,7 +119,8 @@ defmodule OpenCode.Generated.Instance do
 
   """
   @spec formatter_status(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.FormatterStatus.t()]} | :error
+          {:ok, [OpenCode.Generated.FormatterStatus.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def formatter_status(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -117,7 +131,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/formatter",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.FormatterStatus, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.FormatterStatus, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -133,7 +150,8 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec instance_dispose(opts :: keyword) :: {:ok, boolean} | :error
+  @spec instance_dispose(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def instance_dispose(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -144,7 +162,7 @@ defmodule OpenCode.Generated.Instance do
       url: "/instance/dispose",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -160,7 +178,9 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec lsp_status(opts :: keyword) :: {:ok, [OpenCode.Generated.LSPStatus.t()]} | :error
+  @spec lsp_status(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.LSPStatus.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def lsp_status(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -171,7 +191,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/lsp",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.LSPStatus, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.LSPStatus, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -187,7 +210,8 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec path_get(opts :: keyword) :: {:ok, OpenCode.Generated.Path.t()} | :error
+  @spec path_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Path.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def path_get(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -198,7 +222,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/path",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Path, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Path, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -221,7 +248,8 @@ defmodule OpenCode.Generated.Instance do
   """
   @spec vcs_apply(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Instance.vcs_apply_200_json_resp()}
-          | {:error, OpenCode.Generated.VcsApplyError.t()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.VcsApplyError.t()}
   def vcs_apply(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -236,7 +264,9 @@ defmodule OpenCode.Generated.Instance do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Instance, :vcs_apply_200_json_resp}},
-        {400, {OpenCode.Generated.VcsApplyError, :t}}
+        {400,
+         {:union,
+          [{OpenCode.Generated.InvalidRequestError, :t}, {OpenCode.Generated.VcsApplyError, :t}]}}
       ],
       opts: opts
     })
@@ -254,7 +284,9 @@ defmodule OpenCode.Generated.Instance do
     * `mode`
 
   """
-  @spec vcs_diff(opts :: keyword) :: {:ok, [OpenCode.Generated.VcsFileDiff.t()]} | :error
+  @spec vcs_diff(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.VcsFileDiff.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def vcs_diff(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :mode, :workspace])
@@ -265,7 +297,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/vcs/diff",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.VcsFileDiff, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.VcsFileDiff, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -281,7 +316,8 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec vcs_diff_raw(opts :: keyword) :: {:ok, String.t()} | :error
+  @spec vcs_diff_raw(opts :: keyword) ::
+          {:ok, String.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def vcs_diff_raw(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -292,7 +328,7 @@ defmodule OpenCode.Generated.Instance do
       url: "/vcs/diff/raw",
       method: :get,
       query: query,
-      response: [{200, :string}],
+      response: [{200, :string}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -308,7 +344,8 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec vcs_get(opts :: keyword) :: {:ok, OpenCode.Generated.VcsInfo.t()} | :error
+  @spec vcs_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.VcsInfo.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def vcs_get(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -319,7 +356,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/vcs",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.VcsInfo, :t}}],
+      response: [
+        {200, {OpenCode.Generated.VcsInfo, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -335,7 +375,9 @@ defmodule OpenCode.Generated.Instance do
     * `workspace`
 
   """
-  @spec vcs_status(opts :: keyword) :: {:ok, [OpenCode.Generated.VcsFileStatus.t()]} | :error
+  @spec vcs_status(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.VcsFileStatus.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def vcs_status(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -346,7 +388,10 @@ defmodule OpenCode.Generated.Instance do
       url: "/vcs/status",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.VcsFileStatus, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.VcsFileStatus, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end

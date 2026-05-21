@@ -17,7 +17,11 @@ defmodule OpenCode.Generated.V2Providers do
   """
   @spec v2_provider_get(providerID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.ProviderV2Info.t()}
-          | {:error, OpenCode.Generated.NotFoundError.t()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ProviderNotFoundError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_provider_get(providerID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:location])
@@ -30,8 +34,10 @@ defmodule OpenCode.Generated.V2Providers do
       query: query,
       response: [
         {200, {OpenCode.Generated.ProviderV2Info, :t}},
-        {401, :null},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.ProviderNotFoundError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
       ],
       opts: opts
     })
@@ -48,7 +54,11 @@ defmodule OpenCode.Generated.V2Providers do
 
   """
   @spec v2_provider_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.ProviderV2Info.t()]} | :error
+          {:ok, [OpenCode.Generated.ProviderV2Info.t()]}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
   def v2_provider_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:location])
@@ -59,7 +69,12 @@ defmodule OpenCode.Generated.V2Providers do
       url: "/api/provider",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.ProviderV2Info, :t}]}, {401, :null}],
+      response: [
+        {200, [{OpenCode.Generated.ProviderV2Info, :t}]},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
+      ],
       opts: opts
     })
   end

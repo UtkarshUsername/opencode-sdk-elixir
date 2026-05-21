@@ -16,7 +16,8 @@ defmodule OpenCode.Generated.Config do
     * `workspace`
 
   """
-  @spec config_get(opts :: keyword) :: {:ok, OpenCode.Generated.Config.t()} | :error
+  @spec config_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def config_get(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -27,7 +28,10 @@ defmodule OpenCode.Generated.Config do
       url: "/config",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Config, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Config, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -49,7 +53,8 @@ defmodule OpenCode.Generated.Config do
 
   """
   @spec config_providers(opts :: keyword) ::
-          {:ok, OpenCode.Generated.Config.config_providers_200_json_resp()} | :error
+          {:ok, OpenCode.Generated.Config.config_providers_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def config_providers(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -60,7 +65,10 @@ defmodule OpenCode.Generated.Config do
       url: "/config/providers",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Config, :config_providers_200_json_resp}}],
+      response: [
+        {200, {OpenCode.Generated.Config, :config_providers_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -80,7 +88,10 @@ defmodule OpenCode.Generated.Config do
   **Content Types**: `application/json`
   """
   @spec config_update(body :: OpenCode.Generated.Config.t(), opts :: keyword) ::
-          {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, OpenCode.Generated.Config.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def config_update(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -95,7 +106,12 @@ defmodule OpenCode.Generated.Config do
       request: [{"application/json", {OpenCode.Generated.Config, :t}}],
       response: [
         {200, {OpenCode.Generated.Config, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })

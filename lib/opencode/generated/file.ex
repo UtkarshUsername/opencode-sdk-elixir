@@ -17,7 +17,9 @@ defmodule OpenCode.Generated.File do
     * `path`
 
   """
-  @spec file_list(opts :: keyword) :: {:ok, [OpenCode.Generated.FileNode.t()]} | :error
+  @spec file_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.FileNode.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def file_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :path, :workspace])
@@ -28,7 +30,10 @@ defmodule OpenCode.Generated.File do
       url: "/file",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.FileNode, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.FileNode, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -45,7 +50,9 @@ defmodule OpenCode.Generated.File do
     * `path`
 
   """
-  @spec file_read(opts :: keyword) :: {:ok, OpenCode.Generated.FileContent.t()} | :error
+  @spec file_read(opts :: keyword) ::
+          {:ok, OpenCode.Generated.FileContent.t()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def file_read(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :path, :workspace])
@@ -56,7 +63,10 @@ defmodule OpenCode.Generated.File do
       url: "/file/content",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.FileContent, :t}}],
+      response: [
+        {200, {OpenCode.Generated.FileContent, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -72,7 +82,8 @@ defmodule OpenCode.Generated.File do
     * `workspace`
 
   """
-  @spec file_status(opts :: keyword) :: {:ok, [OpenCode.Generated.File.t()]} | :error
+  @spec file_status(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.File.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
   def file_status(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -83,7 +94,10 @@ defmodule OpenCode.Generated.File do
       url: "/file/status",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.File, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.File, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -103,7 +117,8 @@ defmodule OpenCode.Generated.File do
     * `limit`
 
   """
-  @spec find_files(opts :: keyword) :: {:ok, [String.t()]} | :error
+  @spec find_files(opts :: keyword) ::
+          {:ok, [String.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
   def find_files(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :dirs, :limit, :query, :type, :workspace])
@@ -114,7 +129,7 @@ defmodule OpenCode.Generated.File do
       url: "/find/file",
       method: :get,
       query: query,
-      response: [{200, [:string]}],
+      response: [{200, [:string]}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -131,7 +146,9 @@ defmodule OpenCode.Generated.File do
     * `query`
 
   """
-  @spec find_symbols(opts :: keyword) :: {:ok, [OpenCode.Generated.Symbol.t()]} | :error
+  @spec find_symbols(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.Symbol.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def find_symbols(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :query, :workspace])
@@ -142,7 +159,10 @@ defmodule OpenCode.Generated.File do
       url: "/find/symbol",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.Symbol, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.Symbol, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -180,7 +200,8 @@ defmodule OpenCode.Generated.File do
 
   """
   @spec find_text(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.File.find_text_200_json_resp()]} | :error
+          {:ok, [OpenCode.Generated.File.find_text_200_json_resp()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def find_text(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :pattern, :workspace])
@@ -191,7 +212,10 @@ defmodule OpenCode.Generated.File do
       url: "/find",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.File, :find_text_200_json_resp}]}],
+      response: [
+        {200, [{OpenCode.Generated.File, :find_text_200_json_resp}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end

@@ -20,7 +20,10 @@ defmodule OpenCode.Generated.Tui do
   **Content Types**: `application/json`
   """
   @spec tui_append_prompt(body :: map, opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def tui_append_prompt(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -33,7 +36,15 @@ defmodule OpenCode.Generated.Tui do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end
@@ -49,7 +60,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_clear_prompt(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_clear_prompt(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_clear_prompt(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -60,7 +72,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/clear-prompt",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -79,7 +91,8 @@ defmodule OpenCode.Generated.Tui do
 
   """
   @spec tui_control_next(opts :: keyword) ::
-          {:ok, OpenCode.Generated.Tui.tui_control_next_200_json_resp()} | :error
+          {:ok, OpenCode.Generated.Tui.tui_control_next_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_control_next(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -90,7 +103,10 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/control/next",
       method: :get,
       query: query,
-      response: [{200, {OpenCode.Generated.Tui, :tui_control_next_200_json_resp}}],
+      response: [
+        {200, {OpenCode.Generated.Tui, :tui_control_next_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -109,7 +125,8 @@ defmodule OpenCode.Generated.Tui do
 
   **Content Types**: `application/json`
   """
-  @spec tui_control_response(body :: map, opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_control_response(body :: map, opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_control_response(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -122,7 +139,7 @@ defmodule OpenCode.Generated.Tui do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -142,7 +159,10 @@ defmodule OpenCode.Generated.Tui do
   **Content Types**: `application/json`
   """
   @spec tui_execute_command(body :: map, opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def tui_execute_command(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -155,7 +175,15 @@ defmodule OpenCode.Generated.Tui do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end
@@ -171,7 +199,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_open_help(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_open_help(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_open_help(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -182,7 +211,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/open-help",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -198,7 +227,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_open_models(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_open_models(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_open_models(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -209,7 +239,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/open-models",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -225,7 +255,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_open_sessions(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_open_sessions(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_open_sessions(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -236,7 +267,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/open-sessions",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -252,7 +283,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_open_themes(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_open_themes(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_open_themes(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -263,7 +295,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/open-themes",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -289,7 +321,11 @@ defmodule OpenCode.Generated.Tui do
             | OpenCode.Generated.EventTuiSessionSelect.t()
             | OpenCode.Generated.EventTuiToastShow.t(),
           opts :: keyword
-        ) :: {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+        ) ::
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def tui_publish(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -311,7 +347,15 @@ defmodule OpenCode.Generated.Tui do
             {OpenCode.Generated.EventTuiToastShow, :t}
           ]}}
       ],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end
@@ -333,7 +377,9 @@ defmodule OpenCode.Generated.Tui do
   @spec tui_select_session(body :: map, opts :: keyword) ::
           {:ok, boolean}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def tui_select_session(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -348,7 +394,12 @@ defmodule OpenCode.Generated.Tui do
       request: [{"application/json", :map}],
       response: [
         {200, :boolean},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
@@ -369,7 +420,8 @@ defmodule OpenCode.Generated.Tui do
 
   **Content Types**: `application/json`
   """
-  @spec tui_show_toast(body :: map, opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_show_toast(body :: map, opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_show_toast(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -382,7 +434,7 @@ defmodule OpenCode.Generated.Tui do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -398,7 +450,8 @@ defmodule OpenCode.Generated.Tui do
     * `workspace`
 
   """
-  @spec tui_submit_prompt(opts :: keyword) :: {:ok, boolean} | :error
+  @spec tui_submit_prompt(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def tui_submit_prompt(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -409,7 +462,7 @@ defmodule OpenCode.Generated.Tui do
       url: "/tui/submit-prompt",
       method: :post,
       query: query,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end

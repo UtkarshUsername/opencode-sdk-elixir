@@ -10,7 +10,8 @@ defmodule OpenCode.Generated.Global do
 
   Retrieve the current global OpenCode configuration settings and preferences.
   """
-  @spec global_config_get(opts :: keyword) :: {:ok, OpenCode.Generated.Config.t()} | :error
+  @spec global_config_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
   def global_config_get(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -19,7 +20,10 @@ defmodule OpenCode.Generated.Global do
       call: {OpenCode.Generated.Global, :global_config_get},
       url: "/global/config",
       method: :get,
-      response: [{200, {OpenCode.Generated.Config, :t}}],
+      response: [
+        {200, {OpenCode.Generated.Config, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -34,7 +38,10 @@ defmodule OpenCode.Generated.Global do
   **Content Types**: `application/json`
   """
   @spec global_config_update(body :: OpenCode.Generated.Config.t(), opts :: keyword) ::
-          {:ok, OpenCode.Generated.Config.t()} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, OpenCode.Generated.Config.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def global_config_update(body, opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -47,7 +54,12 @@ defmodule OpenCode.Generated.Global do
       request: [{"application/json", {OpenCode.Generated.Config, :t}}],
       response: [
         {200, {OpenCode.Generated.Config, :t}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })
@@ -58,7 +70,8 @@ defmodule OpenCode.Generated.Global do
 
   Clean up and dispose all OpenCode instances, releasing all resources.
   """
-  @spec global_dispose(opts :: keyword) :: {:ok, boolean} | :error
+  @spec global_dispose(opts :: keyword) ::
+          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
   def global_dispose(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -67,7 +80,7 @@ defmodule OpenCode.Generated.Global do
       call: {OpenCode.Generated.Global, :global_dispose},
       url: "/global/dispose",
       method: :post,
-      response: [{200, :boolean}],
+      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
       opts: opts
     })
   end
@@ -77,7 +90,9 @@ defmodule OpenCode.Generated.Global do
 
   Subscribe to global events from the OpenCode system using server-sent events.
   """
-  @spec global_event(opts :: keyword) :: {:ok, OpenCode.Generated.GlobalEvent.t()} | :error
+  @spec global_event(opts :: keyword) ::
+          {:ok, OpenCode.Generated.GlobalEvent.t()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def global_event(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -86,7 +101,10 @@ defmodule OpenCode.Generated.Global do
       call: {OpenCode.Generated.Global, :global_event},
       url: "/global/event",
       method: :get,
-      response: [{200, {OpenCode.Generated.GlobalEvent, :t}}],
+      response: [
+        {200, {OpenCode.Generated.GlobalEvent, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -99,7 +117,8 @@ defmodule OpenCode.Generated.Global do
   Get health information about the OpenCode server.
   """
   @spec global_health(opts :: keyword) ::
-          {:ok, OpenCode.Generated.Global.global_health_200_json_resp()} | :error
+          {:ok, OpenCode.Generated.Global.global_health_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def global_health(opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -108,7 +127,10 @@ defmodule OpenCode.Generated.Global do
       call: {OpenCode.Generated.Global, :global_health},
       url: "/global/health",
       method: :get,
-      response: [{200, {OpenCode.Generated.Global, :global_health_200_json_resp}}],
+      response: [
+        {200, {OpenCode.Generated.Global, :global_health_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -130,7 +152,9 @@ defmodule OpenCode.Generated.Global do
   """
   @spec global_upgrade(body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.Global.global_upgrade_200_json_resp()}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def global_upgrade(body, opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -143,7 +167,12 @@ defmodule OpenCode.Generated.Global do
       request: [{"application/json", :map}],
       response: [
         {200, {OpenCode.Generated.Global, :global_upgrade_200_json_resp}},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
       ],
       opts: opts
     })

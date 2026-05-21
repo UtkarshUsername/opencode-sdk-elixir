@@ -20,7 +20,10 @@ defmodule OpenCode.Generated.Control do
   **Content Types**: `application/json`
   """
   @spec app_log(body :: map, opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def app_log(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -33,7 +36,15 @@ defmodule OpenCode.Generated.Control do
       method: :post,
       query: query,
       request: [{"application/json", :map}],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end
@@ -44,7 +55,10 @@ defmodule OpenCode.Generated.Control do
   Remove authentication credentials
   """
   @spec auth_remove(providerID :: String.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def auth_remove(providerID, opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -53,7 +67,15 @@ defmodule OpenCode.Generated.Control do
       call: {OpenCode.Generated.Control, :auth_remove},
       url: "/auth/#{providerID}",
       method: :delete,
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end
@@ -74,7 +96,11 @@ defmodule OpenCode.Generated.Control do
             | OpenCode.Generated.OAuth.t()
             | OpenCode.Generated.WellKnownAuth.t(),
           opts :: keyword
-        ) :: {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+        ) ::
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
   def auth_set(providerID, body, opts \\ []) do
     client = opts[:client] || @default_client
 
@@ -93,7 +119,15 @@ defmodule OpenCode.Generated.Control do
             {OpenCode.Generated.WellKnownAuth, :t}
           ]}}
       ],
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
       opts: opts
     })
   end

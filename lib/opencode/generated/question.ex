@@ -16,7 +16,9 @@ defmodule OpenCode.Generated.Question do
     * `workspace`
 
   """
-  @spec question_list(opts :: keyword) :: {:ok, [OpenCode.Generated.QuestionRequest.t()]} | :error
+  @spec question_list(opts :: keyword) ::
+          {:ok, [OpenCode.Generated.QuestionRequest.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def question_list(opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -27,7 +29,10 @@ defmodule OpenCode.Generated.Question do
       url: "/question",
       method: :get,
       query: query,
-      response: [{200, [{OpenCode.Generated.QuestionRequest, :t}]}],
+      response: [
+        {200, [{OpenCode.Generated.QuestionRequest, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end
@@ -46,7 +51,9 @@ defmodule OpenCode.Generated.Question do
   @spec question_reject(requestID :: String.t(), opts :: keyword) ::
           {:ok, boolean}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def question_reject(requestID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -59,7 +66,12 @@ defmodule OpenCode.Generated.Question do
       query: query,
       response: [
         {200, :boolean},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
@@ -83,7 +95,9 @@ defmodule OpenCode.Generated.Question do
   @spec question_reply(requestID :: String.t(), body :: map, opts :: keyword) ::
           {:ok, boolean}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()}
   def question_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -98,7 +112,12 @@ defmodule OpenCode.Generated.Question do
       request: [{"application/json", :map}],
       response: [
         {200, :boolean},
-        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}},
         {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
