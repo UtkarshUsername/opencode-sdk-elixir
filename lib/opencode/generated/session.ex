@@ -455,7 +455,8 @@ defmodule OpenCode.Generated.Session do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.NotFoundError.t()
+             | OpenCode.Generated.SessionBusyError.t()}
   def session_delete_message(sessionID, messageID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -474,7 +475,8 @@ defmodule OpenCode.Generated.Session do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {409, {OpenCode.Generated.SessionBusyError, :t}}
       ],
       opts: opts
     })
@@ -935,7 +937,8 @@ defmodule OpenCode.Generated.Session do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.NotFoundError.t()
+             | OpenCode.Generated.SessionBusyError.t()}
   def session_revert(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -956,7 +959,8 @@ defmodule OpenCode.Generated.Session do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {409, {OpenCode.Generated.SessionBusyError, :t}}
       ],
       opts: opts
     })
@@ -1036,7 +1040,8 @@ defmodule OpenCode.Generated.Session do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.NotFoundError.t()
+             | OpenCode.Generated.SessionBusyError.t()}
   def session_shell(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -1057,7 +1062,8 @@ defmodule OpenCode.Generated.Session do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {409, {OpenCode.Generated.SessionBusyError, :t}}
       ],
       opts: opts
     })
@@ -1205,7 +1211,8 @@ defmodule OpenCode.Generated.Session do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.NotFoundError.t()
+             | OpenCode.Generated.SessionBusyError.t()}
   def session_unrevert(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -1224,7 +1231,8 @@ defmodule OpenCode.Generated.Session do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.NotFoundError, :t}},
+        {409, {OpenCode.Generated.SessionBusyError, :t}}
       ],
       opts: opts
     })

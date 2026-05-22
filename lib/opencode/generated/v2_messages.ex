@@ -25,7 +25,8 @@ defmodule OpenCode.Generated.V2Messages do
              OpenCode.Generated.InvalidCursorError.t()
              | OpenCode.Generated.InvalidRequestError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
-             | OpenCode.Generated.UnauthorizedError.t()}
+             | OpenCode.Generated.UnauthorizedError.t()
+             | OpenCode.Generated.UnknownError1.t()}
   def v2_session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:cursor, :directory, :limit, :order, :workspace])
@@ -45,7 +46,8 @@ defmodule OpenCode.Generated.V2Messages do
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
-        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}},
+        {500, {OpenCode.Generated.UnknownError1, :t}}
       ],
       opts: opts
     })

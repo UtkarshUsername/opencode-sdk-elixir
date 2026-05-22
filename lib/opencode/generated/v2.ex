@@ -20,6 +20,7 @@ defmodule OpenCode.Generated.V2 do
           :ok
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_compact(sessionID, opts \\ []) do
@@ -36,7 +37,8 @@ defmodule OpenCode.Generated.V2 do
         {204, :null},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
-        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
       ],
       opts: opts
     })
@@ -67,7 +69,8 @@ defmodule OpenCode.Generated.V2 do
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
-             | OpenCode.Generated.UnauthorizedError.t()}
+             | OpenCode.Generated.UnauthorizedError.t()
+             | OpenCode.Generated.UnknownError1.t()}
   def v2_session_context(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -93,7 +96,8 @@ defmodule OpenCode.Generated.V2 do
          ]},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
-        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}},
+        {500, {OpenCode.Generated.UnknownError1, :t}}
       ],
       opts: opts
     })
@@ -184,6 +188,7 @@ defmodule OpenCode.Generated.V2 do
            | OpenCode.Generated.SessionMessageUser.t()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_prompt(sessionID, body, opts \\ []) do
@@ -212,7 +217,8 @@ defmodule OpenCode.Generated.V2 do
           ]}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
-        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
       ],
       opts: opts
     })
@@ -233,6 +239,7 @@ defmodule OpenCode.Generated.V2 do
           :ok
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.ServiceUnavailableError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_wait(sessionID, opts \\ []) do
@@ -249,7 +256,8 @@ defmodule OpenCode.Generated.V2 do
         {204, :null},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
-        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}},
+        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
       ],
       opts: opts
     })
