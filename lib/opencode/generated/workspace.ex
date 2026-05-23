@@ -243,6 +243,7 @@ defmodule OpenCode.Generated.Workspace do
           :ok
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.NotFoundError.t()
              | OpenCode.Generated.VcsApplyError.t()
              | OpenCode.Generated.WorkspaceWarpError.t()}
   def experimental_workspace_warp(body, opts \\ []) do
@@ -265,7 +266,8 @@ defmodule OpenCode.Generated.Workspace do
             {OpenCode.Generated.InvalidRequestError, :t},
             {OpenCode.Generated.VcsApplyError, :t},
             {OpenCode.Generated.WorkspaceWarpError, :t}
-          ]}}
+          ]}},
+        {404, {OpenCode.Generated.NotFoundError, :t}}
       ],
       opts: opts
     })

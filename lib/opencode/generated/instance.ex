@@ -282,6 +282,7 @@ defmodule OpenCode.Generated.Instance do
     * `directory`
     * `workspace`
     * `mode`
+    * `context`
 
   """
   @spec vcs_diff(opts :: keyword) ::
@@ -289,7 +290,7 @@ defmodule OpenCode.Generated.Instance do
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def vcs_diff(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :mode, :workspace])
+    query = Keyword.take(opts, [:context, :directory, :mode, :workspace])
 
     client.request(%{
       args: [],

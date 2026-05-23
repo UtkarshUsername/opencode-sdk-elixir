@@ -118,7 +118,7 @@ defmodule OpenCode.Generated.Project do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.ProjectNotFoundError.t()}
   def project_update(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -139,7 +139,7 @@ defmodule OpenCode.Generated.Project do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.ProjectNotFoundError, :t}}
       ],
       opts: opts
     })

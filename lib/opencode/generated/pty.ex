@@ -57,8 +57,8 @@ defmodule OpenCode.Generated.Pty do
           {:ok, OpenCode.Generated.Pty.pty_connect_token_200_json_resp()}
           | {:error,
              OpenCode.Generated.BadRequestError.t()
-             | OpenCode.Generated.EffectHttpApiErrorForbidden.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.PtyForbiddenError.t()
+             | OpenCode.Generated.PtyNotFoundError.t()}
   def pty_connect_token(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -72,8 +72,8 @@ defmodule OpenCode.Generated.Pty do
       response: [
         {200, {OpenCode.Generated.Pty, :pty_connect_token_200_json_resp}},
         {400, {OpenCode.Generated.BadRequestError, :t}},
-        {403, {OpenCode.Generated.EffectHttpApiErrorForbidden, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {403, {OpenCode.Generated.PtyForbiddenError, :t}},
+        {404, {OpenCode.Generated.PtyNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -137,7 +137,7 @@ defmodule OpenCode.Generated.Pty do
   @spec pty_get(ptyID :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Pty.t()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.PtyNotFoundError.t()}
   def pty_get(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -151,7 +151,7 @@ defmodule OpenCode.Generated.Pty do
       response: [
         {200, {OpenCode.Generated.Pty, :t}},
         {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.PtyNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -202,7 +202,7 @@ defmodule OpenCode.Generated.Pty do
   @spec pty_remove(ptyID :: String.t(), opts :: keyword) ::
           {:ok, boolean}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.PtyNotFoundError.t()}
   def pty_remove(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -216,7 +216,7 @@ defmodule OpenCode.Generated.Pty do
       response: [
         {200, :boolean},
         {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.PtyNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -274,7 +274,8 @@ defmodule OpenCode.Generated.Pty do
           {:ok, OpenCode.Generated.Pty.t()}
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
-             | OpenCode.Generated.InvalidRequestError.t()}
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.PtyNotFoundError.t()}
   def pty_update(ptyID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -294,7 +295,8 @@ defmodule OpenCode.Generated.Pty do
           [
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
-          ]}}
+          ]}},
+        {404, {OpenCode.Generated.PtyNotFoundError, :t}}
       ],
       opts: opts
     })

@@ -69,8 +69,8 @@ defmodule OpenCode.Generated.Mcp do
            | OpenCode.Generated.MCPStatusNeedsClientRegistration.t()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.McpUnsupportedOAuthError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.McpServerNotFoundError.t()
+             | OpenCode.Generated.McpUnsupportedOAuthError.t()}
   def mcp_auth_authenticate(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -97,7 +97,7 @@ defmodule OpenCode.Generated.Mcp do
             {OpenCode.Generated.InvalidRequestError, :t},
             {OpenCode.Generated.McpUnsupportedOAuthError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -127,7 +127,7 @@ defmodule OpenCode.Generated.Mcp do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.McpServerNotFoundError.t()}
   def mcp_auth_callback(name, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -156,7 +156,7 @@ defmodule OpenCode.Generated.Mcp do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -178,7 +178,8 @@ defmodule OpenCode.Generated.Mcp do
   @spec mcp_auth_remove(name :: String.t(), opts :: keyword) ::
           {:ok, OpenCode.Generated.Mcp.mcp_auth_remove_200_json_resp()}
           | {:error,
-             OpenCode.Generated.BadRequestError.t() | OpenCode.Generated.NotFoundError.t()}
+             OpenCode.Generated.BadRequestError.t()
+             | OpenCode.Generated.McpServerNotFoundError.t()}
   def mcp_auth_remove(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -192,7 +193,7 @@ defmodule OpenCode.Generated.Mcp do
       response: [
         {200, {OpenCode.Generated.Mcp, :mcp_auth_remove_200_json_resp}},
         {400, {OpenCode.Generated.BadRequestError, :t}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -215,8 +216,8 @@ defmodule OpenCode.Generated.Mcp do
           {:ok, OpenCode.Generated.Mcp.mcp_auth_start_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.McpUnsupportedOAuthError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.McpServerNotFoundError.t()
+             | OpenCode.Generated.McpUnsupportedOAuthError.t()}
   def mcp_auth_start(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -235,7 +236,7 @@ defmodule OpenCode.Generated.Mcp do
             {OpenCode.Generated.InvalidRequestError, :t},
             {OpenCode.Generated.McpUnsupportedOAuthError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -253,7 +254,10 @@ defmodule OpenCode.Generated.Mcp do
 
   """
   @spec mcp_connect(name :: String.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.BadRequestError.t()
+             | OpenCode.Generated.McpServerNotFoundError.t()}
   def mcp_connect(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -264,7 +268,11 @@ defmodule OpenCode.Generated.Mcp do
       url: "/mcp/#{name}/connect",
       method: :post,
       query: query,
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
+      ],
       opts: opts
     })
   end
@@ -281,7 +289,10 @@ defmodule OpenCode.Generated.Mcp do
 
   """
   @spec mcp_disconnect(name :: String.t(), opts :: keyword) ::
-          {:ok, boolean} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.BadRequestError.t()
+             | OpenCode.Generated.McpServerNotFoundError.t()}
   def mcp_disconnect(name, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -292,7 +303,11 @@ defmodule OpenCode.Generated.Mcp do
       url: "/mcp/#{name}/disconnect",
       method: :post,
       query: query,
-      response: [{200, :boolean}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, :boolean},
+        {400, {OpenCode.Generated.BadRequestError, :t}},
+        {404, {OpenCode.Generated.McpServerNotFoundError, :t}}
+      ],
       opts: opts
     })
   end

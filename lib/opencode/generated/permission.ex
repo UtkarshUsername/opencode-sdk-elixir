@@ -56,7 +56,7 @@ defmodule OpenCode.Generated.Permission do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.PermissionNotFoundError.t()}
   def permission_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -77,7 +77,7 @@ defmodule OpenCode.Generated.Permission do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.PermissionNotFoundError, :t}}
       ],
       opts: opts
     })

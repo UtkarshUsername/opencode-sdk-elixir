@@ -53,7 +53,7 @@ defmodule OpenCode.Generated.Question do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.QuestionNotFoundError.t()}
   def question_reject(requestID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -72,7 +72,7 @@ defmodule OpenCode.Generated.Question do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.QuestionNotFoundError, :t}}
       ],
       opts: opts
     })
@@ -97,7 +97,7 @@ defmodule OpenCode.Generated.Question do
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
              | OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.NotFoundError.t()}
+             | OpenCode.Generated.QuestionNotFoundError.t()}
   def question_reply(requestID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -118,7 +118,7 @@ defmodule OpenCode.Generated.Question do
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
             {OpenCode.Generated.InvalidRequestError, :t}
           ]}},
-        {404, {OpenCode.Generated.NotFoundError, :t}}
+        {404, {OpenCode.Generated.QuestionNotFoundError, :t}}
       ],
       opts: opts
     })
