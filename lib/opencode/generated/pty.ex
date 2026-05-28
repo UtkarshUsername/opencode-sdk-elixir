@@ -14,6 +14,8 @@ defmodule OpenCode.Generated.Pty do
 
     * `directory`
     * `workspace`
+    * `cursor`
+    * `ticket`
 
   """
   @spec pty_connect(ptyID :: String.t(), opts :: keyword) ::
@@ -23,7 +25,7 @@ defmodule OpenCode.Generated.Pty do
              | OpenCode.Generated.NotFoundError.t()}
   def pty_connect(ptyID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:cursor, :directory, :ticket, :workspace])
 
     client.request(%{
       args: [ptyID: ptyID],
