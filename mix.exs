@@ -1,7 +1,7 @@
 defmodule OpenCode.MixProject do
   use Mix.Project
 
-  @version "0.1.73"
+  @version "0.1.74"
   @source_url "https://github.com/UtkarshUsername/opencode-sdk-elixir"
 
   def project do
