@@ -63,7 +63,8 @@ defmodule OpenCode.Generated.Workspace do
           {:ok, OpenCode.Generated.Workspace.t()}
           | {:error,
              OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
-             | OpenCode.Generated.InvalidRequestError.t()}
+             | OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.WorkspaceCreateError.t()}
   def experimental_workspace_create(body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -82,7 +83,8 @@ defmodule OpenCode.Generated.Workspace do
          {:union,
           [
             {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
-            {OpenCode.Generated.InvalidRequestError, :t}
+            {OpenCode.Generated.InvalidRequestError, :t},
+            {OpenCode.Generated.WorkspaceCreateError, :t}
           ]}}
       ],
       opts: opts

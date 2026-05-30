@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.EventSessionNextModelSwitchedPropertiesModel do
   Provides struct and type for a EventSessionNextModelSwitchedPropertiesModel
   """
 
-  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t()}
+  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t() | nil}
 
   defstruct [:id, :provider_id, :variant]
 

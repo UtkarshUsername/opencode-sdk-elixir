@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.SessionMessageAssistantModel do
   Provides struct and type for a SessionMessageAssistantModel
   """
 
-  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t()}
+  @type t :: %__MODULE__{id: String.t(), provider_id: String.t(), variant: String.t() | nil}
 
   defstruct [:id, :provider_id, :variant]
 

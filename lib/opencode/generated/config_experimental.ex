@@ -9,6 +9,7 @@ defmodule OpenCode.Generated.ConfigExperimental do
           disable_paste_summary: boolean | nil,
           mcp_timeout: integer | nil,
           open_telemetry: boolean | nil,
+          policies: [OpenCode.Generated.ConfigV2ExperimentalPolicy.t()] | nil,
           primary_tools: [String.t()] | nil
         }
 
@@ -18,6 +19,7 @@ defmodule OpenCode.Generated.ConfigExperimental do
     :disable_paste_summary,
     :mcp_timeout,
     :open_telemetry,
+    :policies,
     :primary_tools
   ]
 
@@ -32,6 +34,7 @@ defmodule OpenCode.Generated.ConfigExperimental do
       disable_paste_summary: :boolean,
       mcp_timeout: :integer,
       open_telemetry: :boolean,
+      policies: [{OpenCode.Generated.ConfigV2ExperimentalPolicy, :t}],
       primary_tools: [:string]
     ]
   end

@@ -28,6 +28,7 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.EventModelsDevRefreshed.t()
             | OpenCode.Generated.EventPermissionAsked.t()
             | OpenCode.Generated.EventPermissionReplied.t()
+            | OpenCode.Generated.EventPluginAdded.t()
             | OpenCode.Generated.EventProjectUpdated.t()
             | OpenCode.Generated.EventPtyCreated.t()
             | OpenCode.Generated.EventPtyDeleted.t()
@@ -154,6 +155,7 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.EventModelsDevRefreshed, :t},
            {OpenCode.Generated.EventPermissionAsked, :t},
            {OpenCode.Generated.EventPermissionReplied, :t},
+           {OpenCode.Generated.EventPluginAdded, :t},
            {OpenCode.Generated.EventProjectUpdated, :t},
            {OpenCode.Generated.EventPtyCreated, :t},
            {OpenCode.Generated.EventPtyDeleted, :t},
