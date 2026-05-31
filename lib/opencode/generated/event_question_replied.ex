@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.EventQuestionReplied do
 
   @type t :: %__MODULE__{
           id: String.t(),
-          properties: OpenCode.Generated.QuestionReplied.t(),
+          properties: OpenCode.Generated.EventQuestionRepliedProperties.t(),
           type: String.t()
         }
 
@@ -18,7 +18,7 @@ defmodule OpenCode.Generated.EventQuestionReplied do
   def __fields__(:t) do
     [
       id: :string,
-      properties: {OpenCode.Generated.QuestionReplied, :t},
+      properties: {OpenCode.Generated.EventQuestionRepliedProperties, :t},
       type: {:const, "question.replied"}
     ]
   end

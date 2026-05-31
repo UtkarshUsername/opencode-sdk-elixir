@@ -28,7 +28,6 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventGlobalDisposed.t()
            | OpenCode.Generated.EventInstallationUpdateAvailable.t()
            | OpenCode.Generated.EventInstallationUpdated.t()
-           | OpenCode.Generated.EventLspClientDiagnostics.t()
            | OpenCode.Generated.EventLspUpdated.t()
            | OpenCode.Generated.EventMcpBrowserOpenFailed.t()
            | OpenCode.Generated.EventMcpToolsChanged.t()
@@ -89,7 +88,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventTuiCommandExecute.t()
            | OpenCode.Generated.EventTuiPromptAppend.t()
            | OpenCode.Generated.EventTuiSessionSelect.t()
-           | OpenCode.Generated.EventTuiToastShow1.t()
+           | OpenCode.Generated.EventTuiToastShow.t()
            | OpenCode.Generated.EventVcsBranchUpdated.t()
            | OpenCode.Generated.EventWorkspaceFailed.t()
            | OpenCode.Generated.EventWorkspaceReady.t()
@@ -121,7 +120,6 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventGlobalDisposed, :t},
             {OpenCode.Generated.EventInstallationUpdateAvailable, :t},
             {OpenCode.Generated.EventInstallationUpdated, :t},
-            {OpenCode.Generated.EventLspClientDiagnostics, :t},
             {OpenCode.Generated.EventLspUpdated, :t},
             {OpenCode.Generated.EventMcpBrowserOpenFailed, :t},
             {OpenCode.Generated.EventMcpToolsChanged, :t},
@@ -182,7 +180,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventTuiCommandExecute, :t},
             {OpenCode.Generated.EventTuiPromptAppend, :t},
             {OpenCode.Generated.EventTuiSessionSelect, :t},
-            {OpenCode.Generated.EventTuiToastShow1, :t},
+            {OpenCode.Generated.EventTuiToastShow, :t},
             {OpenCode.Generated.EventVcsBranchUpdated, :t},
             {OpenCode.Generated.EventWorkspaceFailed, :t},
             {OpenCode.Generated.EventWorkspaceReady, :t},

@@ -3,10 +3,7 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedData do
   Provides struct and type for a SyncEventSessionUpdatedData
   """
 
-  @type t :: %__MODULE__{
-          info: OpenCode.Generated.SyncEventSessionUpdatedDataInfo.t(),
-          session_id: String.t()
-        }
+  @type t :: %__MODULE__{info: OpenCode.Generated.Session.t(), session_id: String.t()}
 
   defstruct [:info, :session_id]
 
@@ -15,6 +12,6 @@ defmodule OpenCode.Generated.SyncEventSessionUpdatedData do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [info: {OpenCode.Generated.SyncEventSessionUpdatedDataInfo, :t}, session_id: :string]
+    [info: {OpenCode.Generated.Session, :t}, session_id: :string]
   end
 end

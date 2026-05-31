@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.EventAccountRemovedProperties do
   Provides struct and type for a EventAccountRemovedProperties
   """
 
-  @type t :: %__MODULE__{account: OpenCode.Generated.AccountV2Info.t()}
+  @type t :: %__MODULE__{account: OpenCode.Generated.AuthInfo.t()}
 
   defstruct [:account]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.EventAccountRemovedProperties do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [account: {OpenCode.Generated.AccountV2Info, :t}]
+    [account: {OpenCode.Generated.AuthInfo, :t}]
   end
 end

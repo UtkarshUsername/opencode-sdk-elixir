@@ -1,0 +1,324 @@
+defmodule OpenCode.Generated.GlobalEventPayloadProperties do
+  @moduledoc """
+  Provides struct and types for a GlobalEventPayloadProperties
+  """
+
+  @type t :: %__MODULE__{
+          account: OpenCode.Generated.AuthInfo.t(),
+          agent: String.t(),
+          always: [String.t()],
+          answers: [[String.t()]],
+          arguments: String.t(),
+          attempt: number,
+          branch: String.t() | nil,
+          call_id: String.t(),
+          command: String.t(),
+          commands: OpenCode.Generated.GlobalEventPayloadPropertiesCommands.t() | nil,
+          content: [
+            OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
+          ],
+          cost: number,
+          delta: String.t(),
+          diff: [OpenCode.Generated.SnapshotFileDiff.t()],
+          duration: integer | nil,
+          error:
+            OpenCode.Generated.APIError.t()
+            | OpenCode.Generated.ContextOverflowError.t()
+            | OpenCode.Generated.MessageAbortedError.t()
+            | OpenCode.Generated.MessageOutputLengthError.t()
+            | OpenCode.Generated.ProviderAuthError.t()
+            | OpenCode.Generated.SessionErrorUnknown.t()
+            | OpenCode.Generated.SessionNextRetryError.t()
+            | OpenCode.Generated.StructuredOutputError.t()
+            | OpenCode.Generated.UnknownError.t()
+            | nil,
+          event: String.t(),
+          exit_code: integer,
+          field: String.t(),
+          file: String.t(),
+          finish: String.t(),
+          from: String.t() | nil,
+          icon: OpenCode.Generated.GlobalEventPayloadPropertiesIcon.t() | nil,
+          id: String.t(),
+          include: String.t() | nil,
+          info:
+            OpenCode.Generated.AssistantMessage.t()
+            | OpenCode.Generated.Pty.t()
+            | OpenCode.Generated.Session.t()
+            | OpenCode.Generated.UserMessage.t(),
+          input: map,
+          mcp_name: String.t(),
+          message: String.t(),
+          message_id: String.t(),
+          metadata: map,
+          model:
+            OpenCode.Generated.GlobalEventPayloadPropertiesModel.t()
+            | OpenCode.Generated.ModelV2Info.t(),
+          name: String.t() | nil,
+          output: String.t(),
+          part:
+            OpenCode.Generated.AgentPart.t()
+            | OpenCode.Generated.CompactionPart.t()
+            | OpenCode.Generated.FilePart.t()
+            | OpenCode.Generated.PatchPart.t()
+            | OpenCode.Generated.ReasoningPart.t()
+            | OpenCode.Generated.RetryPart.t()
+            | OpenCode.Generated.SnapshotPart.t()
+            | OpenCode.Generated.StepFinishPart.t()
+            | OpenCode.Generated.StepStartPart.t()
+            | OpenCode.Generated.SubtaskPart.t()
+            | OpenCode.Generated.TextPart.t()
+            | OpenCode.Generated.ToolPart.t(),
+          part_id: String.t(),
+          patterns: [String.t()],
+          permission: String.t(),
+          prompt: OpenCode.Generated.Prompt.t(),
+          provider: OpenCode.Generated.GlobalEventPayloadPropertiesProvider.t(),
+          questions: [OpenCode.Generated.QuestionInfo.t()],
+          reason: String.t(),
+          reasoning_id: String.t(),
+          reply: String.t(),
+          request_id: String.t(),
+          sandboxes: [String.t()],
+          server: String.t(),
+          service_id: String.t(),
+          session_id: String.t() | nil,
+          snapshot: String.t() | nil,
+          status: map | String.t(),
+          structured: map,
+          text: String.t(),
+          time: number | OpenCode.Generated.GlobalEventPayloadPropertiesTime.t(),
+          timestamp: number,
+          title: String.t() | nil,
+          to: String.t() | nil,
+          todos: [OpenCode.Generated.Todo.t()],
+          tokens: OpenCode.Generated.GlobalEventPayloadPropertiesTokens.t(),
+          tool:
+            OpenCode.Generated.GlobalEventPayloadPropertiesTool.t()
+            | OpenCode.Generated.QuestionTool.t()
+            | String.t()
+            | nil,
+          url: String.t(),
+          variant: String.t(),
+          vcs: String.t() | nil,
+          version: String.t(),
+          workspace_id: String.t(),
+          worktree: String.t()
+        }
+
+  defstruct [
+    :account,
+    :agent,
+    :always,
+    :answers,
+    :arguments,
+    :attempt,
+    :branch,
+    :call_id,
+    :command,
+    :commands,
+    :content,
+    :cost,
+    :delta,
+    :diff,
+    :duration,
+    :error,
+    :event,
+    :exit_code,
+    :field,
+    :file,
+    :finish,
+    :from,
+    :icon,
+    :id,
+    :include,
+    :info,
+    :input,
+    :mcp_name,
+    :message,
+    :message_id,
+    :metadata,
+    :model,
+    :name,
+    :output,
+    :part,
+    :part_id,
+    :patterns,
+    :permission,
+    :prompt,
+    :provider,
+    :questions,
+    :reason,
+    :reasoning_id,
+    :reply,
+    :request_id,
+    :sandboxes,
+    :server,
+    :service_id,
+    :session_id,
+    :snapshot,
+    :status,
+    :structured,
+    :text,
+    :time,
+    :timestamp,
+    :title,
+    :to,
+    :todos,
+    :tokens,
+    :tool,
+    :url,
+    :variant,
+    :vcs,
+    :version,
+    :workspace_id,
+    :worktree
+  ]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [
+      account: {OpenCode.Generated.AuthInfo, :t},
+      agent: :string,
+      always: [:string],
+      answers: [[:string]],
+      arguments: :string,
+      attempt: :number,
+      branch: :string,
+      call_id: :string,
+      command:
+        {:union,
+         [
+           :string,
+           enum: [
+             "session.list",
+             "session.new",
+             "session.share",
+             "session.interrupt",
+             "session.compact",
+             "session.page.up",
+             "session.page.down",
+             "session.line.up",
+             "session.line.down",
+             "session.half.page.up",
+             "session.half.page.down",
+             "session.first",
+             "session.last",
+             "prompt.clear",
+             "prompt.submit",
+             "agent.cycle"
+           ]
+         ]},
+      commands: {OpenCode.Generated.GlobalEventPayloadPropertiesCommands, :t},
+      content: [
+        union: [
+          {OpenCode.Generated.ToolFileContent, :t},
+          {OpenCode.Generated.ToolTextContent, :t}
+        ]
+      ],
+      cost: :number,
+      delta: :string,
+      diff: [{OpenCode.Generated.SnapshotFileDiff, :t}],
+      duration: :integer,
+      error:
+        {:union,
+         [
+           {OpenCode.Generated.APIError, :t},
+           {OpenCode.Generated.ContextOverflowError, :t},
+           {OpenCode.Generated.MessageAbortedError, :t},
+           {OpenCode.Generated.MessageOutputLengthError, :t},
+           {OpenCode.Generated.ProviderAuthError, :t},
+           {OpenCode.Generated.SessionErrorUnknown, :t},
+           {OpenCode.Generated.SessionNextRetryError, :t},
+           {OpenCode.Generated.StructuredOutputError, :t},
+           {OpenCode.Generated.UnknownError, :t}
+         ]},
+      event: {:enum, ["add", "change", "unlink"]},
+      exit_code: :integer,
+      field: :string,
+      file: :string,
+      finish: :string,
+      from: :string,
+      icon: {OpenCode.Generated.GlobalEventPayloadPropertiesIcon, :t},
+      id: :string,
+      include: :string,
+      info:
+        {:union,
+         [
+           {OpenCode.Generated.AssistantMessage, :t},
+           {OpenCode.Generated.Pty, :t},
+           {OpenCode.Generated.Session, :t},
+           {OpenCode.Generated.UserMessage, :t}
+         ]},
+      input: :map,
+      mcp_name: :string,
+      message: :string,
+      message_id: :string,
+      metadata: :map,
+      model:
+        {:union,
+         [
+           {OpenCode.Generated.GlobalEventPayloadPropertiesModel, :t},
+           {OpenCode.Generated.ModelV2Info, :t}
+         ]},
+      name: :string,
+      output: :string,
+      part:
+        {:union,
+         [
+           {OpenCode.Generated.AgentPart, :t},
+           {OpenCode.Generated.CompactionPart, :t},
+           {OpenCode.Generated.FilePart, :t},
+           {OpenCode.Generated.PatchPart, :t},
+           {OpenCode.Generated.ReasoningPart, :t},
+           {OpenCode.Generated.RetryPart, :t},
+           {OpenCode.Generated.SnapshotPart, :t},
+           {OpenCode.Generated.StepFinishPart, :t},
+           {OpenCode.Generated.StepStartPart, :t},
+           {OpenCode.Generated.SubtaskPart, :t},
+           {OpenCode.Generated.TextPart, :t},
+           {OpenCode.Generated.ToolPart, :t}
+         ]},
+      part_id: :string,
+      patterns: [:string],
+      permission: :string,
+      prompt: {OpenCode.Generated.Prompt, :t},
+      provider: {OpenCode.Generated.GlobalEventPayloadPropertiesProvider, :t},
+      questions: [{OpenCode.Generated.QuestionInfo, :t}],
+      reason: {:enum, ["auto", "manual"]},
+      reasoning_id: :string,
+      reply: {:enum, ["once", "always", "reject"]},
+      request_id: :string,
+      sandboxes: [:string],
+      server: :string,
+      service_id: :string,
+      session_id: :string,
+      snapshot: :string,
+      status: {:union, [:map, enum: ["connected", "connecting", "disconnected", "error"]]},
+      structured: :map,
+      text: :string,
+      time: {:union, [:number, {OpenCode.Generated.GlobalEventPayloadPropertiesTime, :t}]},
+      timestamp: :number,
+      title: :string,
+      to: :string,
+      todos: [{OpenCode.Generated.Todo, :t}],
+      tokens: {OpenCode.Generated.GlobalEventPayloadPropertiesTokens, :t},
+      tool:
+        {:union,
+         [
+           :string,
+           {OpenCode.Generated.GlobalEventPayloadPropertiesTool, :t},
+           {OpenCode.Generated.QuestionTool, :t}
+         ]},
+      url: :string,
+      variant: {:enum, ["info", "success", "warning", "error"]},
+      vcs: {:const, "git"},
+      version: :string,
+      workspace_id: :string,
+      worktree: :string
+    ]
+  end
+end

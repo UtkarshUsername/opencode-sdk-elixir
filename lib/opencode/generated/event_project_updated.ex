@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.EventProjectUpdated do
 
   @type t :: %__MODULE__{
           id: String.t(),
-          properties: OpenCode.Generated.Project.t(),
+          properties: OpenCode.Generated.EventProjectUpdatedProperties.t(),
           type: String.t()
         }
 
@@ -16,6 +16,10 @@ defmodule OpenCode.Generated.EventProjectUpdated do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [id: :string, properties: {OpenCode.Generated.Project, :t}, type: {:const, "project.updated"}]
+    [
+      id: :string,
+      properties: {OpenCode.Generated.EventProjectUpdatedProperties, :t},
+      type: {:const, "project.updated"}
+    ]
   end
 end

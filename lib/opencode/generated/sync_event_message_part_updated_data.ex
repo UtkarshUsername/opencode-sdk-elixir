@@ -18,7 +18,7 @@ defmodule OpenCode.Generated.SyncEventMessagePartUpdatedData do
             | OpenCode.Generated.TextPart.t()
             | OpenCode.Generated.ToolPart.t(),
           session_id: String.t(),
-          time: integer
+          time: number
         }
 
   defstruct [:part, :session_id, :time]
@@ -46,7 +46,7 @@ defmodule OpenCode.Generated.SyncEventMessagePartUpdatedData do
            {OpenCode.Generated.ToolPart, :t}
          ]},
       session_id: :string,
-      time: :integer
+      time: :number
     ]
   end
 end

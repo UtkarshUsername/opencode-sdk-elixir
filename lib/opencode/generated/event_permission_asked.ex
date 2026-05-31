@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.EventPermissionAsked do
 
   @type t :: %__MODULE__{
           id: String.t(),
-          properties: OpenCode.Generated.PermissionRequest.t(),
+          properties: OpenCode.Generated.EventPermissionAskedProperties.t(),
           type: String.t()
         }
 
@@ -18,7 +18,7 @@ defmodule OpenCode.Generated.EventPermissionAsked do
   def __fields__(:t) do
     [
       id: :string,
-      properties: {OpenCode.Generated.PermissionRequest, :t},
+      properties: {OpenCode.Generated.EventPermissionAskedProperties, :t},
       type: {:const, "permission.asked"}
     ]
   end

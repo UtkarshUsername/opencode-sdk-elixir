@@ -3,10 +3,7 @@ defmodule OpenCode.Generated.EventSessionStatusProperties do
   Provides struct and type for a EventSessionStatusProperties
   """
 
-  @type t :: %__MODULE__{
-          session_id: String.t(),
-          status: OpenCode.Generated.EventSessionStatusPropertiesStatus.t()
-        }
+  @type t :: %__MODULE__{session_id: String.t(), status: map}
 
   defstruct [:session_id, :status]
 
@@ -15,6 +12,6 @@ defmodule OpenCode.Generated.EventSessionStatusProperties do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [session_id: :string, status: {OpenCode.Generated.EventSessionStatusPropertiesStatus, :t}]
+    [session_id: :string, status: :map]
   end
 end
