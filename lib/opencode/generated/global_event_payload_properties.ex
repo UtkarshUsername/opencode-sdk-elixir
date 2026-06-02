@@ -5,6 +5,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
 
   @type t :: %__MODULE__{
           account: OpenCode.Generated.AuthInfo.t(),
+          action: String.t(),
           agent: String.t(),
           always: [String.t()],
           answers: [[String.t()]],
@@ -50,7 +51,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           mcp_name: String.t(),
           message: String.t(),
           message_id: String.t(),
-          metadata: map,
+          metadata: map | nil,
           model:
             OpenCode.Generated.GlobalEventPayloadPropertiesModel.t()
             | OpenCode.Generated.ModelV2Info.t(),
@@ -79,11 +80,14 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           reasoning_id: String.t(),
           reply: String.t(),
           request_id: String.t(),
+          resources: [String.t()],
           sandboxes: [String.t()],
+          save: [String.t()] | nil,
           server: String.t(),
           service_id: String.t(),
           session_id: String.t() | nil,
           snapshot: String.t() | nil,
+          source: OpenCode.Generated.PermissionV2Source.t() | nil,
           status: map | String.t(),
           structured: map,
           text: String.t(),
@@ -108,6 +112,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
 
   defstruct [
     :account,
+    :action,
     :agent,
     :always,
     :answers,
@@ -152,11 +157,14 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :reasoning_id,
     :reply,
     :request_id,
+    :resources,
     :sandboxes,
+    :save,
     :server,
     :service_id,
     :session_id,
     :snapshot,
+    :source,
     :status,
     :structured,
     :text,
@@ -182,6 +190,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
   def __fields__(:t) do
     [
       account: {OpenCode.Generated.AuthInfo, :t},
+      action: :string,
       agent: :string,
       always: [:string],
       answers: [[:string]],
@@ -292,11 +301,14 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       reasoning_id: :string,
       reply: {:enum, ["once", "always", "reject"]},
       request_id: :string,
+      resources: [:string],
       sandboxes: [:string],
+      save: [:string],
       server: :string,
       service_id: :string,
       session_id: :string,
       snapshot: :string,
+      source: {OpenCode.Generated.PermissionV2Source, :t},
       status: {:union, [:map, enum: ["connected", "connecting", "disconnected", "error"]]},
       structured: :map,
       text: :string,

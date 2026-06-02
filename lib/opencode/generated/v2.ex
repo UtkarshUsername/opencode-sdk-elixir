@@ -110,14 +110,13 @@ defmodule OpenCode.Generated.V2 do
 
   ## Options
 
-    * `directory`
     * `workspace`
     * `limit`
     * `order`
-    * `path`
-    * `roots`
-    * `start`
     * `search`
+    * `directory`
+    * `project`
+    * `subpath`
     * `cursor`
 
   """
@@ -136,10 +135,9 @@ defmodule OpenCode.Generated.V2 do
         :directory,
         :limit,
         :order,
-        :path,
-        :roots,
+        :project,
         :search,
-        :start,
+        :subpath,
         :workspace
       ])
 

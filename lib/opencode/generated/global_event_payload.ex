@@ -43,6 +43,8 @@ defmodule OpenCode.Generated.GlobalEventPayload do
            "models-dev.refreshed",
            "permission.asked",
            "permission.replied",
+           "permission.v2.asked",
+           "permission.v2.replied",
            "plugin.added",
            "project.updated",
            "pty.created",
