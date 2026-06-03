@@ -9,12 +9,11 @@ defmodule OpenCode.Generated.ConfigAgent do
           explore: OpenCode.Generated.AgentConfig.t() | nil,
           general: OpenCode.Generated.AgentConfig.t() | nil,
           plan: OpenCode.Generated.AgentConfig.t() | nil,
-          scout: OpenCode.Generated.AgentConfig.t() | nil,
           summary: OpenCode.Generated.AgentConfig.t() | nil,
           title: OpenCode.Generated.AgentConfig.t() | nil
         }
 
-  defstruct [:build, :compaction, :explore, :general, :plan, :scout, :summary, :title]
+  defstruct [:build, :compaction, :explore, :general, :plan, :summary, :title]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -27,7 +26,6 @@ defmodule OpenCode.Generated.ConfigAgent do
       explore: {OpenCode.Generated.AgentConfig, :t},
       general: {OpenCode.Generated.AgentConfig, :t},
       plan: {OpenCode.Generated.AgentConfig, :t},
-      scout: {OpenCode.Generated.AgentConfig, :t},
       summary: {OpenCode.Generated.AgentConfig, :t},
       title: {OpenCode.Generated.AgentConfig, :t}
     ]

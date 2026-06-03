@@ -42,6 +42,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventPermissionV2Asked.t()
            | OpenCode.Generated.EventPermissionV2Replied.t()
            | OpenCode.Generated.EventPluginAdded.t()
+           | OpenCode.Generated.EventProjectDirectoriesUpdated.t()
            | OpenCode.Generated.EventProjectUpdated.t()
            | OpenCode.Generated.EventPtyCreated.t()
            | OpenCode.Generated.EventPtyDeleted.t()
@@ -136,6 +137,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventPermissionV2Asked, :t},
             {OpenCode.Generated.EventPermissionV2Replied, :t},
             {OpenCode.Generated.EventPluginAdded, :t},
+            {OpenCode.Generated.EventProjectDirectoriesUpdated, :t},
             {OpenCode.Generated.EventProjectUpdated, :t},
             {OpenCode.Generated.EventPtyCreated, :t},
             {OpenCode.Generated.EventPtyDeleted, :t},

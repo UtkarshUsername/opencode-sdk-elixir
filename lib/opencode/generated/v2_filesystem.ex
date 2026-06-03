@@ -14,6 +14,7 @@ defmodule OpenCode.Generated.V2Filesystem do
 
     * `location`
     * `path`
+    * `reference`
 
   """
   @spec v2_fs_list(opts :: keyword) ::
@@ -22,7 +23,7 @@ defmodule OpenCode.Generated.V2Filesystem do
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_fs_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:location, :path])
+    query = Keyword.take(opts, [:location, :path, :reference])
 
     client.request(%{
       args: [],
@@ -48,6 +49,7 @@ defmodule OpenCode.Generated.V2Filesystem do
 
     * `location`
     * `path`
+    * `reference`
 
   """
   @spec v2_fs_read(opts :: keyword) ::
@@ -58,7 +60,7 @@ defmodule OpenCode.Generated.V2Filesystem do
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_fs_read(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:location, :path])
+    query = Keyword.take(opts, [:location, :path, :reference])
 
     client.request(%{
       args: [],

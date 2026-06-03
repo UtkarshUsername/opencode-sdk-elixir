@@ -37,6 +37,34 @@ defmodule OpenCode.Generated.Project do
   end
 
   @doc """
+  List project directories
+
+  List known local absolute directories for a project.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec project_directories(projectID :: String.t(), opts :: keyword) ::
+          {:ok, [String.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
+  def project_directories(projectID, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [projectID: projectID],
+      call: {OpenCode.Generated.Project, :project_directories},
+      url: "/project/#{projectID}/directories",
+      method: :get,
+      query: query,
+      response: [{200, [:string]}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      opts: opts
+    })
+  end
+
+  @doc """
   Initialize git repository
 
   Create a git repository for the current project and return the refreshed project info.

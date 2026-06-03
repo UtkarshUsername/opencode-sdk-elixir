@@ -46,6 +46,7 @@ defmodule OpenCode.Generated.GlobalEventPayload do
            "permission.v2.asked",
            "permission.v2.replied",
            "plugin.added",
+           "project.directories.updated",
            "project.updated",
            "pty.created",
            "pty.deleted",
