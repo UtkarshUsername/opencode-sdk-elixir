@@ -6,17 +6,22 @@ defmodule OpenCode.Generated.ToolFileContent do
   @type t :: %__MODULE__{
           mime: String.t(),
           name: String.t() | nil,
-          type: String.t(),
-          uri: String.t()
+          source: OpenCode.Generated.ToolFileContentSource.t(),
+          type: String.t()
         }
 
-  defstruct [:mime, :name, :type, :uri]
+  defstruct [:mime, :name, :source, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [mime: :string, name: :string, type: {:const, "file"}, uri: :string]
+    [
+      mime: :string,
+      name: :string,
+      source: {OpenCode.Generated.ToolFileContentSource, :t},
+      type: {:const, "file"}
+    ]
   end
 end

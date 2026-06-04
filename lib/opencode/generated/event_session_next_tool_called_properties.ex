@@ -4,6 +4,7 @@ defmodule OpenCode.Generated.EventSessionNextToolCalledProperties do
   """
 
   @type t :: %__MODULE__{
+          assistant_message_id: String.t(),
           call_id: String.t(),
           input: map,
           provider: OpenCode.Generated.EventSessionNextToolCalledPropertiesProvider.t(),
@@ -12,7 +13,7 @@ defmodule OpenCode.Generated.EventSessionNextToolCalledProperties do
           tool: String.t()
         }
 
-  defstruct [:call_id, :input, :provider, :session_id, :timestamp, :tool]
+  defstruct [:assistant_message_id, :call_id, :input, :provider, :session_id, :timestamp, :tool]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,6 +21,7 @@ defmodule OpenCode.Generated.EventSessionNextToolCalledProperties do
 
   def __fields__(:t) do
     [
+      assistant_message_id: :string,
       call_id: :string,
       input: :map,
       provider: {OpenCode.Generated.EventSessionNextToolCalledPropertiesProvider, :t},

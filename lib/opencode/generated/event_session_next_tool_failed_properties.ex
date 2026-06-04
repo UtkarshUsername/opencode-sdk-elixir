@@ -4,14 +4,16 @@ defmodule OpenCode.Generated.EventSessionNextToolFailedProperties do
   """
 
   @type t :: %__MODULE__{
+          assistant_message_id: String.t(),
           call_id: String.t(),
           error: OpenCode.Generated.SessionErrorUnknown.t(),
           provider: OpenCode.Generated.EventSessionNextToolFailedPropertiesProvider.t(),
+          result: map | nil,
           session_id: String.t(),
           timestamp: number
         }
 
-  defstruct [:call_id, :error, :provider, :session_id, :timestamp]
+  defstruct [:assistant_message_id, :call_id, :error, :provider, :result, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -19,9 +21,11 @@ defmodule OpenCode.Generated.EventSessionNextToolFailedProperties do
 
   def __fields__(:t) do
     [
+      assistant_message_id: :string,
       call_id: :string,
       error: {OpenCode.Generated.SessionErrorUnknown, :t},
       provider: {OpenCode.Generated.EventSessionNextToolFailedPropertiesProvider, :t},
+      result: :map,
       session_id: :string,
       timestamp: :number
     ]

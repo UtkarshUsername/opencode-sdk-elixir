@@ -9,12 +9,6 @@ defmodule OpenCode.Generated.V2 do
   Compact v2 session
 
   Compact a v2 session conversation.
-
-  ## Options
-
-    * `directory`
-    * `workspace`
-
   """
   @spec v2_session_compact(sessionID :: String.t(), opts :: keyword) ::
           :ok
@@ -25,14 +19,12 @@ defmodule OpenCode.Generated.V2 do
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_compact(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
       call: {OpenCode.Generated.V2, :v2_session_compact},
       url: "/api/session/#{sessionID}/compact",
       method: :post,
-      query: query,
       response: [
         {204, :null},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
@@ -44,28 +36,25 @@ defmodule OpenCode.Generated.V2 do
     })
   end
 
+  @type v2_session_context_200_json_resp :: %{
+          data: [
+            OpenCode.Generated.SessionMessageAgentSwitched.t()
+            | OpenCode.Generated.SessionMessageAssistant.t()
+            | OpenCode.Generated.SessionMessageCompaction.t()
+            | OpenCode.Generated.SessionMessageModelSwitched.t()
+            | OpenCode.Generated.SessionMessageShell.t()
+            | OpenCode.Generated.SessionMessageSynthetic.t()
+            | OpenCode.Generated.SessionMessageUser.t()
+          ]
+        }
+
   @doc """
   Get v2 session context
 
   Retrieve the active context messages for a v2 session (all messages after the last compaction).
-
-  ## Options
-
-    * `directory`
-    * `workspace`
-
   """
   @spec v2_session_context(sessionID :: String.t(), opts :: keyword) ::
-          {:ok,
-           [
-             OpenCode.Generated.SessionMessageAgentSwitched.t()
-             | OpenCode.Generated.SessionMessageAssistant.t()
-             | OpenCode.Generated.SessionMessageCompaction.t()
-             | OpenCode.Generated.SessionMessageModelSwitched.t()
-             | OpenCode.Generated.SessionMessageShell.t()
-             | OpenCode.Generated.SessionMessageSynthetic.t()
-             | OpenCode.Generated.SessionMessageUser.t()
-           ]}
+          {:ok, OpenCode.Generated.V2.v2_session_context_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
@@ -73,27 +62,14 @@ defmodule OpenCode.Generated.V2 do
              | OpenCode.Generated.UnknownError1.t()}
   def v2_session_context(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
       call: {OpenCode.Generated.V2, :v2_session_context},
       url: "/api/session/#{sessionID}/context",
       method: :get,
-      query: query,
       response: [
-        {200,
-         [
-           union: [
-             {OpenCode.Generated.SessionMessageAgentSwitched, :t},
-             {OpenCode.Generated.SessionMessageAssistant, :t},
-             {OpenCode.Generated.SessionMessageCompaction, :t},
-             {OpenCode.Generated.SessionMessageModelSwitched, :t},
-             {OpenCode.Generated.SessionMessageShell, :t},
-             {OpenCode.Generated.SessionMessageSynthetic, :t},
-             {OpenCode.Generated.SessionMessageUser, :t}
-           ]
-         ]},
+        {200, {OpenCode.Generated.V2, :v2_session_context_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
         {404, {OpenCode.Generated.SessionNotFoundError, :t}},
@@ -161,37 +137,26 @@ defmodule OpenCode.Generated.V2 do
     })
   end
 
+  @type v2_session_prompt_200_json_resp :: %{data: OpenCode.Generated.SessionMessageUser.t()}
+
   @doc """
   Send v2 message
 
-  Create a v2 session message and queue it for the agent loop.
-
-  ## Options
-
-    * `directory`
-    * `workspace`
+  Durably admit one v2 session input and schedule agent-loop execution unless resume is false.
 
   ## Request Body
 
   **Content Types**: `application/json`
   """
   @spec v2_session_prompt(sessionID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok,
-           OpenCode.Generated.SessionMessageAgentSwitched.t()
-           | OpenCode.Generated.SessionMessageAssistant.t()
-           | OpenCode.Generated.SessionMessageCompaction.t()
-           | OpenCode.Generated.SessionMessageModelSwitched.t()
-           | OpenCode.Generated.SessionMessageShell.t()
-           | OpenCode.Generated.SessionMessageSynthetic.t()
-           | OpenCode.Generated.SessionMessageUser.t()}
+          {:ok, OpenCode.Generated.V2.v2_session_prompt_200_json_resp()}
           | {:error,
-             OpenCode.Generated.InvalidRequestError.t()
-             | OpenCode.Generated.ServiceUnavailableError.t()
+             OpenCode.Generated.ConflictError.t()
+             | OpenCode.Generated.InvalidRequestError.t()
              | OpenCode.Generated.SessionNotFoundError.t()
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_prompt(sessionID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID, body: body],
@@ -199,24 +164,13 @@ defmodule OpenCode.Generated.V2 do
       url: "/api/session/#{sessionID}/prompt",
       body: body,
       method: :post,
-      query: query,
       request: [{"application/json", :map}],
       response: [
-        {200,
-         {:union,
-          [
-            {OpenCode.Generated.SessionMessageAgentSwitched, :t},
-            {OpenCode.Generated.SessionMessageAssistant, :t},
-            {OpenCode.Generated.SessionMessageCompaction, :t},
-            {OpenCode.Generated.SessionMessageModelSwitched, :t},
-            {OpenCode.Generated.SessionMessageShell, :t},
-            {OpenCode.Generated.SessionMessageSynthetic, :t},
-            {OpenCode.Generated.SessionMessageUser, :t}
-          ]}},
+        {200, {OpenCode.Generated.V2, :v2_session_prompt_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
         {404, {OpenCode.Generated.SessionNotFoundError, :t}},
-        {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
+        {409, {OpenCode.Generated.ConflictError, :t}}
       ],
       opts: opts
     })
@@ -226,12 +180,6 @@ defmodule OpenCode.Generated.V2 do
   Wait for v2 session
 
   Wait for a v2 session agent loop to become idle.
-
-  ## Options
-
-    * `directory`
-    * `workspace`
-
   """
   @spec v2_session_wait(sessionID :: String.t(), opts :: keyword) ::
           :ok
@@ -242,14 +190,12 @@ defmodule OpenCode.Generated.V2 do
              | OpenCode.Generated.UnauthorizedError.t()}
   def v2_session_wait(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [sessionID: sessionID],
       call: {OpenCode.Generated.V2, :v2_session_wait},
       url: "/api/session/#{sessionID}/wait",
       method: :post,
-      query: query,
       response: [
         {204, :null},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
@@ -259,5 +205,27 @@ defmodule OpenCode.Generated.V2 do
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:v2_session_context_200_json_resp) do
+    [
+      data: [
+        union: [
+          {OpenCode.Generated.SessionMessageAgentSwitched, :t},
+          {OpenCode.Generated.SessionMessageAssistant, :t},
+          {OpenCode.Generated.SessionMessageCompaction, :t},
+          {OpenCode.Generated.SessionMessageModelSwitched, :t},
+          {OpenCode.Generated.SessionMessageShell, :t},
+          {OpenCode.Generated.SessionMessageSynthetic, :t},
+          {OpenCode.Generated.SessionMessageUser, :t}
+        ]
+      ]
+    ]
+  end
+
+  def __fields__(:v2_session_prompt_200_json_resp) do
+    [data: {OpenCode.Generated.SessionMessageUser, :t}]
   end
 end

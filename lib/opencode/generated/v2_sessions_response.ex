@@ -5,10 +5,10 @@ defmodule OpenCode.Generated.V2SessionsResponse do
 
   @type t :: %__MODULE__{
           cursor: OpenCode.Generated.V2SessionsResponseCursor.t(),
-          items: [OpenCode.Generated.SessionV2Info.t()]
+          data: [OpenCode.Generated.SessionV2Info.t()]
         }
 
-  defstruct [:cursor, :items]
+  defstruct [:cursor, :data]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -17,7 +17,7 @@ defmodule OpenCode.Generated.V2SessionsResponse do
   def __fields__(:t) do
     [
       cursor: {OpenCode.Generated.V2SessionsResponseCursor, :t},
-      items: [{OpenCode.Generated.SessionV2Info, :t}]
+      data: [{OpenCode.Generated.SessionV2Info, :t}]
     ]
   end
 end

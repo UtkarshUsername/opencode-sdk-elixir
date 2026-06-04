@@ -4,34 +4,32 @@ defmodule OpenCode.Generated.ModelV2Info do
   """
 
   @type t :: %__MODULE__{
-          api_id: String.t(),
+          api: OpenCode.Generated.ModelV2InfoApi.t(),
           capabilities: OpenCode.Generated.ModelV2InfoCapabilities.t(),
           cost: [OpenCode.Generated.ModelV2InfoCost.t()],
           enabled: boolean,
-          endpoint: OpenCode.Generated.ModelV2InfoEndpoint.t(),
           family: String.t() | nil,
           id: String.t(),
           limit: OpenCode.Generated.ModelV2InfoLimit.t(),
           name: String.t(),
-          options: OpenCode.Generated.ModelV2InfoOptions.t(),
           provider_id: String.t(),
+          request: OpenCode.Generated.ModelV2InfoRequest.t(),
           status: String.t(),
           time: OpenCode.Generated.ModelV2InfoTime.t(),
           variants: [OpenCode.Generated.ModelV2InfoVariants.t()]
         }
 
   defstruct [
-    :api_id,
+    :api,
     :capabilities,
     :cost,
     :enabled,
-    :endpoint,
     :family,
     :id,
     :limit,
     :name,
-    :options,
     :provider_id,
+    :request,
     :status,
     :time,
     :variants
@@ -43,17 +41,16 @@ defmodule OpenCode.Generated.ModelV2Info do
 
   def __fields__(:t) do
     [
-      api_id: :string,
+      api: {OpenCode.Generated.ModelV2InfoApi, :t},
       capabilities: {OpenCode.Generated.ModelV2InfoCapabilities, :t},
       cost: [{OpenCode.Generated.ModelV2InfoCost, :t}],
       enabled: :boolean,
-      endpoint: {OpenCode.Generated.ModelV2InfoEndpoint, :t},
       family: :string,
       id: :string,
       limit: {OpenCode.Generated.ModelV2InfoLimit, :t},
       name: :string,
-      options: {OpenCode.Generated.ModelV2InfoOptions, :t},
       provider_id: :string,
+      request: {OpenCode.Generated.ModelV2InfoRequest, :t},
       status: {:enum, ["alpha", "beta", "deprecated", "active"]},
       time: {OpenCode.Generated.ModelV2InfoTime, :t},
       variants: [{OpenCode.Generated.ModelV2InfoVariants, :t}]

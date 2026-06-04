@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.UserMessageTime do
   Provides struct and type for a UserMessageTime
   """
 
-  @type t :: %__MODULE__{created: integer}
+  @type t :: %__MODULE__{created: number}
 
   defstruct [:created]
 
@@ -12,6 +12,6 @@ defmodule OpenCode.Generated.UserMessageTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [created: :integer]
+    [created: :number]
   end
 end

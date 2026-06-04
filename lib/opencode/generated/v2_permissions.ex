@@ -5,6 +5,11 @@ defmodule OpenCode.Generated.V2Permissions do
 
   @default_client OpenCode.Client
 
+  @type v2_permission_request_list_200_json_resp :: %{
+          data: [OpenCode.Generated.PermissionV2Request.t()],
+          location: OpenCode.Generated.LocationInfo.t()
+        }
+
   @doc """
   List pending permission requests
 
@@ -16,7 +21,7 @@ defmodule OpenCode.Generated.V2Permissions do
 
   """
   @spec v2_permission_request_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.PermissionV2Request.t()]}
+          {:ok, OpenCode.Generated.V2Permissions.v2_permission_request_list_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_permission_request_list(opts \\ []) do
@@ -30,11 +35,20 @@ defmodule OpenCode.Generated.V2Permissions do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.PermissionV2Request, :t}]},
+        {200, {OpenCode.Generated.V2Permissions, :v2_permission_request_list_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:v2_permission_request_list_200_json_resp) do
+    [
+      data: [{OpenCode.Generated.PermissionV2Request, :t}],
+      location: {OpenCode.Generated.LocationInfo, :t}
+    ]
   end
 end

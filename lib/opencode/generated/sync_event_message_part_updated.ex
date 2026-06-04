@@ -4,15 +4,12 @@ defmodule OpenCode.Generated.SyncEventMessagePartUpdated do
   """
 
   @type t :: %__MODULE__{
-          aggregate_id: String.t(),
-          data: OpenCode.Generated.SyncEventMessagePartUpdatedData.t(),
           id: String.t(),
-          name: String.t(),
-          seq: number,
+          sync_event: OpenCode.Generated.SyncEventMessagePartUpdatedSyncEvent.t(),
           type: String.t()
         }
 
-  defstruct [:aggregate_id, :data, :id, :name, :seq, :type]
+  defstruct [:id, :sync_event, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,11 +17,8 @@ defmodule OpenCode.Generated.SyncEventMessagePartUpdated do
 
   def __fields__(:t) do
     [
-      aggregate_id: {:const, "sessionID"},
-      data: {OpenCode.Generated.SyncEventMessagePartUpdatedData, :t},
       id: :string,
-      name: {:const, "message.part.updated.1"},
-      seq: :number,
+      sync_event: {OpenCode.Generated.SyncEventMessagePartUpdatedSyncEvent, :t},
       type: {:const, "sync"}
     ]
   end

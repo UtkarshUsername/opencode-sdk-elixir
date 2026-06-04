@@ -5,6 +5,11 @@ defmodule OpenCode.Generated.V2Filesystem do
 
   @default_client OpenCode.Client
 
+  @type v2_fs_list_200_json_resp :: %{
+          data: [OpenCode.Generated.FileSystemEntry.t()],
+          location: OpenCode.Generated.LocationInfo.t()
+        }
+
   @doc """
   List directory
 
@@ -18,7 +23,7 @@ defmodule OpenCode.Generated.V2Filesystem do
 
   """
   @spec v2_fs_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.LocationFileSystemEntry.t()]}
+          {:ok, OpenCode.Generated.V2Filesystem.v2_fs_list_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_fs_list(opts \\ []) do
@@ -32,13 +37,20 @@ defmodule OpenCode.Generated.V2Filesystem do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.LocationFileSystemEntry, :t}]},
+        {200, {OpenCode.Generated.V2Filesystem, :v2_fs_list_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
       opts: opts
     })
   end
+
+  @type v2_fs_read_200_json_resp :: %{
+          data:
+            OpenCode.Generated.FileSystemBinaryContent.t()
+            | OpenCode.Generated.FileSystemTextContent.t(),
+          location: OpenCode.Generated.LocationInfo.t()
+        }
 
   @doc """
   Read file
@@ -53,9 +65,7 @@ defmodule OpenCode.Generated.V2Filesystem do
 
   """
   @spec v2_fs_read(opts :: keyword) ::
-          {:ok,
-           OpenCode.Generated.LocationFileSystemBinaryContent.t()
-           | OpenCode.Generated.LocationFileSystemTextContent.t()}
+          {:ok, OpenCode.Generated.V2Filesystem.v2_fs_read_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_fs_read(opts \\ []) do
@@ -69,16 +79,32 @@ defmodule OpenCode.Generated.V2Filesystem do
       method: :get,
       query: query,
       response: [
-        {200,
-         {:union,
-          [
-            {OpenCode.Generated.LocationFileSystemBinaryContent, :t},
-            {OpenCode.Generated.LocationFileSystemTextContent, :t}
-          ]}},
+        {200, {OpenCode.Generated.V2Filesystem, :v2_fs_read_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:v2_fs_list_200_json_resp) do
+    [
+      data: [{OpenCode.Generated.FileSystemEntry, :t}],
+      location: {OpenCode.Generated.LocationInfo, :t}
+    ]
+  end
+
+  def __fields__(:v2_fs_read_200_json_resp) do
+    [
+      data:
+        {:union,
+         [
+           {OpenCode.Generated.FileSystemBinaryContent, :t},
+           {OpenCode.Generated.FileSystemTextContent, :t}
+         ]},
+      location: {OpenCode.Generated.LocationInfo, :t}
+    ]
   end
 end

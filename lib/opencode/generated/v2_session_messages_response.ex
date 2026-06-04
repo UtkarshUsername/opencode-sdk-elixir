@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.V2SessionMessagesResponse do
 
   @type t :: %__MODULE__{
           cursor: OpenCode.Generated.V2SessionMessagesResponseCursor.t(),
-          items: [
+          data: [
             OpenCode.Generated.SessionMessageAgentSwitched.t()
             | OpenCode.Generated.SessionMessageAssistant.t()
             | OpenCode.Generated.SessionMessageCompaction.t()
@@ -16,7 +16,7 @@ defmodule OpenCode.Generated.V2SessionMessagesResponse do
           ]
         }
 
-  defstruct [:cursor, :items]
+  defstruct [:cursor, :data]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -25,7 +25,7 @@ defmodule OpenCode.Generated.V2SessionMessagesResponse do
   def __fields__(:t) do
     [
       cursor: {OpenCode.Generated.V2SessionMessagesResponseCursor, :t},
-      items: [
+      data: [
         union: [
           {OpenCode.Generated.SessionMessageAgentSwitched, :t},
           {OpenCode.Generated.SessionMessageAssistant, :t},

@@ -5,6 +5,10 @@ defmodule OpenCode.Generated.V2SavedPermissions do
 
   @default_client OpenCode.Client
 
+  @type v2_permission_saved_list_200_json_resp :: %{
+          data: [OpenCode.Generated.PermissionSavedInfo.t()]
+        }
+
   @doc """
   List saved permissions
 
@@ -16,7 +20,7 @@ defmodule OpenCode.Generated.V2SavedPermissions do
 
   """
   @spec v2_permission_saved_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.PermissionSavedInfo.t()]}
+          {:ok, OpenCode.Generated.V2SavedPermissions.v2_permission_saved_list_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_permission_saved_list(opts \\ []) do
@@ -30,7 +34,7 @@ defmodule OpenCode.Generated.V2SavedPermissions do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.PermissionSavedInfo, :t}]},
+        {200, {OpenCode.Generated.V2SavedPermissions, :v2_permission_saved_list_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
@@ -62,5 +66,11 @@ defmodule OpenCode.Generated.V2SavedPermissions do
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:v2_permission_saved_list_200_json_resp) do
+    [data: [{OpenCode.Generated.PermissionSavedInfo, :t}]]
   end
 end

@@ -12,8 +12,6 @@ defmodule OpenCode.Generated.V2Messages do
 
   ## Options
 
-    * `directory`
-    * `workspace`
     * `limit`
     * `order`
     * `cursor`
@@ -29,7 +27,7 @@ defmodule OpenCode.Generated.V2Messages do
              | OpenCode.Generated.UnknownError1.t()}
   def v2_session_messages(sessionID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:cursor, :directory, :limit, :order, :workspace])
+    query = Keyword.take(opts, [:cursor, :limit, :order])
 
     client.request(%{
       args: [sessionID: sessionID],

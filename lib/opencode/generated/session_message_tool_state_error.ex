@@ -9,11 +9,12 @@ defmodule OpenCode.Generated.SessionMessageToolStateError do
           ],
           error: OpenCode.Generated.SessionErrorUnknown.t(),
           input: map,
+          result: map | nil,
           status: String.t(),
           structured: map
         }
 
-  defstruct [:content, :error, :input, :status, :structured]
+  defstruct [:content, :error, :input, :result, :status, :structured]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -29,6 +30,7 @@ defmodule OpenCode.Generated.SessionMessageToolStateError do
       ],
       error: {OpenCode.Generated.SessionErrorUnknown, :t},
       input: :map,
+      result: :map,
       status: {:const, "error"},
       structured: :map
     ]

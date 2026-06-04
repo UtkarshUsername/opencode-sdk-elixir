@@ -4,15 +4,15 @@ defmodule OpenCode.Generated.ProviderV2Info do
   """
 
   @type t :: %__MODULE__{
+          api: OpenCode.Generated.ProviderV2InfoApi.t(),
           enabled: false | OpenCode.Generated.ProviderV2InfoEnabled.t(),
-          endpoint: OpenCode.Generated.ProviderV2InfoEndpoint.t(),
           env: [String.t()],
           id: String.t(),
           name: String.t(),
-          options: OpenCode.Generated.ProviderV2InfoOptions.t()
+          request: OpenCode.Generated.ProviderV2InfoRequest.t()
         }
 
-  defstruct [:enabled, :endpoint, :env, :id, :name, :options]
+  defstruct [:api, :enabled, :env, :id, :name, :request]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,12 +20,12 @@ defmodule OpenCode.Generated.ProviderV2Info do
 
   def __fields__(:t) do
     [
+      api: {OpenCode.Generated.ProviderV2InfoApi, :t},
       enabled: {:union, [{OpenCode.Generated.ProviderV2InfoEnabled, :t}, const: false]},
-      endpoint: {OpenCode.Generated.ProviderV2InfoEndpoint, :t},
       env: [:string],
       id: :string,
       name: :string,
-      options: {OpenCode.Generated.ProviderV2InfoOptions, :t}
+      request: {OpenCode.Generated.ProviderV2InfoRequest, :t}
     ]
   end
 end

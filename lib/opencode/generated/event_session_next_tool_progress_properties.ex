@@ -4,6 +4,7 @@ defmodule OpenCode.Generated.EventSessionNextToolProgressProperties do
   """
 
   @type t :: %__MODULE__{
+          assistant_message_id: String.t(),
           call_id: String.t(),
           content: [
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
@@ -13,7 +14,7 @@ defmodule OpenCode.Generated.EventSessionNextToolProgressProperties do
           timestamp: number
         }
 
-  defstruct [:call_id, :content, :session_id, :structured, :timestamp]
+  defstruct [:assistant_message_id, :call_id, :content, :session_id, :structured, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -21,6 +22,7 @@ defmodule OpenCode.Generated.EventSessionNextToolProgressProperties do
 
   def __fields__(:t) do
     [
+      assistant_message_id: :string,
       call_id: :string,
       content: [
         union: [

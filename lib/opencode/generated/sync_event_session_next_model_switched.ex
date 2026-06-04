@@ -4,15 +4,12 @@ defmodule OpenCode.Generated.SyncEventSessionNextModelSwitched do
   """
 
   @type t :: %__MODULE__{
-          aggregate_id: String.t(),
-          data: OpenCode.Generated.SyncEventSessionNextModelSwitchedData.t(),
           id: String.t(),
-          name: String.t(),
-          seq: number,
+          sync_event: OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEvent.t(),
           type: String.t()
         }
 
-  defstruct [:aggregate_id, :data, :id, :name, :seq, :type]
+  defstruct [:id, :sync_event, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,11 +17,8 @@ defmodule OpenCode.Generated.SyncEventSessionNextModelSwitched do
 
   def __fields__(:t) do
     [
-      aggregate_id: {:const, "sessionID"},
-      data: {OpenCode.Generated.SyncEventSessionNextModelSwitchedData, :t},
       id: :string,
-      name: {:const, "session.next.model.switched.1"},
-      seq: :number,
+      sync_event: {OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEvent, :t},
       type: {:const, "sync"}
     ]
   end

@@ -1,0 +1,25 @@
+defmodule OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventData do
+  @moduledoc """
+  Provides struct and type for a SyncEventSessionNextModelSwitchedSyncEventData
+  """
+
+  @type t :: %__MODULE__{
+          model: OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventDataModel.t(),
+          session_id: String.t(),
+          timestamp: number
+        }
+
+  defstruct [:model, :session_id, :timestamp]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [
+      model: {OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventDataModel, :t},
+      session_id: :string,
+      timestamp: :number
+    ]
+  end
+end

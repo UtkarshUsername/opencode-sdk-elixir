@@ -5,6 +5,11 @@ defmodule OpenCode.Generated.V2Models do
 
   @default_client OpenCode.Client
 
+  @type v2_model_list_200_json_resp :: %{
+          data: [OpenCode.Generated.ModelV2Info.t()],
+          location: OpenCode.Generated.LocationInfo.t()
+        }
+
   @doc """
   List v2 models
 
@@ -16,7 +21,7 @@ defmodule OpenCode.Generated.V2Models do
 
   """
   @spec v2_model_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.ModelV2Info.t()]}
+          {:ok, OpenCode.Generated.V2Models.v2_model_list_200_json_resp()}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t()
              | OpenCode.Generated.ServiceUnavailableError.t()
@@ -32,12 +37,21 @@ defmodule OpenCode.Generated.V2Models do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.ModelV2Info, :t}]},
+        {200, {OpenCode.Generated.V2Models, :v2_model_list_200_json_resp}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}},
         {503, {OpenCode.Generated.ServiceUnavailableError, :t}}
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:v2_model_list_200_json_resp) do
+    [
+      data: [{OpenCode.Generated.ModelV2Info, :t}],
+      location: {OpenCode.Generated.LocationInfo, :t}
+    ]
   end
 end
