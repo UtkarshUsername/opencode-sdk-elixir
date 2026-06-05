@@ -12,7 +12,6 @@ defmodule OpenCode.Generated.ProjectCopy do
 
   ## Options
 
-    * `directory`
     * `workspace`
 
   ## Request Body
@@ -22,11 +21,10 @@ defmodule OpenCode.Generated.ProjectCopy do
   @spec experimental_project_copy_create(projectID :: String.t(), body :: map, opts :: keyword) ::
           {:ok, OpenCode.Generated.ProjectCopyCopy.t()}
           | {:error,
-             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
-             | OpenCode.Generated.InvalidRequestError.t()}
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
   def experimental_project_copy_create(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:workspace])
 
     client.request(%{
       args: [projectID: projectID, body: body],
@@ -41,8 +39,8 @@ defmodule OpenCode.Generated.ProjectCopy do
         {400,
          {:union,
           [
-            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
-            {OpenCode.Generated.InvalidRequestError, :t}
+            {OpenCode.Generated.InvalidRequestError, :t},
+            {OpenCode.Generated.ProjectCopyError, :t}
           ]}}
       ],
       opts: opts
@@ -63,8 +61,7 @@ defmodule OpenCode.Generated.ProjectCopy do
   @spec experimental_project_copy_refresh(projectID :: String.t(), opts :: keyword) ::
           :ok
           | {:error,
-             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
-             | OpenCode.Generated.InvalidRequestError.t()}
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
   def experimental_project_copy_refresh(projectID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -80,8 +77,8 @@ defmodule OpenCode.Generated.ProjectCopy do
         {400,
          {:union,
           [
-            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
-            {OpenCode.Generated.InvalidRequestError, :t}
+            {OpenCode.Generated.InvalidRequestError, :t},
+            {OpenCode.Generated.ProjectCopyError, :t}
           ]}}
       ],
       opts: opts
@@ -105,8 +102,7 @@ defmodule OpenCode.Generated.ProjectCopy do
   @spec experimental_project_copy_remove(projectID :: String.t(), body :: map, opts :: keyword) ::
           :ok
           | {:error,
-             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
-             | OpenCode.Generated.InvalidRequestError.t()}
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
   def experimental_project_copy_remove(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -124,8 +120,8 @@ defmodule OpenCode.Generated.ProjectCopy do
         {400,
          {:union,
           [
-            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
-            {OpenCode.Generated.InvalidRequestError, :t}
+            {OpenCode.Generated.InvalidRequestError, :t},
+            {OpenCode.Generated.ProjectCopyError, :t}
           ]}}
       ],
       opts: opts

@@ -4,6 +4,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextReasoningEndedSyncEventData do
   """
 
   @type t :: %__MODULE__{
+          assistant_message_id: String.t(),
           provider_metadata: map | nil,
           reasoning_id: String.t(),
           session_id: String.t(),
@@ -11,7 +12,14 @@ defmodule OpenCode.Generated.SyncEventSessionNextReasoningEndedSyncEventData do
           timestamp: number
         }
 
-  defstruct [:provider_metadata, :reasoning_id, :session_id, :text, :timestamp]
+  defstruct [
+    :assistant_message_id,
+    :provider_metadata,
+    :reasoning_id,
+    :session_id,
+    :text,
+    :timestamp
+  ]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -19,6 +27,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextReasoningEndedSyncEventData do
 
   def __fields__(:t) do
     [
+      assistant_message_id: :string,
       provider_metadata: :map,
       reasoning_id: :string,
       session_id: :string,

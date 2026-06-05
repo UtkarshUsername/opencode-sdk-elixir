@@ -5,12 +5,13 @@ defmodule OpenCode.Generated.SyncEventSessionNextPromptedSyncEventData do
 
   @type t :: %__MODULE__{
           delivery: String.t(),
+          message_id: String.t(),
           prompt: OpenCode.Generated.Prompt.t(),
           session_id: String.t(),
           timestamp: number
         }
 
-  defstruct [:delivery, :prompt, :session_id, :timestamp]
+  defstruct [:delivery, :message_id, :prompt, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -19,6 +20,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextPromptedSyncEventData do
   def __fields__(:t) do
     [
       delivery: {:enum, ["steer", "queue"]},
+      message_id: :string,
       prompt: {OpenCode.Generated.Prompt, :t},
       session_id: :string,
       timestamp: :number

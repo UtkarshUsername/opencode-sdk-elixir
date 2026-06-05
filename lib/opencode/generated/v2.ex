@@ -44,6 +44,7 @@ defmodule OpenCode.Generated.V2 do
             | OpenCode.Generated.SessionMessageModelSwitched.t()
             | OpenCode.Generated.SessionMessageShell.t()
             | OpenCode.Generated.SessionMessageSynthetic.t()
+            | OpenCode.Generated.SessionMessageSystem.t()
             | OpenCode.Generated.SessionMessageUser.t()
           ]
         }
@@ -137,7 +138,7 @@ defmodule OpenCode.Generated.V2 do
     })
   end
 
-  @type v2_session_prompt_200_json_resp :: %{data: OpenCode.Generated.SessionMessageUser.t()}
+  @type v2_session_prompt_200_json_resp :: %{data: OpenCode.Generated.SessionInputAdmitted.t()}
 
   @doc """
   Send v2 message
@@ -219,6 +220,7 @@ defmodule OpenCode.Generated.V2 do
           {OpenCode.Generated.SessionMessageModelSwitched, :t},
           {OpenCode.Generated.SessionMessageShell, :t},
           {OpenCode.Generated.SessionMessageSynthetic, :t},
+          {OpenCode.Generated.SessionMessageSystem, :t},
           {OpenCode.Generated.SessionMessageUser, :t}
         ]
       ]
@@ -226,6 +228,6 @@ defmodule OpenCode.Generated.V2 do
   end
 
   def __fields__(:v2_session_prompt_200_json_resp) do
-    [data: {OpenCode.Generated.SessionMessageUser, :t}]
+    [data: {OpenCode.Generated.SessionInputAdmitted, :t}]
   end
 end

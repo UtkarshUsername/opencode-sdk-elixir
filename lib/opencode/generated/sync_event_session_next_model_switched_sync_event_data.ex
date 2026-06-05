@@ -4,12 +4,13 @@ defmodule OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventData do
   """
 
   @type t :: %__MODULE__{
+          message_id: String.t(),
           model: OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventDataModel.t(),
           session_id: String.t(),
           timestamp: number
         }
 
-  defstruct [:model, :session_id, :timestamp]
+  defstruct [:message_id, :model, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -17,6 +18,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventData do
 
   def __fields__(:t) do
     [
+      message_id: :string,
       model: {OpenCode.Generated.SyncEventSessionNextModelSwitchedSyncEventDataModel, :t},
       session_id: :string,
       timestamp: :number

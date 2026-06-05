@@ -12,6 +12,7 @@ defmodule OpenCode.Generated.V2SessionMessagesResponse do
             | OpenCode.Generated.SessionMessageModelSwitched.t()
             | OpenCode.Generated.SessionMessageShell.t()
             | OpenCode.Generated.SessionMessageSynthetic.t()
+            | OpenCode.Generated.SessionMessageSystem.t()
             | OpenCode.Generated.SessionMessageUser.t()
           ]
         }
@@ -33,6 +34,7 @@ defmodule OpenCode.Generated.V2SessionMessagesResponse do
           {OpenCode.Generated.SessionMessageModelSwitched, :t},
           {OpenCode.Generated.SessionMessageShell, :t},
           {OpenCode.Generated.SessionMessageSynthetic, :t},
+          {OpenCode.Generated.SessionMessageSystem, :t},
           {OpenCode.Generated.SessionMessageUser, :t}
         ]
       ]

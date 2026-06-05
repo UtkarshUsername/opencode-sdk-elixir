@@ -3,15 +3,25 @@ defmodule OpenCode.Generated.EventSessionNextCompactionStartedProperties do
   Provides struct and type for a EventSessionNextCompactionStartedProperties
   """
 
-  @type t :: %__MODULE__{reason: String.t(), session_id: String.t(), timestamp: number}
+  @type t :: %__MODULE__{
+          message_id: String.t(),
+          reason: String.t(),
+          session_id: String.t(),
+          timestamp: number
+        }
 
-  defstruct [:reason, :session_id, :timestamp]
+  defstruct [:message_id, :reason, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [reason: {:enum, ["auto", "manual"]}, session_id: :string, timestamp: :number]
+    [
+      message_id: :string,
+      reason: {:enum, ["auto", "manual"]},
+      session_id: :string,
+      timestamp: :number
+    ]
   end
 end

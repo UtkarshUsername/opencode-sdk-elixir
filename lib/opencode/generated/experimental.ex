@@ -151,6 +151,45 @@ defmodule OpenCode.Generated.Experimental do
   end
 
   @doc """
+  Background subagents
+
+  Detach any synchronous subagents currently blocking the session and continue them in the background.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_session_background(sessionID :: String.t(), opts :: keyword) ::
+          {:ok, boolean}
+          | {:error,
+             OpenCode.Generated.EffectHttpApiErrorBadRequest.t()
+             | OpenCode.Generated.InvalidRequestError.t()}
+  def experimental_session_background(sessionID, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [sessionID: sessionID],
+      call: {OpenCode.Generated.Experimental, :experimental_session_background},
+      url: "/experimental/session/#{sessionID}/background",
+      method: :post,
+      query: query,
+      response: [
+        {200, :boolean},
+        {400,
+         {:union,
+          [
+            {OpenCode.Generated.EffectHttpApiErrorBadRequest, :t},
+            {OpenCode.Generated.InvalidRequestError, :t}
+          ]}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
   List sessions
 
   Get a list of all OpenCode sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.

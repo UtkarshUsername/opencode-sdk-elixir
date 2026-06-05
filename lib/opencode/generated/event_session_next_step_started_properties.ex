@@ -5,13 +5,14 @@ defmodule OpenCode.Generated.EventSessionNextStepStartedProperties do
 
   @type t :: %__MODULE__{
           agent: String.t(),
+          assistant_message_id: String.t(),
           model: OpenCode.Generated.EventSessionNextStepStartedPropertiesModel.t(),
           session_id: String.t(),
           snapshot: String.t() | nil,
           timestamp: number
         }
 
-  defstruct [:agent, :model, :session_id, :snapshot, :timestamp]
+  defstruct [:agent, :assistant_message_id, :model, :session_id, :snapshot, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,6 +21,7 @@ defmodule OpenCode.Generated.EventSessionNextStepStartedProperties do
   def __fields__(:t) do
     [
       agent: :string,
+      assistant_message_id: :string,
       model: {OpenCode.Generated.EventSessionNextStepStartedPropertiesModel, :t},
       session_id: :string,
       snapshot: :string,

@@ -4,19 +4,26 @@ defmodule OpenCode.Generated.EventSessionNextReasoningDeltaProperties do
   """
 
   @type t :: %__MODULE__{
+          assistant_message_id: String.t(),
           delta: String.t(),
           reasoning_id: String.t(),
           session_id: String.t(),
           timestamp: number
         }
 
-  defstruct [:delta, :reasoning_id, :session_id, :timestamp]
+  defstruct [:assistant_message_id, :delta, :reasoning_id, :session_id, :timestamp]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [delta: :string, reasoning_id: :string, session_id: :string, timestamp: :number]
+    [
+      assistant_message_id: :string,
+      delta: :string,
+      reasoning_id: :string,
+      session_id: :string,
+      timestamp: :number
+    ]
   end
 end
