@@ -9,6 +9,7 @@ defmodule OpenCode.Generated.EventSessionNextToolSuccessProperties do
           content: [
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
           ],
+          output_paths: [String.t()] | nil,
           provider: OpenCode.Generated.EventSessionNextToolSuccessPropertiesProvider.t(),
           result: map | nil,
           session_id: String.t(),
@@ -20,6 +21,7 @@ defmodule OpenCode.Generated.EventSessionNextToolSuccessProperties do
     :assistant_message_id,
     :call_id,
     :content,
+    :output_paths,
     :provider,
     :result,
     :session_id,
@@ -41,6 +43,7 @@ defmodule OpenCode.Generated.EventSessionNextToolSuccessProperties do
           {OpenCode.Generated.ToolTextContent, :t}
         ]
       ],
+      output_paths: [:string],
       provider: {OpenCode.Generated.EventSessionNextToolSuccessPropertiesProvider, :t},
       result: :map,
       session_id: :string,

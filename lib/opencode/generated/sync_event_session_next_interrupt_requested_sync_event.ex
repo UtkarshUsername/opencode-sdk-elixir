@@ -1,11 +1,11 @@
-defmodule OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEvent do
+defmodule OpenCode.Generated.SyncEventSessionNextInterruptRequestedSyncEvent do
   @moduledoc """
-  Provides struct and type for a SyncEventSessionNextCompactionEndedSyncEvent
+  Provides struct and type for a SyncEventSessionNextInterruptRequestedSyncEvent
   """
 
   @type t :: %__MODULE__{
           aggregate_id: String.t(),
-          data: OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEventData.t(),
+          data: OpenCode.Generated.SyncEventSessionNextInterruptRequestedSyncEventData.t(),
           id: String.t(),
           seq: number,
           type: String.t()
@@ -20,10 +20,10 @@ defmodule OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEvent do
   def __fields__(:t) do
     [
       aggregate_id: :string,
-      data: {OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEventData, :t},
+      data: {OpenCode.Generated.SyncEventSessionNextInterruptRequestedSyncEventData, :t},
       id: :string,
       seq: :number,
-      type: {:const, "session.next.compaction.ended.2"}
+      type: {:const, "session.next.interrupt.requested.1"}
     ]
   end
 end

@@ -9,12 +9,13 @@ defmodule OpenCode.Generated.SessionMessageToolStateCompleted do
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
           ],
           input: map,
+          output_paths: [String.t()] | nil,
           result: map | nil,
           status: String.t(),
           structured: map
         }
 
-  defstruct [:attachments, :content, :input, :result, :status, :structured]
+  defstruct [:attachments, :content, :input, :output_paths, :result, :status, :structured]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -30,6 +31,7 @@ defmodule OpenCode.Generated.SessionMessageToolStateCompleted do
         ]
       ],
       input: :map,
+      output_paths: [:string],
       result: :map,
       status: {:const, "completed"},
       structured: :map

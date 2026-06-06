@@ -3,15 +3,27 @@ defmodule OpenCode.Generated.ModelV2InfoRequest do
   Provides struct and type for a ModelV2InfoRequest
   """
 
-  @type t :: %__MODULE__{body: map, headers: map, variant: String.t() | nil}
+  @type t :: %__MODULE__{
+          body: map,
+          generation: OpenCode.Generated.ModelV2InfoRequestGeneration.t() | nil,
+          headers: map,
+          options: map | nil,
+          variant: String.t() | nil
+        }
 
-  defstruct [:body, :headers, :variant]
+  defstruct [:body, :generation, :headers, :options, :variant]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [body: :map, headers: :map, variant: :string]
+    [
+      body: :map,
+      generation: {OpenCode.Generated.ModelV2InfoRequestGeneration, :t},
+      headers: :map,
+      options: :map,
+      variant: :string
+    ]
   end
 end

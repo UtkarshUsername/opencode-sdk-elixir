@@ -3,15 +3,27 @@ defmodule OpenCode.Generated.ModelV2InfoVariants do
   Provides struct and type for a ModelV2InfoVariants
   """
 
-  @type t :: %__MODULE__{body: map, headers: map, id: String.t()}
+  @type t :: %__MODULE__{
+          body: map,
+          generation: OpenCode.Generated.ModelV2InfoVariantsGeneration.t() | nil,
+          headers: map,
+          id: String.t(),
+          options: map | nil
+        }
 
-  defstruct [:body, :headers, :id]
+  defstruct [:body, :generation, :headers, :id, :options]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [body: :map, headers: :map, id: :string]
+    [
+      body: :map,
+      generation: {OpenCode.Generated.ModelV2InfoVariantsGeneration, :t},
+      headers: :map,
+      id: :string,
+      options: :map
+    ]
   end
 end

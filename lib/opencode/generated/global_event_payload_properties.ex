@@ -43,7 +43,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           from: String.t() | nil,
           icon: OpenCode.Generated.GlobalEventPayloadPropertiesIcon.t() | nil,
           id: String.t(),
-          include: String.t() | nil,
           info:
             OpenCode.Generated.AssistantMessage.t()
             | OpenCode.Generated.Pty.t()
@@ -60,6 +59,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
             | OpenCode.Generated.ModelV2Info.t(),
           name: String.t() | nil,
           output: String.t(),
+          output_paths: [String.t()] | nil,
           part:
             OpenCode.Generated.AgentPart.t()
             | OpenCode.Generated.CompactionPart.t()
@@ -84,6 +84,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
             [OpenCode.Generated.QuestionInfo.t()] | [OpenCode.Generated.QuestionV2Info.t()],
           reason: String.t(),
           reasoning_id: String.t(),
+          recent: String.t(),
           reply: String.t(),
           request_id: String.t(),
           resources: [String.t()],
@@ -149,7 +150,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :from,
     :icon,
     :id,
-    :include,
     :info,
     :input,
     :location,
@@ -160,6 +160,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :model,
     :name,
     :output,
+    :output_paths,
     :part,
     :part_id,
     :patterns,
@@ -171,6 +172,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :questions,
     :reason,
     :reasoning_id,
+    :recent,
     :reply,
     :request_id,
     :resources,
@@ -275,7 +277,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       from: :string,
       icon: {OpenCode.Generated.GlobalEventPayloadPropertiesIcon, :t},
       id: :string,
-      include: :string,
       info:
         {:union,
          [
@@ -298,6 +299,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
          ]},
       name: :string,
       output: :string,
+      output_paths: [:string],
       part:
         {:union,
          [
@@ -326,6 +328,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
          [[{OpenCode.Generated.QuestionInfo, :t}], [{OpenCode.Generated.QuestionV2Info, :t}]]},
       reason: {:enum, ["auto", "manual"]},
       reasoning_id: :string,
+      recent: :string,
       reply: {:enum, ["once", "always", "reject"]},
       request_id: :string,
       resources: [:string],

@@ -92,7 +92,6 @@ defmodule OpenCode.Generated.ProjectCopy do
 
   ## Options
 
-    * `directory`
     * `workspace`
 
   ## Request Body
@@ -105,7 +104,7 @@ defmodule OpenCode.Generated.ProjectCopy do
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
   def experimental_project_copy_remove(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:workspace])
 
     client.request(%{
       args: [projectID: projectID, body: body],

@@ -15,10 +15,10 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.SyncEventSessionCreated.t()
             | OpenCode.Generated.SyncEventSessionDeleted.t()
             | OpenCode.Generated.SyncEventSessionNextAgentSwitched.t()
-            | OpenCode.Generated.SyncEventSessionNextCompactionDelta.t()
             | OpenCode.Generated.SyncEventSessionNextCompactionEnded.t()
             | OpenCode.Generated.SyncEventSessionNextCompactionStarted.t()
             | OpenCode.Generated.SyncEventSessionNextContextUpdated.t()
+            | OpenCode.Generated.SyncEventSessionNextInterruptRequested.t()
             | OpenCode.Generated.SyncEventSessionNextModelSwitched.t()
             | OpenCode.Generated.SyncEventSessionNextMoved.t()
             | OpenCode.Generated.SyncEventSessionNextPromptAdmitted.t()
@@ -67,10 +67,10 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.SyncEventSessionCreated, :t},
            {OpenCode.Generated.SyncEventSessionDeleted, :t},
            {OpenCode.Generated.SyncEventSessionNextAgentSwitched, :t},
-           {OpenCode.Generated.SyncEventSessionNextCompactionDelta, :t},
            {OpenCode.Generated.SyncEventSessionNextCompactionEnded, :t},
            {OpenCode.Generated.SyncEventSessionNextCompactionStarted, :t},
            {OpenCode.Generated.SyncEventSessionNextContextUpdated, :t},
+           {OpenCode.Generated.SyncEventSessionNextInterruptRequested, :t},
            {OpenCode.Generated.SyncEventSessionNextModelSwitched, :t},
            {OpenCode.Generated.SyncEventSessionNextMoved, :t},
            {OpenCode.Generated.SyncEventSessionNextPromptAdmitted, :t},

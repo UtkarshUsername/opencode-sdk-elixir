@@ -70,6 +70,7 @@ defmodule OpenCode.Generated.GlobalEventPayload do
            "session.next.compaction.ended",
            "session.next.compaction.started",
            "session.next.context.updated",
+           "session.next.interrupt.requested",
            "session.next.model.switched",
            "session.next.moved",
            "session.next.prompt.admitted",

@@ -67,6 +67,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventSessionNextCompactionEnded.t()
            | OpenCode.Generated.EventSessionNextCompactionStarted.t()
            | OpenCode.Generated.EventSessionNextContextUpdated.t()
+           | OpenCode.Generated.EventSessionNextInterruptRequested.t()
            | OpenCode.Generated.EventSessionNextModelSwitched.t()
            | OpenCode.Generated.EventSessionNextMoved.t()
            | OpenCode.Generated.EventSessionNextPromptAdmitted.t()
@@ -169,6 +170,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventSessionNextCompactionEnded, :t},
             {OpenCode.Generated.EventSessionNextCompactionStarted, :t},
             {OpenCode.Generated.EventSessionNextContextUpdated, :t},
+            {OpenCode.Generated.EventSessionNextInterruptRequested, :t},
             {OpenCode.Generated.EventSessionNextModelSwitched, :t},
             {OpenCode.Generated.EventSessionNextMoved, :t},
             {OpenCode.Generated.EventSessionNextPromptAdmitted, :t},
