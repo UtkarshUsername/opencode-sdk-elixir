@@ -6,11 +6,10 @@ defmodule OpenCode.Generated.Prompt do
   @type t :: %__MODULE__{
           agents: [OpenCode.Generated.PromptAgentAttachment.t()] | nil,
           files: [OpenCode.Generated.PromptFileAttachment.t()] | nil,
-          references: [OpenCode.Generated.PromptReferenceAttachment.t()] | nil,
           text: String.t()
         }
 
-  defstruct [:agents, :files, :references, :text]
+  defstruct [:agents, :files, :text]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,7 +19,6 @@ defmodule OpenCode.Generated.Prompt do
     [
       agents: [{OpenCode.Generated.PromptAgentAttachment, :t}],
       files: [{OpenCode.Generated.PromptFileAttachment, :t}],
-      references: [{OpenCode.Generated.PromptReferenceAttachment, :t}],
       text: :string
     ]
   end

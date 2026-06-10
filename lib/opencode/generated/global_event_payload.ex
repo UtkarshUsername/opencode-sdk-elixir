@@ -58,6 +58,7 @@ defmodule OpenCode.Generated.GlobalEventPayload do
            "question.v2.asked",
            "question.v2.rejected",
            "question.v2.replied",
+           "reference.updated",
            "server.connected",
            "session.compacted",
            "session.created",

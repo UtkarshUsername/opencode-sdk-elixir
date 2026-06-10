@@ -5,42 +5,39 @@ defmodule OpenCode.Generated.Reference do
 
   @default_client OpenCode.Client
 
-  @type reference_list_200_json_resp :: %{
-          branch: String.t() | nil,
-          kind: String.t(),
-          message: String.t(),
-          name: String.t(),
-          path: String.t(),
-          repository: String.t() | nil
+  @type v2_reference_list_200_json_resp :: %{
+          data: [OpenCode.Generated.ReferenceInfo.t()],
+          location: OpenCode.Generated.LocationInfo.t()
         }
 
   @doc """
-  List configured references
+  List references
 
-  List configured references resolved in the current workspace.
+  List references available in the requested location.
 
   ## Options
 
-    * `directory`
-    * `workspace`
+    * `location`
 
   """
-  @spec reference_list(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.Reference.reference_list_200_json_resp()]}
-          | {:error, OpenCode.Generated.BadRequestError.t()}
-  def reference_list(opts \\ []) do
+  @spec v2_reference_list(opts :: keyword) ::
+          {:ok, OpenCode.Generated.Reference.v2_reference_list_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_reference_list(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [],
-      call: {OpenCode.Generated.Reference, :reference_list},
-      url: "/reference",
+      call: {OpenCode.Generated.Reference, :v2_reference_list},
+      url: "/api/reference",
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.Reference, :reference_list_200_json_resp}]},
-        {400, {OpenCode.Generated.BadRequestError, :t}}
+        {200, {OpenCode.Generated.Reference, :v2_reference_list_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
       opts: opts
     })
@@ -48,14 +45,10 @@ defmodule OpenCode.Generated.Reference do
 
   @doc false
   @spec __fields__(atom) :: keyword
-  def __fields__(:reference_list_200_json_resp) do
+  def __fields__(:v2_reference_list_200_json_resp) do
     [
-      branch: :string,
-      kind: {:enum, ["git", "invalid", "local"]},
-      message: :string,
-      name: :string,
-      path: :string,
-      repository: :string
+      data: [{OpenCode.Generated.ReferenceInfo, :t}],
+      location: {OpenCode.Generated.LocationInfo, :t}
     ]
   end
 end

@@ -48,7 +48,8 @@ defmodule OpenCode.Generated.Project do
 
   """
   @spec project_directories(projectID :: String.t(), opts :: keyword) ::
-          {:ok, [String.t()]} | {:error, OpenCode.Generated.BadRequestError.t()}
+          {:ok, [OpenCode.Generated.ProjectDirectories.t()]}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
   def project_directories(projectID, opts \\ []) do
     client = opts[:client] || @default_client
     query = Keyword.take(opts, [:directory, :workspace])
@@ -59,7 +60,10 @@ defmodule OpenCode.Generated.Project do
       url: "/project/#{projectID}/directories",
       method: :get,
       query: query,
-      response: [{200, [:string]}, {400, {OpenCode.Generated.BadRequestError, :t}}],
+      response: [
+        {200, [{OpenCode.Generated.ProjectDirectories, :t}]},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
       opts: opts
     })
   end

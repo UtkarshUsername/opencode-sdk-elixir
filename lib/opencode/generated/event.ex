@@ -54,6 +54,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventQuestionV2Asked.t()
            | OpenCode.Generated.EventQuestionV2Rejected.t()
            | OpenCode.Generated.EventQuestionV2Replied.t()
+           | OpenCode.Generated.EventReferenceUpdated.t()
            | OpenCode.Generated.EventServerConnected.t()
            | OpenCode.Generated.EventServerInstanceDisposed.t()
            | OpenCode.Generated.EventSessionCompacted.t()
@@ -157,6 +158,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventQuestionV2Asked, :t},
             {OpenCode.Generated.EventQuestionV2Rejected, :t},
             {OpenCode.Generated.EventQuestionV2Replied, :t},
+            {OpenCode.Generated.EventReferenceUpdated, :t},
             {OpenCode.Generated.EventServerConnected, :t},
             {OpenCode.Generated.EventServerInstanceDisposed, :t},
             {OpenCode.Generated.EventSessionCompacted, :t},
