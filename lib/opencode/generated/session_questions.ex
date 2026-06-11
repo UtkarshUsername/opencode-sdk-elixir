@@ -43,6 +43,39 @@ defmodule OpenCode.Generated.SessionQuestions do
     })
   end
 
+  @type v2_session_question_list_200_json_resp :: %{
+          data: [OpenCode.Generated.QuestionV2Request.t()]
+        }
+
+  @doc """
+  List session question requests
+
+  Retrieve pending question requests owned by a session.
+  """
+  @spec v2_session_question_list(sessionID :: String.t(), opts :: keyword) ::
+          {:ok, OpenCode.Generated.SessionQuestions.v2_session_question_list_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_session_question_list(sessionID, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [sessionID: sessionID],
+      call: {OpenCode.Generated.SessionQuestions, :v2_session_question_list},
+      url: "/api/session/#{sessionID}/question",
+      method: :get,
+      response: [
+        {200, {OpenCode.Generated.SessionQuestions, :v2_session_question_list_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   Reject pending question request
 
@@ -135,5 +168,9 @@ defmodule OpenCode.Generated.SessionQuestions do
       data: [{OpenCode.Generated.QuestionV2Request, :t}],
       location: {OpenCode.Generated.LocationInfo, :t}
     ]
+  end
+
+  def __fields__(:v2_session_question_list_200_json_resp) do
+    [data: [{OpenCode.Generated.QuestionV2Request, :t}]]
   end
 end

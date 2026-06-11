@@ -71,6 +71,39 @@ defmodule OpenCode.Generated.OpencodeHttpApi do
     })
   end
 
+  @doc """
+  Get location
+
+  Resolve the requested location or the server default location.
+
+  ## Options
+
+    * `location`
+
+  """
+  @spec v2_location_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.LocationInfo.t()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_location_get(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:location])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.OpencodeHttpApi, :v2_location_get},
+      url: "/api/location",
+      method: :get,
+      query: query,
+      response: [
+        {200, {OpenCode.Generated.LocationInfo, :t}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(:v2_agent_list_200_json_resp) do

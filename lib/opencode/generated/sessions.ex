@@ -80,6 +80,71 @@ defmodule OpenCode.Generated.Sessions do
     })
   end
 
+  @type v2_session_create_200_json_resp :: %{data: OpenCode.Generated.SessionV2Info.t()}
+
+  @doc """
+  Create session
+
+  Create a session at the requested location.
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec v2_session_create(body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Sessions.v2_session_create_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_session_create(body, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [body: body],
+      call: {OpenCode.Generated.Sessions, :v2_session_create},
+      url: "/api/session",
+      body: body,
+      method: :post,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Sessions, :v2_session_create_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @type v2_session_get_200_json_resp :: %{data: OpenCode.Generated.SessionV2Info.t()}
+
+  @doc """
+  Get session
+
+  Retrieve a session by ID.
+  """
+  @spec v2_session_get(sessionID :: String.t(), opts :: keyword) ::
+          {:ok, OpenCode.Generated.Sessions.v2_session_get_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_session_get(sessionID, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [sessionID: sessionID],
+      call: {OpenCode.Generated.Sessions, :v2_session_get},
+      url: "/api/session/#{sessionID}",
+      method: :get,
+      response: [
+        {200, {OpenCode.Generated.Sessions, :v2_session_get_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @doc """
   List sessions
 
@@ -225,6 +290,14 @@ defmodule OpenCode.Generated.Sessions do
         ]
       ]
     ]
+  end
+
+  def __fields__(:v2_session_create_200_json_resp) do
+    [data: {OpenCode.Generated.SessionV2Info, :t}]
+  end
+
+  def __fields__(:v2_session_get_200_json_resp) do
+    [data: {OpenCode.Generated.SessionV2Info, :t}]
   end
 
   def __fields__(:v2_session_prompt_200_json_resp) do

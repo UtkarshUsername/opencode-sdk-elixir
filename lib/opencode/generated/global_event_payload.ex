@@ -22,11 +22,12 @@ defmodule OpenCode.Generated.GlobalEventPayload do
       type:
         {:enum,
          [
-           "account.added",
-           "account.removed",
-           "account.switched",
            "catalog.model.updated",
            "command.executed",
+           "connector.updated",
+           "credential.added",
+           "credential.removed",
+           "credential.switched",
            "file.edited",
            "file.watcher.updated",
            "global.disposed",

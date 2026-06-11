@@ -4,7 +4,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
   """
 
   @type t :: %__MODULE__{
-          account: OpenCode.Generated.AuthInfo.t(),
           action: String.t(),
           agent: String.t(),
           always: [String.t()],
@@ -16,10 +15,12 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           call_id: String.t(),
           command: String.t(),
           commands: OpenCode.Generated.GlobalEventPayloadPropertiesCommands.t() | nil,
+          connector_id: String.t(),
           content: [
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
           ],
           cost: number,
+          credential: OpenCode.Generated.CredentialInfo.t(),
           delivery: String.t(),
           delta: String.t(),
           diff: [OpenCode.Generated.SnapshotFileDiff.t()],
@@ -92,7 +93,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           sandboxes: [String.t()],
           save: [String.t()] | nil,
           server: String.t(),
-          service_id: String.t(),
           session_id: String.t() | nil,
           snapshot: String.t() | nil,
           source: OpenCode.Generated.PermissionV2Source.t() | nil,
@@ -123,7 +123,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
         }
 
   defstruct [
-    :account,
     :action,
     :agent,
     :always,
@@ -135,8 +134,10 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :call_id,
     :command,
     :commands,
+    :connector_id,
     :content,
     :cost,
+    :credential,
     :delivery,
     :delta,
     :diff,
@@ -180,7 +181,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :sandboxes,
     :save,
     :server,
-    :service_id,
     :session_id,
     :snapshot,
     :source,
@@ -211,7 +211,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
 
   def __fields__(:t) do
     [
-      account: {OpenCode.Generated.AuthInfo, :t},
       action: :string,
       agent: :string,
       always: [:string],
@@ -245,6 +244,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
            ]
          ]},
       commands: {OpenCode.Generated.GlobalEventPayloadPropertiesCommands, :t},
+      connector_id: :string,
       content: [
         union: [
           {OpenCode.Generated.ToolFileContent, :t},
@@ -252,6 +252,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
         ]
       ],
       cost: :number,
+      credential: {OpenCode.Generated.CredentialInfo, :t},
       delivery: {:enum, ["steer", "queue"]},
       delta: :string,
       diff: [{OpenCode.Generated.SnapshotFileDiff, :t}],
@@ -336,7 +337,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       sandboxes: [:string],
       save: [:string],
       server: :string,
-      service_id: :string,
       session_id: :string,
       snapshot: :string,
       source: {OpenCode.Generated.PermissionV2Source, :t},

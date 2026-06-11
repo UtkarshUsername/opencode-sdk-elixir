@@ -18,11 +18,12 @@ defmodule OpenCode.Generated.Event do
   """
   @spec event_subscribe(opts :: keyword) ::
           {:ok,
-           OpenCode.Generated.EventAccountAdded.t()
-           | OpenCode.Generated.EventAccountRemoved.t()
-           | OpenCode.Generated.EventAccountSwitched.t()
-           | OpenCode.Generated.EventCatalogModelUpdated.t()
+           OpenCode.Generated.EventCatalogModelUpdated.t()
            | OpenCode.Generated.EventCommandExecuted.t()
+           | OpenCode.Generated.EventConnectorUpdated.t()
+           | OpenCode.Generated.EventCredentialAdded.t()
+           | OpenCode.Generated.EventCredentialRemoved.t()
+           | OpenCode.Generated.EventCredentialSwitched.t()
            | OpenCode.Generated.EventFileEdited.t()
            | OpenCode.Generated.EventFileWatcherUpdated.t()
            | OpenCode.Generated.EventGlobalDisposed.t()
@@ -122,11 +123,12 @@ defmodule OpenCode.Generated.Event do
         {200,
          {:union,
           [
-            {OpenCode.Generated.EventAccountAdded, :t},
-            {OpenCode.Generated.EventAccountRemoved, :t},
-            {OpenCode.Generated.EventAccountSwitched, :t},
             {OpenCode.Generated.EventCatalogModelUpdated, :t},
             {OpenCode.Generated.EventCommandExecuted, :t},
+            {OpenCode.Generated.EventConnectorUpdated, :t},
+            {OpenCode.Generated.EventCredentialAdded, :t},
+            {OpenCode.Generated.EventCredentialRemoved, :t},
+            {OpenCode.Generated.EventCredentialSwitched, :t},
             {OpenCode.Generated.EventFileEdited, :t},
             {OpenCode.Generated.EventFileWatcherUpdated, :t},
             {OpenCode.Generated.EventGlobalDisposed, :t},

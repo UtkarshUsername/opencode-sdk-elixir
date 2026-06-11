@@ -3,15 +3,20 @@ defmodule OpenCode.Generated.ProviderV2InfoEnabled do
   Provides struct and types for a ProviderV2InfoEnabled
   """
 
-  @type t :: %__MODULE__{data: map, name: String.t(), service: String.t(), via: String.t()}
+  @type t :: %__MODULE__{credential_id: String.t(), data: map, name: String.t(), via: String.t()}
 
-  defstruct [:data, :name, :service, :via]
+  defstruct [:credential_id, :data, :name, :via]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [data: :map, name: :string, service: :string, via: {:enum, ["account", "custom", "env"]}]
+    [
+      credential_id: :string,
+      data: :map,
+      name: :string,
+      via: {:enum, ["credential", "custom", "env"]}
+    ]
   end
 end
