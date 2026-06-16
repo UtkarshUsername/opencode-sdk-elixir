@@ -82,6 +82,11 @@ defmodule OpenCode.Generated.Integrations do
           location: OpenCode.Generated.LocationInfo.t()
         }
 
+  @type v2_integration_attempt_status_200_json_resp_data_time :: %{
+          created: number | String.t(),
+          expires: number | String.t()
+        }
+
   @type v2_integration_attempt_status_200_json_resp_data :: %{
           message: String.t(),
           status: String.t(),
