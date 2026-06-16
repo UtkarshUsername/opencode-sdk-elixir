@@ -85,38 +85,32 @@ defmodule OpenCode.Generated.Filesystem do
     })
   end
 
-  @type v2_fs_read_200_json_resp :: %{
-          data: OpenCode.Generated.FileSystemContent.t(),
-          location: OpenCode.Generated.LocationInfo.t()
-        }
-
   @doc """
   Read file
 
-  Read one file relative to the requested location.
+  Serve one file relative to the requested location.
 
   ## Options
 
     * `location`
-    * `path`
 
   """
   @spec v2_fs_read(opts :: keyword) ::
-          {:ok, OpenCode.Generated.Filesystem.v2_fs_read_200_json_resp()}
+          {:ok, binary}
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
   def v2_fs_read(opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:location, :path])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [],
       call: {OpenCode.Generated.Filesystem, :v2_fs_read},
-      url: "/api/fs/read",
+      url: "/api/fs/read/*",
       method: :get,
       query: query,
       response: [
-        {200, {OpenCode.Generated.Filesystem, :v2_fs_read_200_json_resp}},
+        {200, {:string, "binary"}},
         {400, {OpenCode.Generated.InvalidRequestError, :t}},
         {401, {OpenCode.Generated.UnauthorizedError, :t}}
       ],
@@ -136,13 +130,6 @@ defmodule OpenCode.Generated.Filesystem do
   def __fields__(:v2_fs_list_200_json_resp) do
     [
       data: [{OpenCode.Generated.FileSystemEntry, :t}],
-      location: {OpenCode.Generated.LocationInfo, :t}
-    ]
-  end
-
-  def __fields__(:v2_fs_read_200_json_resp) do
-    [
-      data: {OpenCode.Generated.FileSystemContent, :t},
       location: {OpenCode.Generated.LocationInfo, :t}
     ]
   end

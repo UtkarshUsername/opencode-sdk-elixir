@@ -18,17 +18,14 @@ defmodule OpenCode.Generated.Event do
   """
   @spec event_subscribe(opts :: keyword) ::
           {:ok,
-           OpenCode.Generated.EventCatalogModelUpdated.t()
+           OpenCode.Generated.EventCatalogUpdated.t()
            | OpenCode.Generated.EventCommandExecuted.t()
-           | OpenCode.Generated.EventConnectorUpdated.t()
-           | OpenCode.Generated.EventCredentialAdded.t()
-           | OpenCode.Generated.EventCredentialRemoved.t()
-           | OpenCode.Generated.EventCredentialSwitched.t()
            | OpenCode.Generated.EventFileEdited.t()
            | OpenCode.Generated.EventFileWatcherUpdated.t()
            | OpenCode.Generated.EventGlobalDisposed.t()
            | OpenCode.Generated.EventInstallationUpdateAvailable.t()
            | OpenCode.Generated.EventInstallationUpdated.t()
+           | OpenCode.Generated.EventIntegrationUpdated.t()
            | OpenCode.Generated.EventLspUpdated.t()
            | OpenCode.Generated.EventMcpBrowserOpenFailed.t()
            | OpenCode.Generated.EventMcpToolsChanged.t()
@@ -123,17 +120,14 @@ defmodule OpenCode.Generated.Event do
         {200,
          {:union,
           [
-            {OpenCode.Generated.EventCatalogModelUpdated, :t},
+            {OpenCode.Generated.EventCatalogUpdated, :t},
             {OpenCode.Generated.EventCommandExecuted, :t},
-            {OpenCode.Generated.EventConnectorUpdated, :t},
-            {OpenCode.Generated.EventCredentialAdded, :t},
-            {OpenCode.Generated.EventCredentialRemoved, :t},
-            {OpenCode.Generated.EventCredentialSwitched, :t},
             {OpenCode.Generated.EventFileEdited, :t},
             {OpenCode.Generated.EventFileWatcherUpdated, :t},
             {OpenCode.Generated.EventGlobalDisposed, :t},
             {OpenCode.Generated.EventInstallationUpdateAvailable, :t},
             {OpenCode.Generated.EventInstallationUpdated, :t},
+            {OpenCode.Generated.EventIntegrationUpdated, :t},
             {OpenCode.Generated.EventLspUpdated, :t},
             {OpenCode.Generated.EventMcpBrowserOpenFailed, :t},
             {OpenCode.Generated.EventMcpToolsChanged, :t},

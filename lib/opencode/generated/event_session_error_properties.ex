@@ -6,6 +6,7 @@ defmodule OpenCode.Generated.EventSessionErrorProperties do
   @type t :: %__MODULE__{
           error:
             OpenCode.Generated.APIError.t()
+            | OpenCode.Generated.ContentFilterError.t()
             | OpenCode.Generated.ContextOverflowError.t()
             | OpenCode.Generated.MessageAbortedError.t()
             | OpenCode.Generated.MessageOutputLengthError.t()
@@ -28,6 +29,7 @@ defmodule OpenCode.Generated.EventSessionErrorProperties do
         {:union,
          [
            {OpenCode.Generated.APIError, :t},
+           {OpenCode.Generated.ContentFilterError, :t},
            {OpenCode.Generated.ContextOverflowError, :t},
            {OpenCode.Generated.MessageAbortedError, :t},
            {OpenCode.Generated.MessageOutputLengthError, :t},

@@ -5,14 +5,13 @@ defmodule OpenCode.Generated.ProviderV2Info do
 
   @type t :: %__MODULE__{
           api: OpenCode.Generated.ProviderV2InfoApi.t(),
-          enabled: false | OpenCode.Generated.ProviderV2InfoEnabled.t(),
-          env: [String.t()],
+          disabled: boolean | nil,
           id: String.t(),
           name: String.t(),
           request: OpenCode.Generated.ProviderV2InfoRequest.t()
         }
 
-  defstruct [:api, :enabled, :env, :id, :name, :request]
+  defstruct [:api, :disabled, :id, :name, :request]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -21,8 +20,7 @@ defmodule OpenCode.Generated.ProviderV2Info do
   def __fields__(:t) do
     [
       api: {OpenCode.Generated.ProviderV2InfoApi, :t},
-      enabled: {:union, [{OpenCode.Generated.ProviderV2InfoEnabled, :t}, const: false]},
-      env: [:string],
+      disabled: :boolean,
       id: :string,
       name: :string,
       request: {OpenCode.Generated.ProviderV2InfoRequest, :t}

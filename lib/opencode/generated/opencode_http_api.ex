@@ -43,6 +43,77 @@ defmodule OpenCode.Generated.OpencodeHttpApi do
     })
   end
 
+  @doc """
+  Remove credential
+
+  Remove a stored integration credential.
+
+  ## Options
+
+    * `location`
+
+  """
+  @spec v2_credential_remove(credentialID :: String.t(), opts :: keyword) ::
+          :ok
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_credential_remove(credentialID, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:location])
+
+    client.request(%{
+      args: [credentialID: credentialID],
+      call: {OpenCode.Generated.OpencodeHttpApi, :v2_credential_remove},
+      url: "/api/credential/#{credentialID}",
+      method: :delete,
+      query: query,
+      response: [
+        {204, :null},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
+  Update credential
+
+  Update a stored credential label.
+
+  ## Options
+
+    * `location`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec v2_credential_update(credentialID :: String.t(), body :: map, opts :: keyword) ::
+          :ok
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_credential_update(credentialID, body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:location])
+
+    client.request(%{
+      args: [credentialID: credentialID, body: body],
+      call: {OpenCode.Generated.OpencodeHttpApi, :v2_credential_update},
+      url: "/api/credential/#{credentialID}",
+      body: body,
+      method: :patch,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {204, :null},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
   @type v2_health_get_200_json_resp :: %{healthy: true}
 
   @doc """

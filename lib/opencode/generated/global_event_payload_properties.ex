@@ -15,18 +15,17 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           call_id: String.t(),
           command: String.t(),
           commands: OpenCode.Generated.GlobalEventPayloadPropertiesCommands.t() | nil,
-          connector_id: String.t(),
           content: [
             OpenCode.Generated.ToolFileContent.t() | OpenCode.Generated.ToolTextContent.t()
           ],
           cost: number,
-          credential: OpenCode.Generated.CredentialInfo.t(),
           delivery: String.t(),
           delta: String.t(),
           diff: [OpenCode.Generated.SnapshotFileDiff.t()],
           duration: integer | nil,
           error:
             OpenCode.Generated.APIError.t()
+            | OpenCode.Generated.ContentFilterError.t()
             | OpenCode.Generated.ContextOverflowError.t()
             | OpenCode.Generated.MessageAbortedError.t()
             | OpenCode.Generated.MessageOutputLengthError.t()
@@ -41,7 +40,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           field: String.t(),
           file: String.t(),
           finish: String.t(),
-          from: String.t() | nil,
           icon: OpenCode.Generated.GlobalEventPayloadPropertiesIcon.t() | nil,
           id: String.t(),
           info:
@@ -55,9 +53,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           message: String.t(),
           message_id: String.t(),
           metadata: map | nil,
-          model:
-            OpenCode.Generated.GlobalEventPayloadPropertiesModel.t()
-            | OpenCode.Generated.ModelV2Info.t(),
+          model: OpenCode.Generated.GlobalEventPayloadPropertiesModel.t(),
           name: String.t() | nil,
           output: String.t(),
           output_paths: [String.t()] | nil,
@@ -105,7 +101,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
           time_created: number,
           timestamp: number,
           title: String.t() | nil,
-          to: String.t() | nil,
           todos: [OpenCode.Generated.Todo.t()],
           tokens: OpenCode.Generated.GlobalEventPayloadPropertiesTokens.t(),
           tool:
@@ -134,10 +129,8 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :call_id,
     :command,
     :commands,
-    :connector_id,
     :content,
     :cost,
-    :credential,
     :delivery,
     :delta,
     :diff,
@@ -148,7 +141,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :field,
     :file,
     :finish,
-    :from,
     :icon,
     :id,
     :info,
@@ -193,7 +185,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
     :time_created,
     :timestamp,
     :title,
-    :to,
     :todos,
     :tokens,
     :tool,
@@ -244,7 +235,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
            ]
          ]},
       commands: {OpenCode.Generated.GlobalEventPayloadPropertiesCommands, :t},
-      connector_id: :string,
       content: [
         union: [
           {OpenCode.Generated.ToolFileContent, :t},
@@ -252,7 +242,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
         ]
       ],
       cost: :number,
-      credential: {OpenCode.Generated.CredentialInfo, :t},
       delivery: {:enum, ["steer", "queue"]},
       delta: :string,
       diff: [{OpenCode.Generated.SnapshotFileDiff, :t}],
@@ -261,6 +250,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
         {:union,
          [
            {OpenCode.Generated.APIError, :t},
+           {OpenCode.Generated.ContentFilterError, :t},
            {OpenCode.Generated.ContextOverflowError, :t},
            {OpenCode.Generated.MessageAbortedError, :t},
            {OpenCode.Generated.MessageOutputLengthError, :t},
@@ -275,7 +265,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       field: :string,
       file: :string,
       finish: :string,
-      from: :string,
       icon: {OpenCode.Generated.GlobalEventPayloadPropertiesIcon, :t},
       id: :string,
       info:
@@ -292,12 +281,7 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       message: :string,
       message_id: :string,
       metadata: :map,
-      model:
-        {:union,
-         [
-           {OpenCode.Generated.GlobalEventPayloadPropertiesModel, :t},
-           {OpenCode.Generated.ModelV2Info, :t}
-         ]},
+      model: {OpenCode.Generated.GlobalEventPayloadPropertiesModel, :t},
       name: :string,
       output: :string,
       output_paths: [:string],
@@ -349,7 +333,6 @@ defmodule OpenCode.Generated.GlobalEventPayloadProperties do
       time_created: :number,
       timestamp: :number,
       title: :string,
-      to: :string,
       todos: [{OpenCode.Generated.Todo, :t}],
       tokens: {OpenCode.Generated.GlobalEventPayloadPropertiesTokens, :t},
       tool:

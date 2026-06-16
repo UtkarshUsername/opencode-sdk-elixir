@@ -5,30 +5,73 @@ defmodule OpenCode.Generated.ProjectCopy do
 
   @default_client OpenCode.Client
 
-  @doc """
-  Create project copy
+  @type experimental_project_copy_generate_name_200_json_resp :: %{name: String.t()}
 
-  Create a local physical copy of a project using the selected strategy.
+  @doc """
+  Generate project copy name
+
+  Generate a short name for a project copy from task context.
 
   ## Options
 
+    * `directory`
     * `workspace`
 
   ## Request Body
 
   **Content Types**: `application/json`
   """
-  @spec experimental_project_copy_create(projectID :: String.t(), body :: map, opts :: keyword) ::
-          {:ok, OpenCode.Generated.ProjectCopyCopy.t()}
-          | {:error,
-             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
-  def experimental_project_copy_create(projectID, body, opts \\ []) do
+  @spec experimental_project_copy_generate_name(
+          projectID :: String.t(),
+          body :: map,
+          opts :: keyword
+        ) ::
+          {:ok,
+           OpenCode.Generated.ProjectCopy.experimental_project_copy_generate_name_200_json_resp()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_project_copy_generate_name(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:workspace])
+    query = Keyword.take(opts, [:directory, :workspace])
 
     client.request(%{
       args: [projectID: projectID, body: body],
-      call: {OpenCode.Generated.ProjectCopy, :experimental_project_copy_create},
+      call: {OpenCode.Generated.ProjectCopy, :experimental_project_copy_generate_name},
+      url: "/experimental/project/#{projectID}/copy/generate-name",
+      body: body,
+      method: :post,
+      query: query,
+      request: [{"application/json", :map}],
+      response: [
+        {200,
+         {OpenCode.Generated.ProjectCopy, :experimental_project_copy_generate_name_200_json_resp}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
+  post `/experimental/project/{projectID}/copy`
+
+  ## Options
+
+    * `location`
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec v2_project_copy_create(projectID :: String.t(), body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.ProjectCopyCopy.t()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
+  def v2_project_copy_create(projectID, body, opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:location])
+
+    client.request(%{
+      args: [projectID: projectID, body: body],
+      call: {OpenCode.Generated.ProjectCopy, :v2_project_copy_create},
       url: "/experimental/project/#{projectID}/copy",
       body: body,
       method: :post,
@@ -48,27 +91,24 @@ defmodule OpenCode.Generated.ProjectCopy do
   end
 
   @doc """
-  Refresh project copies
-
-  Discover local project copies using one or all configured strategies.
+  post `/experimental/project/{projectID}/copy/refresh`
 
   ## Options
 
-    * `directory`
-    * `workspace`
+    * `location`
 
   """
-  @spec experimental_project_copy_refresh(projectID :: String.t(), opts :: keyword) ::
+  @spec v2_project_copy_refresh(projectID :: String.t(), opts :: keyword) ::
           :ok
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
-  def experimental_project_copy_refresh(projectID, opts \\ []) do
+  def v2_project_copy_refresh(projectID, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:directory, :workspace])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [projectID: projectID],
-      call: {OpenCode.Generated.ProjectCopy, :experimental_project_copy_refresh},
+      call: {OpenCode.Generated.ProjectCopy, :v2_project_copy_refresh},
       url: "/experimental/project/#{projectID}/copy/refresh",
       method: :post,
       query: query,
@@ -86,29 +126,27 @@ defmodule OpenCode.Generated.ProjectCopy do
   end
 
   @doc """
-  Remove project copy
-
-  Remove a local physical copy of a project using the selected strategy.
+  delete `/experimental/project/{projectID}/copy`
 
   ## Options
 
-    * `workspace`
+    * `location`
 
   ## Request Body
 
   **Content Types**: `application/json`
   """
-  @spec experimental_project_copy_remove(projectID :: String.t(), body :: map, opts :: keyword) ::
+  @spec v2_project_copy_remove(projectID :: String.t(), body :: map, opts :: keyword) ::
           :ok
           | {:error,
              OpenCode.Generated.InvalidRequestError.t() | OpenCode.Generated.ProjectCopyError.t()}
-  def experimental_project_copy_remove(projectID, body, opts \\ []) do
+  def v2_project_copy_remove(projectID, body, opts \\ []) do
     client = opts[:client] || @default_client
-    query = Keyword.take(opts, [:workspace])
+    query = Keyword.take(opts, [:location])
 
     client.request(%{
       args: [projectID: projectID, body: body],
-      call: {OpenCode.Generated.ProjectCopy, :experimental_project_copy_remove},
+      call: {OpenCode.Generated.ProjectCopy, :v2_project_copy_remove},
       url: "/experimental/project/#{projectID}/copy",
       body: body,
       method: :delete,
@@ -125,5 +163,11 @@ defmodule OpenCode.Generated.ProjectCopy do
       ],
       opts: opts
     })
+  end
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(:experimental_project_copy_generate_name_200_json_resp) do
+    [name: :string]
   end
 end

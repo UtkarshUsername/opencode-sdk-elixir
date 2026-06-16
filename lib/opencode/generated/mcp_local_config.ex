@@ -5,13 +5,14 @@ defmodule OpenCode.Generated.McpLocalConfig do
 
   @type t :: %__MODULE__{
           command: [String.t()],
+          cwd: String.t() | nil,
           enabled: boolean | nil,
           environment: map | nil,
           timeout: integer | nil,
           type: String.t()
         }
 
-  defstruct [:command, :enabled, :environment, :timeout, :type]
+  defstruct [:command, :cwd, :enabled, :environment, :timeout, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,6 +21,7 @@ defmodule OpenCode.Generated.McpLocalConfig do
   def __fields__(:t) do
     [
       command: [:string],
+      cwd: :string,
       enabled: :boolean,
       environment: :map,
       timeout: :integer,
