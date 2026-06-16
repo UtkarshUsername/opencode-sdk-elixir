@@ -163,6 +163,11 @@ defmodule OpenCode.Generated.Connectors do
           location: OpenCode.Generated.LocationInfo.t()
         }
 
+  @type v2_connector_connect_oauth_status_200_json_resp_data_time :: %{
+          created: number | String.t(),
+          expires: number | String.t()
+        }
+
   @type v2_connector_connect_oauth_status_200_json_resp_data :: %{
           message: String.t(),
           status: String.t(),
