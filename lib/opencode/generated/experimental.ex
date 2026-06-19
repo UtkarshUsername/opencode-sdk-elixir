@@ -6,6 +6,38 @@ defmodule OpenCode.Generated.Experimental do
   @default_client OpenCode.Client
 
   @doc """
+  Get experimental capabilities
+
+  Get experimental features enabled on the OpenCode server.
+
+  ## Options
+
+    * `directory`
+    * `workspace`
+
+  """
+  @spec experimental_capabilities_get(opts :: keyword) ::
+          {:ok, OpenCode.Generated.ExperimentalCapabilities.t()}
+          | {:error, OpenCode.Generated.BadRequestError.t()}
+  def experimental_capabilities_get(opts \\ []) do
+    client = opts[:client] || @default_client
+    query = Keyword.take(opts, [:directory, :workspace])
+
+    client.request(%{
+      args: [],
+      call: {OpenCode.Generated.Experimental, :experimental_capabilities_get},
+      url: "/experimental/capabilities",
+      method: :get,
+      query: query,
+      response: [
+        {200, {OpenCode.Generated.ExperimentalCapabilities, :t}},
+        {400, {OpenCode.Generated.BadRequestError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @doc """
   Get active Console provider metadata
 
   Get the active Console org name and the set of provider IDs managed by that Console org.
