@@ -28,8 +28,6 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
 
   require Logger
 
-  alias OpenAPI.Renderer.State
-
   @spec_file "priv/opencode_openapi.json"
   @generated_dir "lib/opencode/generated"
 
@@ -177,8 +175,13 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
   end
 
   defp render_type(value) do
-    %State{implementation: OpenAPI.Renderer}
-    |> OpenAPI.Renderer.Util.to_type(value)
+    # oapi_generator is a dev/test-only dependency, so this file must compile
+    # without it. `struct/2` and `apply/3` only reference the generator at
+    # runtime, which is safe because generation always runs with it loaded.
+    state = struct(OpenAPI.Renderer.State, implementation: OpenAPI.Renderer)
+
+    state
+    |> then(&apply(OpenAPI.Renderer.Util, :to_type, [&1, value]))
     |> Macro.to_string()
   rescue
     _ -> "map"
