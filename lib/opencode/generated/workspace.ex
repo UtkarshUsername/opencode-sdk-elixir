@@ -162,11 +162,6 @@ defmodule OpenCode.Generated.Workspace do
     })
   end
 
-  @type experimental_workspace_status_200_json_resp :: %{
-          status: String.t(),
-          workspace_id: String.t()
-        }
-
   @doc """
   Workspace status
 
@@ -179,7 +174,7 @@ defmodule OpenCode.Generated.Workspace do
 
   """
   @spec experimental_workspace_status(opts :: keyword) ::
-          {:ok, [OpenCode.Generated.Workspace.experimental_workspace_status_200_json_resp()]}
+          {:ok, [OpenCode.Generated.WorkspaceEventConnectionStatus.t()]}
           | {:error, OpenCode.Generated.BadRequestError.t()}
   def experimental_workspace_status(opts \\ []) do
     client = opts[:client] || @default_client
@@ -192,7 +187,7 @@ defmodule OpenCode.Generated.Workspace do
       method: :get,
       query: query,
       response: [
-        {200, [{OpenCode.Generated.Workspace, :experimental_workspace_status_200_json_resp}]},
+        {200, [{OpenCode.Generated.WorkspaceEventConnectionStatus, :t}]},
         {400, {OpenCode.Generated.BadRequestError, :t}}
       ],
       opts: opts
@@ -294,10 +289,6 @@ defmodule OpenCode.Generated.Workspace do
 
   def __fields__(:experimental_workspace_adapter_list_200_json_resp) do
     [description: :string, name: :string, type: :string]
-  end
-
-  def __fields__(:experimental_workspace_status_200_json_resp) do
-    [status: {:enum, ["connected", "connecting", "disconnected", "error"]}, workspace_id: :string]
   end
 
   def __fields__(:t) do

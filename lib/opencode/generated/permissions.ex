@@ -106,6 +106,90 @@ defmodule OpenCode.Generated.Permissions do
     })
   end
 
+  @type v2_session_permission_create_200_json_resp :: %{
+          data: OpenCode.Generated.Permissions.v2_session_permission_create_200_json_resp_data()
+        }
+
+  @type v2_session_permission_create_200_json_resp_data :: %{effect: String.t(), id: String.t()}
+
+  @doc """
+  Create permission request
+
+  Evaluate and, when approval is required, create a permission request for a session.
+
+  ## Request Body
+
+  **Content Types**: `application/json`
+  """
+  @spec v2_session_permission_create(sessionID :: String.t(), body :: map, opts :: keyword) ::
+          {:ok, OpenCode.Generated.Permissions.v2_session_permission_create_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_session_permission_create(sessionID, body, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [sessionID: sessionID, body: body],
+      call: {OpenCode.Generated.Permissions, :v2_session_permission_create},
+      url: "/api/session/#{sessionID}/permission",
+      body: body,
+      method: :post,
+      request: [{"application/json", :map}],
+      response: [
+        {200, {OpenCode.Generated.Permissions, :v2_session_permission_create_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404, {OpenCode.Generated.SessionNotFoundError, :t}}
+      ],
+      opts: opts
+    })
+  end
+
+  @type v2_session_permission_get_200_json_resp :: %{
+          data: OpenCode.Generated.PermissionV2Request.t()
+        }
+
+  @doc """
+  Get permission request
+
+  Retrieve a pending permission request owned by a session.
+  """
+  @spec v2_session_permission_get(
+          sessionID :: String.t(),
+          requestID :: String.t(),
+          opts :: keyword
+        ) ::
+          {:ok, OpenCode.Generated.Permissions.v2_session_permission_get_200_json_resp()}
+          | {:error,
+             OpenCode.Generated.InvalidRequestError.t()
+             | OpenCode.Generated.PermissionNotFoundError.t()
+             | OpenCode.Generated.SessionNotFoundError.t()
+             | OpenCode.Generated.UnauthorizedError.t()}
+  def v2_session_permission_get(sessionID, requestID, opts \\ []) do
+    client = opts[:client] || @default_client
+
+    client.request(%{
+      args: [sessionID: sessionID, requestID: requestID],
+      call: {OpenCode.Generated.Permissions, :v2_session_permission_get},
+      url: "/api/session/#{sessionID}/permission/#{requestID}",
+      method: :get,
+      response: [
+        {200, {OpenCode.Generated.Permissions, :v2_session_permission_get_200_json_resp}},
+        {400, {OpenCode.Generated.InvalidRequestError, :t}},
+        {401, {OpenCode.Generated.UnauthorizedError, :t}},
+        {404,
+         {:union,
+          [
+            {OpenCode.Generated.PermissionNotFoundError, :t},
+            {OpenCode.Generated.SessionNotFoundError, :t}
+          ]}}
+      ],
+      opts: opts
+    })
+  end
+
   @type v2_session_permission_list_200_json_resp :: %{
           data: [OpenCode.Generated.PermissionV2Request.t()]
         }
@@ -196,6 +280,18 @@ defmodule OpenCode.Generated.Permissions do
 
   def __fields__(:v2_permission_saved_list_200_json_resp) do
     [data: [{OpenCode.Generated.PermissionSavedInfo, :t}]]
+  end
+
+  def __fields__(:v2_session_permission_create_200_json_resp) do
+    [data: {OpenCode.Generated.Permissions, :v2_session_permission_create_200_json_resp_data}]
+  end
+
+  def __fields__(:v2_session_permission_create_200_json_resp_data) do
+    [effect: {:enum, ["allow", "deny", "ask"]}, id: :string]
+  end
+
+  def __fields__(:v2_session_permission_get_200_json_resp) do
+    [data: {OpenCode.Generated.PermissionV2Request, :t}]
   end
 
   def __fields__(:v2_session_permission_list_200_json_resp) do

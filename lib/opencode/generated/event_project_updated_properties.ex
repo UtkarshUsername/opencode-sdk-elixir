@@ -4,12 +4,12 @@ defmodule OpenCode.Generated.EventProjectUpdatedProperties do
   """
 
   @type t :: %__MODULE__{
-          commands: OpenCode.Generated.EventProjectUpdatedPropertiesCommands.t() | nil,
-          icon: OpenCode.Generated.EventProjectUpdatedPropertiesIcon.t() | nil,
+          commands: OpenCode.Generated.ProjectCommands.t() | nil,
+          icon: OpenCode.Generated.ProjectIcon.t() | nil,
           id: String.t(),
           name: String.t() | nil,
           sandboxes: [String.t()],
-          time: OpenCode.Generated.EventProjectUpdatedPropertiesTime.t(),
+          time: OpenCode.Generated.ProjectTime.t(),
           vcs: String.t() | nil,
           worktree: String.t()
         }
@@ -22,12 +22,12 @@ defmodule OpenCode.Generated.EventProjectUpdatedProperties do
 
   def __fields__(:t) do
     [
-      commands: {OpenCode.Generated.EventProjectUpdatedPropertiesCommands, :t},
-      icon: {OpenCode.Generated.EventProjectUpdatedPropertiesIcon, :t},
+      commands: {OpenCode.Generated.ProjectCommands, :t},
+      icon: {OpenCode.Generated.ProjectIcon, :t},
       id: :string,
       name: :string,
       sandboxes: [:string],
-      time: {OpenCode.Generated.EventProjectUpdatedPropertiesTime, :t},
+      time: {OpenCode.Generated.ProjectTime, :t},
       vcs: {:const, "git"},
       worktree: :string
     ]

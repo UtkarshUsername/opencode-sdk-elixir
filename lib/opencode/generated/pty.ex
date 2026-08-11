@@ -42,8 +42,6 @@ defmodule OpenCode.Generated.Pty do
     })
   end
 
-  @type pty_connect_token_200_json_resp :: %{expires_in: integer, ticket: String.t()}
-
   @doc """
   Create PTY WebSocket token
 
@@ -56,7 +54,7 @@ defmodule OpenCode.Generated.Pty do
 
   """
   @spec pty_connect_token(ptyID :: String.t(), opts :: keyword) ::
-          {:ok, OpenCode.Generated.Pty.pty_connect_token_200_json_resp()}
+          {:ok, OpenCode.Generated.PtyTicketConnectToken.t()}
           | {:error,
              OpenCode.Generated.BadRequestError.t()
              | OpenCode.Generated.PtyForbiddenError.t()
@@ -72,7 +70,7 @@ defmodule OpenCode.Generated.Pty do
       method: :post,
       query: query,
       response: [
-        {200, {OpenCode.Generated.Pty, :pty_connect_token_200_json_resp}},
+        {200, {OpenCode.Generated.PtyTicketConnectToken, :t}},
         {400, {OpenCode.Generated.BadRequestError, :t}},
         {403, {OpenCode.Generated.PtyForbiddenError, :t}},
         {404, {OpenCode.Generated.PtyNotFoundError, :t}}
@@ -346,11 +344,9 @@ defmodule OpenCode.Generated.Pty do
   end
 
   @type v2_pty_connect_token_200_json_resp :: %{
-          data: OpenCode.Generated.Pty.v2_pty_connect_token_200_json_resp_data(),
+          data: OpenCode.Generated.PtyTicketConnectToken.t(),
           location: OpenCode.Generated.LocationInfo.t()
         }
-
-  @type v2_pty_connect_token_200_json_resp_data :: %{expires_in: integer, ticket: String.t()}
 
   @doc """
   Create PTY WebSocket token
@@ -611,10 +607,6 @@ defmodule OpenCode.Generated.Pty do
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
-  def __fields__(:pty_connect_token_200_json_resp) do
-    [expires_in: :integer, ticket: :string]
-  end
-
   def __fields__(:pty_shells_200_json_resp) do
     [acceptable: :boolean, name: :string, path: :string]
   end
@@ -634,13 +626,9 @@ defmodule OpenCode.Generated.Pty do
 
   def __fields__(:v2_pty_connect_token_200_json_resp) do
     [
-      data: {OpenCode.Generated.Pty, :v2_pty_connect_token_200_json_resp_data},
+      data: {OpenCode.Generated.PtyTicketConnectToken, :t},
       location: {OpenCode.Generated.LocationInfo, :t}
     ]
-  end
-
-  def __fields__(:v2_pty_connect_token_200_json_resp_data) do
-    [expires_in: :integer, ticket: :string]
   end
 
   def __fields__(:v2_pty_create_200_json_resp) do

@@ -25,6 +25,7 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventGlobalDisposed.t()
            | OpenCode.Generated.EventInstallationUpdateAvailable.t()
            | OpenCode.Generated.EventInstallationUpdated.t()
+           | OpenCode.Generated.EventIntegrationConnectionUpdated.t()
            | OpenCode.Generated.EventIntegrationUpdated.t()
            | OpenCode.Generated.EventLspUpdated.t()
            | OpenCode.Generated.EventMcpBrowserOpenFailed.t()
@@ -66,16 +67,17 @@ defmodule OpenCode.Generated.Event do
            | OpenCode.Generated.EventSessionNextCompactionEnded.t()
            | OpenCode.Generated.EventSessionNextCompactionStarted.t()
            | OpenCode.Generated.EventSessionNextContextUpdated.t()
-           | OpenCode.Generated.EventSessionNextInterruptRequested.t()
            | OpenCode.Generated.EventSessionNextModelSwitched.t()
            | OpenCode.Generated.EventSessionNextMoved.t()
            | OpenCode.Generated.EventSessionNextPromptAdmitted.t()
-           | OpenCode.Generated.EventSessionNextPromptPromoted.t()
            | OpenCode.Generated.EventSessionNextPrompted.t()
            | OpenCode.Generated.EventSessionNextReasoningDelta.t()
            | OpenCode.Generated.EventSessionNextReasoningEnded.t()
            | OpenCode.Generated.EventSessionNextReasoningStarted.t()
            | OpenCode.Generated.EventSessionNextRetried.t()
+           | OpenCode.Generated.EventSessionNextRevertCleared.t()
+           | OpenCode.Generated.EventSessionNextRevertCommitted.t()
+           | OpenCode.Generated.EventSessionNextRevertStaged.t()
            | OpenCode.Generated.EventSessionNextShellEnded.t()
            | OpenCode.Generated.EventSessionNextShellStarted.t()
            | OpenCode.Generated.EventSessionNextStepEnded.t()
@@ -127,6 +129,7 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventGlobalDisposed, :t},
             {OpenCode.Generated.EventInstallationUpdateAvailable, :t},
             {OpenCode.Generated.EventInstallationUpdated, :t},
+            {OpenCode.Generated.EventIntegrationConnectionUpdated, :t},
             {OpenCode.Generated.EventIntegrationUpdated, :t},
             {OpenCode.Generated.EventLspUpdated, :t},
             {OpenCode.Generated.EventMcpBrowserOpenFailed, :t},
@@ -168,16 +171,17 @@ defmodule OpenCode.Generated.Event do
             {OpenCode.Generated.EventSessionNextCompactionEnded, :t},
             {OpenCode.Generated.EventSessionNextCompactionStarted, :t},
             {OpenCode.Generated.EventSessionNextContextUpdated, :t},
-            {OpenCode.Generated.EventSessionNextInterruptRequested, :t},
             {OpenCode.Generated.EventSessionNextModelSwitched, :t},
             {OpenCode.Generated.EventSessionNextMoved, :t},
             {OpenCode.Generated.EventSessionNextPromptAdmitted, :t},
-            {OpenCode.Generated.EventSessionNextPromptPromoted, :t},
             {OpenCode.Generated.EventSessionNextPrompted, :t},
             {OpenCode.Generated.EventSessionNextReasoningDelta, :t},
             {OpenCode.Generated.EventSessionNextReasoningEnded, :t},
             {OpenCode.Generated.EventSessionNextReasoningStarted, :t},
             {OpenCode.Generated.EventSessionNextRetried, :t},
+            {OpenCode.Generated.EventSessionNextRevertCleared, :t},
+            {OpenCode.Generated.EventSessionNextRevertCommitted, :t},
+            {OpenCode.Generated.EventSessionNextRevertStaged, :t},
             {OpenCode.Generated.EventSessionNextShellEnded, :t},
             {OpenCode.Generated.EventSessionNextShellStarted, :t},
             {OpenCode.Generated.EventSessionNextStepEnded, :t},

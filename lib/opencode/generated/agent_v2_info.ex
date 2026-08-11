@@ -9,9 +9,9 @@ defmodule OpenCode.Generated.AgentV2Info do
           hidden: boolean,
           id: String.t(),
           mode: String.t(),
-          model: OpenCode.Generated.AgentV2InfoModel.t() | nil,
+          model: OpenCode.Generated.ModelRef.t() | nil,
           permissions: [OpenCode.Generated.PermissionV2Rule.t()],
-          request: OpenCode.Generated.AgentV2InfoRequest.t(),
+          request: OpenCode.Generated.ProviderRequest.t(),
           steps: integer | nil,
           system: String.t() | nil
         }
@@ -45,9 +45,9 @@ defmodule OpenCode.Generated.AgentV2Info do
       hidden: :boolean,
       id: :string,
       mode: {:enum, ["subagent", "primary", "all"]},
-      model: {OpenCode.Generated.AgentV2InfoModel, :t},
+      model: {OpenCode.Generated.ModelRef, :t},
       permissions: [{OpenCode.Generated.PermissionV2Rule, :t}],
-      request: {OpenCode.Generated.AgentV2InfoRequest, :t},
+      request: {OpenCode.Generated.ProviderRequest, :t},
       steps: :integer,
       system: :string
     ]

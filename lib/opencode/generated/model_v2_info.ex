@@ -5,8 +5,8 @@ defmodule OpenCode.Generated.ModelV2Info do
 
   @type t :: %__MODULE__{
           api: OpenCode.Generated.ModelV2InfoApi.t(),
-          capabilities: OpenCode.Generated.ModelV2InfoCapabilities.t(),
-          cost: [OpenCode.Generated.ModelV2InfoCost.t()],
+          capabilities: OpenCode.Generated.ModelCapabilities.t(),
+          cost: [OpenCode.Generated.ModelCost.t()],
           enabled: boolean,
           family: String.t() | nil,
           id: String.t(),
@@ -42,8 +42,8 @@ defmodule OpenCode.Generated.ModelV2Info do
   def __fields__(:t) do
     [
       api: {OpenCode.Generated.ModelV2InfoApi, :t},
-      capabilities: {OpenCode.Generated.ModelV2InfoCapabilities, :t},
-      cost: [{OpenCode.Generated.ModelV2InfoCost, :t}],
+      capabilities: {OpenCode.Generated.ModelCapabilities, :t},
+      cost: [{OpenCode.Generated.ModelCost, :t}],
       enabled: :boolean,
       family: :string,
       id: :string,

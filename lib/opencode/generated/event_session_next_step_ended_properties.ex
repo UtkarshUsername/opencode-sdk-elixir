@@ -6,6 +6,7 @@ defmodule OpenCode.Generated.EventSessionNextStepEndedProperties do
   @type t :: %__MODULE__{
           assistant_message_id: String.t(),
           cost: number,
+          files: [String.t()] | nil,
           finish: String.t(),
           session_id: String.t(),
           snapshot: String.t() | nil,
@@ -13,7 +14,16 @@ defmodule OpenCode.Generated.EventSessionNextStepEndedProperties do
           tokens: OpenCode.Generated.EventSessionNextStepEndedPropertiesTokens.t()
         }
 
-  defstruct [:assistant_message_id, :cost, :finish, :session_id, :snapshot, :timestamp, :tokens]
+  defstruct [
+    :assistant_message_id,
+    :cost,
+    :files,
+    :finish,
+    :session_id,
+    :snapshot,
+    :timestamp,
+    :tokens
+  ]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -23,6 +33,7 @@ defmodule OpenCode.Generated.EventSessionNextStepEndedProperties do
     [
       assistant_message_id: :string,
       cost: :number,
+      files: [:string],
       finish: :string,
       session_id: :string,
       snapshot: :string,

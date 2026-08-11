@@ -3,15 +3,19 @@ defmodule OpenCode.Generated.SessionMessageAssistantSnapshot do
   Provides struct and type for a SessionMessageAssistantSnapshot
   """
 
-  @type t :: %__MODULE__{end: String.t() | nil, start: String.t() | nil}
+  @type t :: %__MODULE__{
+          end: String.t() | nil,
+          files: [String.t()] | nil,
+          start: String.t() | nil
+        }
 
-  defstruct [:end, :start]
+  defstruct [:end, :files, :start]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [end: :string, start: :string]
+    [end: :string, files: [:string], start: :string]
   end
 end

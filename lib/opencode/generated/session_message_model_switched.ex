@@ -6,7 +6,7 @@ defmodule OpenCode.Generated.SessionMessageModelSwitched do
   @type t :: %__MODULE__{
           id: String.t(),
           metadata: map | nil,
-          model: OpenCode.Generated.SessionMessageModelSwitchedModel.t(),
+          model: OpenCode.Generated.ModelRef.t(),
           time: OpenCode.Generated.SessionMessageModelSwitchedTime.t(),
           type: String.t()
         }
@@ -21,7 +21,7 @@ defmodule OpenCode.Generated.SessionMessageModelSwitched do
     [
       id: :string,
       metadata: :map,
-      model: {OpenCode.Generated.SessionMessageModelSwitchedModel, :t},
+      model: {OpenCode.Generated.ModelRef, :t},
       time: {OpenCode.Generated.SessionMessageModelSwitchedTime, :t},
       type: {:const, "model-switched"}
     ]

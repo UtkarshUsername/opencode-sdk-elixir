@@ -5,7 +5,7 @@ defmodule OpenCode.Generated.EventSessionNextModelSwitchedProperties do
 
   @type t :: %__MODULE__{
           message_id: String.t(),
-          model: OpenCode.Generated.EventSessionNextModelSwitchedPropertiesModel.t(),
+          model: OpenCode.Generated.ModelRef.t(),
           session_id: String.t(),
           timestamp: number
         }
@@ -19,7 +19,7 @@ defmodule OpenCode.Generated.EventSessionNextModelSwitchedProperties do
   def __fields__(:t) do
     [
       message_id: :string,
-      model: {OpenCode.Generated.EventSessionNextModelSwitchedPropertiesModel, :t},
+      model: {OpenCode.Generated.ModelRef, :t},
       session_id: :string,
       timestamp: :number
     ]

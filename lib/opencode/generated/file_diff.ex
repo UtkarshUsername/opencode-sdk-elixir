@@ -4,15 +4,14 @@ defmodule OpenCode.Generated.FileDiff do
   """
 
   @type t :: %__MODULE__{
-          additions: number,
-          after: String.t(),
-          before: String.t(),
-          deletions: number,
-          file: String.t(),
-          status: String.t() | nil
+          additions: integer,
+          deletions: integer,
+          patch: String.t(),
+          path: String.t(),
+          status: String.t()
         }
 
-  defstruct [:additions, :after, :before, :deletions, :file, :status]
+  defstruct [:additions, :deletions, :patch, :path, :status]
 
   @doc false
   @spec __fields__(atom) :: keyword
@@ -20,12 +19,11 @@ defmodule OpenCode.Generated.FileDiff do
 
   def __fields__(:t) do
     [
-      additions: :number,
-      after: :string,
-      before: :string,
-      deletions: :number,
-      file: :string,
-      status: {:enum, ["added", "deleted", "modified"]}
+      additions: :integer,
+      deletions: :integer,
+      patch: :string,
+      path: :string,
+      status: {:enum, ["added", "modified", "deleted"]}
     ]
   end
 end

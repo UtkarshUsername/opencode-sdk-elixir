@@ -3,15 +3,29 @@ defmodule OpenCode.Generated.QuestionReplied do
   Provides struct and type for a QuestionReplied
   """
 
-  @type t :: %__MODULE__{answers: [[String.t()]], request_id: String.t(), session_id: String.t()}
+  @type t :: %__MODULE__{
+          data: OpenCode.Generated.QuestionRepliedData.t(),
+          durable: OpenCode.Generated.QuestionRepliedDurable.t() | nil,
+          id: String.t(),
+          location: OpenCode.Generated.LocationRef.t() | nil,
+          metadata: map | nil,
+          type: String.t()
+        }
 
-  defstruct [:answers, :request_id, :session_id]
+  defstruct [:data, :durable, :id, :location, :metadata, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [answers: [[:string]], request_id: :string, session_id: :string]
+    [
+      data: {OpenCode.Generated.QuestionRepliedData, :t},
+      durable: {OpenCode.Generated.QuestionRepliedDurable, :t},
+      id: :string,
+      location: {OpenCode.Generated.LocationRef, :t},
+      metadata: :map,
+      type: {:const, "question.replied"}
+    ]
   end
 end

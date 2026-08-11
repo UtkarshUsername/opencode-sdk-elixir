@@ -3,7 +3,7 @@ defmodule OpenCode.Generated.ModelV2InfoTime do
   Provides struct and type for a ModelV2InfoTime
   """
 
-  @type t :: %__MODULE__{released: number | String.t()}
+  @type t :: %__MODULE__{released: number}
 
   defstruct [:released]
 
@@ -12,16 +12,6 @@ defmodule OpenCode.Generated.ModelV2InfoTime do
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [
-      released:
-        {:union,
-         [
-           :number,
-           const: "-Infinity",
-           const: "Infinity",
-           const: "NaN",
-           enum: ["Infinity", "-Infinity", "NaN"]
-         ]}
-    ]
+    [released: :number]
   end
 end

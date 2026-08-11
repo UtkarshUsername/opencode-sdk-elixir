@@ -6,7 +6,7 @@ defmodule OpenCode.Generated.EventSessionNextStepStartedProperties do
   @type t :: %__MODULE__{
           agent: String.t(),
           assistant_message_id: String.t(),
-          model: OpenCode.Generated.EventSessionNextStepStartedPropertiesModel.t(),
+          model: OpenCode.Generated.ModelRef.t(),
           session_id: String.t(),
           snapshot: String.t() | nil,
           timestamp: number
@@ -22,7 +22,7 @@ defmodule OpenCode.Generated.EventSessionNextStepStartedProperties do
     [
       agent: :string,
       assistant_message_id: :string,
-      model: {OpenCode.Generated.EventSessionNextStepStartedPropertiesModel, :t},
+      model: {OpenCode.Generated.ModelRef, :t},
       session_id: :string,
       snapshot: :string,
       timestamp: :number

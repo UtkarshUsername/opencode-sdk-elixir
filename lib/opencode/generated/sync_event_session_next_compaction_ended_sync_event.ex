@@ -23,7 +23,7 @@ defmodule OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEvent do
       data: {OpenCode.Generated.SyncEventSessionNextCompactionEndedSyncEventData, :t},
       id: :string,
       seq: :number,
-      type: {:const, "session.next.compaction.ended.2"}
+      type: {:const, "session.next.compaction.ended.1"}
     ]
   end
 end

@@ -1,0 +1,17 @@
+defmodule OpenCode.Generated.ProjectDirectoriesUpdatedData do
+  @moduledoc """
+  Provides struct and type for a ProjectDirectoriesUpdatedData
+  """
+
+  @type t :: %__MODULE__{project_id: String.t()}
+
+  defstruct [:project_id]
+
+  @doc false
+  @spec __fields__(atom) :: keyword
+  def __fields__(type \\ :t)
+
+  def __fields__(:t) do
+    [project_id: :string]
+  end
+end

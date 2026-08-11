@@ -6,7 +6,7 @@ defmodule OpenCode.Generated.CommandV2Info do
   @type t :: %__MODULE__{
           agent: String.t() | nil,
           description: String.t() | nil,
-          model: OpenCode.Generated.CommandV2InfoModel.t() | nil,
+          model: OpenCode.Generated.ModelRef.t() | nil,
           name: String.t(),
           subtask: boolean | nil,
           template: String.t()
@@ -22,7 +22,7 @@ defmodule OpenCode.Generated.CommandV2Info do
     [
       agent: :string,
       description: :string,
-      model: {OpenCode.Generated.CommandV2InfoModel, :t},
+      model: {OpenCode.Generated.ModelRef, :t},
       name: :string,
       subtask: :boolean,
       template: :string

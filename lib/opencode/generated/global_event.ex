@@ -18,15 +18,16 @@ defmodule OpenCode.Generated.GlobalEvent do
             | OpenCode.Generated.SyncEventSessionNextCompactionEnded.t()
             | OpenCode.Generated.SyncEventSessionNextCompactionStarted.t()
             | OpenCode.Generated.SyncEventSessionNextContextUpdated.t()
-            | OpenCode.Generated.SyncEventSessionNextInterruptRequested.t()
             | OpenCode.Generated.SyncEventSessionNextModelSwitched.t()
             | OpenCode.Generated.SyncEventSessionNextMoved.t()
             | OpenCode.Generated.SyncEventSessionNextPromptAdmitted.t()
-            | OpenCode.Generated.SyncEventSessionNextPromptPromoted.t()
             | OpenCode.Generated.SyncEventSessionNextPrompted.t()
             | OpenCode.Generated.SyncEventSessionNextReasoningEnded.t()
             | OpenCode.Generated.SyncEventSessionNextReasoningStarted.t()
             | OpenCode.Generated.SyncEventSessionNextRetried.t()
+            | OpenCode.Generated.SyncEventSessionNextRevertCleared.t()
+            | OpenCode.Generated.SyncEventSessionNextRevertCommitted.t()
+            | OpenCode.Generated.SyncEventSessionNextRevertStaged.t()
             | OpenCode.Generated.SyncEventSessionNextShellEnded.t()
             | OpenCode.Generated.SyncEventSessionNextShellStarted.t()
             | OpenCode.Generated.SyncEventSessionNextStepEnded.t()
@@ -70,15 +71,16 @@ defmodule OpenCode.Generated.GlobalEvent do
            {OpenCode.Generated.SyncEventSessionNextCompactionEnded, :t},
            {OpenCode.Generated.SyncEventSessionNextCompactionStarted, :t},
            {OpenCode.Generated.SyncEventSessionNextContextUpdated, :t},
-           {OpenCode.Generated.SyncEventSessionNextInterruptRequested, :t},
            {OpenCode.Generated.SyncEventSessionNextModelSwitched, :t},
            {OpenCode.Generated.SyncEventSessionNextMoved, :t},
            {OpenCode.Generated.SyncEventSessionNextPromptAdmitted, :t},
-           {OpenCode.Generated.SyncEventSessionNextPromptPromoted, :t},
            {OpenCode.Generated.SyncEventSessionNextPrompted, :t},
            {OpenCode.Generated.SyncEventSessionNextReasoningEnded, :t},
            {OpenCode.Generated.SyncEventSessionNextReasoningStarted, :t},
            {OpenCode.Generated.SyncEventSessionNextRetried, :t},
+           {OpenCode.Generated.SyncEventSessionNextRevertCleared, :t},
+           {OpenCode.Generated.SyncEventSessionNextRevertCommitted, :t},
+           {OpenCode.Generated.SyncEventSessionNextRevertStaged, :t},
            {OpenCode.Generated.SyncEventSessionNextShellEnded, :t},
            {OpenCode.Generated.SyncEventSessionNextShellStarted, :t},
            {OpenCode.Generated.SyncEventSessionNextStepEnded, :t},

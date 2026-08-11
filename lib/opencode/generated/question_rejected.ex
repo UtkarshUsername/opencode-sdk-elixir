@@ -3,15 +3,29 @@ defmodule OpenCode.Generated.QuestionRejected do
   Provides struct and type for a QuestionRejected
   """
 
-  @type t :: %__MODULE__{request_id: String.t(), session_id: String.t()}
+  @type t :: %__MODULE__{
+          data: OpenCode.Generated.QuestionRejectedData.t(),
+          durable: OpenCode.Generated.QuestionRejectedDurable.t() | nil,
+          id: String.t(),
+          location: OpenCode.Generated.LocationRef.t() | nil,
+          metadata: map | nil,
+          type: String.t()
+        }
 
-  defstruct [:request_id, :session_id]
+  defstruct [:data, :durable, :id, :location, :metadata, :type]
 
   @doc false
   @spec __fields__(atom) :: keyword
   def __fields__(type \\ :t)
 
   def __fields__(:t) do
-    [request_id: :string, session_id: :string]
+    [
+      data: {OpenCode.Generated.QuestionRejectedData, :t},
+      durable: {OpenCode.Generated.QuestionRejectedDurable, :t},
+      id: :string,
+      location: {OpenCode.Generated.LocationRef, :t},
+      metadata: :map,
+      type: {:const, "question.rejected"}
+    ]
   end
 end
