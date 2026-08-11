@@ -297,6 +297,11 @@ defmodule OpenCode.Generated.Integrations do
     ]
   end
 
+  @type v2_integration_attempt_status_200_json_resp_data_time :: %{
+          created: number | String.t(),
+          expires: number | String.t()
+        }
+
   def __fields__(:v2_integration_attempt_status_200_json_resp_data_time) do
     [
       created:

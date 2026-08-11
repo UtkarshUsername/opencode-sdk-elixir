@@ -28,7 +28,10 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
 
   require Logger
 
+  alias OpenAPI.Renderer.State
+
   @spec_file "priv/opencode_openapi.json"
+  @generated_dir "lib/opencode/generated"
 
   @impl Mix.Task
   def run(args) do
@@ -56,6 +59,12 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
     # Run the OpenAPI generator using the opencode profile
     Mix.Task.run("api.gen", ["opencode", spec_path])
 
+    # oapi_generator can omit @type definitions for nested typed maps whose
+    # schemas are merged from multiple anyOf variants (they only appear as
+    # `__fields__` clauses, which causes a compile error). Inject the missing
+    # types so the generated code always compiles.
+    fix_missing_types()
+
     Mix.shell().info("")
     Mix.shell().info("✅ Client generation complete!")
     Mix.shell().info("")
@@ -67,6 +76,112 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
     Mix.shell().info("  3. Update your code to use the new client module")
 
     :ok
+  end
+
+  defp fix_missing_types do
+    @generated_dir
+    |> Path.join("*.ex")
+    |> Path.wildcard()
+    |> Enum.each(&fix_missing_types(&1))
+  end
+
+  defp fix_missing_types(path) do
+    source = File.read!(path)
+
+    case Code.string_to_quoted(source, escape: false) do
+      {:ok, ast} ->
+        {type_names, field_names, bodies} = collect_types(ast)
+
+        case Enum.sort(field_names -- type_names) do
+          [] ->
+            :ok
+
+          missing ->
+            new_source =
+              Enum.reduce(missing, source, fn name, acc ->
+                inject_type(acc, name, Map.fetch!(bodies, name))
+              end)
+
+            if new_source == source do
+              Mix.shell().error("⚠️ Could not locate `__fields__` for #{inspect(missing)} in #{path}")
+            else
+              File.write!(path, new_source)
+              Mix.shell().info("✨ Injected #{length(missing)} missing @type(s) into #{path}")
+            end
+        end
+
+      {:error, error} ->
+        Mix.shell().error("⚠️ Could not parse #{path} during typespec fixup: #{Exception.message(error)}")
+    end
+  end
+
+  defp collect_types(ast) do
+    {_ast, {types, fields, bodies}} =
+      Macro.prewalk(ast, {[], [], %{}}, fn
+        {:@, _, [{:type, _, [{:"::", _, [{name, _, nil}, _]}]}]} = node, {types, fields, bodies}
+        when is_atom(name) ->
+          {node, {[name | types], fields, bodies}}
+
+        {:def, _, [{:__fields__, _, [name]}, body]} = node, {types, fields, bodies}
+        when is_atom(name) ->
+          {node, {types, [name | fields], Map.put(bodies, name, extract_fields(body))}}
+
+        node, acc ->
+          {node, acc}
+      end)
+
+    {types, fields, bodies}
+  end
+
+  defp extract_fields([{:do, body}]), do: extract_fields(body)
+  defp extract_fields({:__block__, _, [{:"[]", _, fields}]}), do: fields
+  defp extract_fields({:"[]", _, fields}), do: fields
+  defp extract_fields(fields) when is_list(fields), do: fields
+  defp extract_fields(_), do: []
+
+  defp inject_type(source, name, fields) do
+    block = render_type_block(name, fields)
+    def_line = "  def __fields__(:#{name}) do"
+
+    String.replace(source, def_line, block <> "\n" <> def_line, global: false)
+  end
+
+  defp render_type_block(name, fields) do
+    body =
+      fields
+      |> Enum.map(&render_field/1)
+      |> Enum.join(",\n")
+      |> String.split("\n")
+      |> Enum.join("\n          ")
+
+    """
+      @type #{name} :: %{
+              #{body}
+            }
+    """
+  end
+
+  defp render_field({field, value}) when is_atom(field) do
+    key =
+      if String.match?(Atom.to_string(field), ~r/^[a-zA-Z_][a-zA-Z0-9_]*[?!]?$/) do
+        Atom.to_string(field)
+      else
+        inspect(field)
+      end
+
+    "#{key}: #{render_type(value)}"
+  end
+
+  defp render_field({field, value}) when is_binary(field) do
+    "#{inspect(field)}: #{render_type(value)}"
+  end
+
+  defp render_type(value) do
+    %State{implementation: OpenAPI.Renderer}
+    |> OpenAPI.Renderer.Util.to_type(value)
+    |> Macro.to_string()
+  rescue
+    _ -> "map"
   end
 
   defp fetch_spec_from_cli do
