@@ -144,7 +144,7 @@ defmodule OpenCode.Generated.Global do
   @doc """
   Upgrade opencode
 
-  Upgrade opencode to the specified version or latest if not specified.
+  Upgrade opencode to the specified version.
 
   ## Request Body
 

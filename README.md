@@ -12,7 +12,7 @@ Add `opencode_sdk` to your dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:opencode_sdk, "~> 0.1.88"}
+    {:opencode_sdk, "~> 0.1.89"}
   ]
 end
 ```
