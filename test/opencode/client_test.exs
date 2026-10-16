@@ -78,7 +78,44 @@ defmodule OpenCode.ClientTest do
     assert {:error, :closed} = Task.await(server, 2_000)
   end
 
-  defp serve(status, body, content_type \\ "application/json") do
+  test "SSE HTTP errors preserve status and body without emitting events" do
+    for {status, body, content_type, expected} <- [
+          {401, ~s({"error":"unauthorized"}), "application/json", %{"error" => "unauthorized"}},
+          {500, "server failed", "text/plain", "server failed"},
+          {403, "data: {\"type\":\"forbidden\"}\n\n", "text/event-stream", "data: {\"type\":\"forbidden\"}\n\n"}
+        ] do
+      {base_url, request} = serve(status, body, content_type)
+      {:ok, %{stream: stream}} = OpenCode.Generated.Operations.event_subscribe(base_url: base_url)
+      consumer = Task.async(fn -> Enum.to_list(stream) end)
+
+      assert [{:error, {^status, ^expected}}] = Task.await(consumer, 2_000)
+      Task.await(request)
+    end
+  end
+
+  test "SSE connection failures emit one transport error and terminate" do
+    {:ok, listener} = :gen_tcp.listen(0, [:binary, active: false])
+    {:ok, {_, port}} = :inet.sockname(listener)
+    :gen_tcp.close(listener)
+
+    {:ok, %{stream: stream}} =
+      OpenCode.Generated.Operations.event_subscribe(base_url: "http://127.0.0.1:#{port}")
+
+    consumer = Task.async(fn -> Enum.to_list(stream) end)
+    assert [{:error, %Req.TransportError{reason: :econnrefused}}] = Task.await(consumer, 2_000)
+  end
+
+  test "SSE mid-stream failures preserve delivered events and then terminate" do
+    body = "data: {\"type\":\"first\"}\n\n"
+    {base_url, request} = serve(200, body, "text/event-stream", byte_size(body) + 100)
+    {:ok, %{stream: stream}} = OpenCode.Generated.Operations.event_subscribe(base_url: base_url)
+    consumer = Task.async(fn -> Enum.to_list(stream) end)
+
+    assert [%{"type" => "first"}, {:error, %Req.TransportError{}}] = Task.await(consumer, 2_000)
+    Task.await(request)
+  end
+
+  defp serve(status, body, content_type \\ "application/json", content_length \\ nil) do
     {:ok, listener} = :gen_tcp.listen(0, [:binary, active: false, reuseaddr: true])
     {:ok, {_, port}} = :inet.sockname(listener)
 
@@ -94,7 +131,7 @@ defmodule OpenCode.ClientTest do
               :gen_tcp.send(socket, [
                 "HTTP/1.1 #{status} Response\r\n",
                 "content-type: #{content_type}\r\n",
-                "content-length: #{byte_size(body)}\r\n",
+                "content-length: #{content_length || byte_size(body)}\r\n",
                 "connection: close\r\n\r\n"
               ])
 

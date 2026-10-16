@@ -81,20 +81,24 @@ defmodule OpenCode.Client do
         ref = make_ref()
         consumer = self()
         pid = spawn_link(fn -> sse_run(req, consumer, ref) end)
-        %{ref: ref, pid: pid, buf: ""}
+        %{ref: ref, pid: pid, buf: "", done?: false}
       end,
-      fn state ->
-        receive do
-          {ref, :data, data} when ref == state.ref ->
-            {events, buf} = parse_sse(state.buf <> data)
-            {events, %{state | buf: buf}}
+      fn
+        %{done?: true} = state ->
+          {:halt, state}
 
-          {ref, :done} when ref == state.ref ->
-            {:halt, state}
+        state ->
+          receive do
+            {ref, :data, data} when ref == state.ref ->
+              {events, buf} = parse_sse(state.buf <> data)
+              {events, %{state | buf: buf}}
 
-          {ref, :error, error} when ref == state.ref ->
-            {[{:error, error}], state}
-        end
+            {ref, :done} when ref == state.ref ->
+              {:halt, state}
+
+            {ref, :error, error} when ref == state.ref ->
+              {[{:error, error}], %{state | done?: true}}
+          end
       end,
       fn state ->
         case Process.alive?(state.pid) do
@@ -111,13 +115,24 @@ defmodule OpenCode.Client do
 
   defp sse_run(req, pid, ref) do
     case Req.request(req,
-           into: fn {:data, data}, acc ->
-             send(pid, {ref, :data, data})
-             {:cont, acc}
+           retry: false,
+           into: fn {:data, data}, {request, response} ->
+             if response.status in 200..299 do
+               send(pid, {ref, :data, data})
+               {:cont, {request, response}}
+             else
+               {:cont, {request, %{response | body: response.body <> data}}}
+             end
            end
          ) do
-      {:ok, _} -> send(pid, {ref, :done})
-      {:error, error} -> send(pid, {ref, :error, error})
+      {:ok, %{status: status}} when status in 200..299 ->
+        send(pid, {ref, :done})
+
+      {:ok, %{status: status, body: body}} ->
+        send(pid, {ref, :error, {status, body}})
+
+      {:error, error} ->
+        send(pid, {ref, :error, error})
     end
   end
 
