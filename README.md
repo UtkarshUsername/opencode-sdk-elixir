@@ -378,11 +378,19 @@ API functions and types are documented in generated module docs, primarily:
 ## Regenerating
 
 The OpenAPI spec is at `priv/opencode_openapi.json`.
+This SDK targets OpenCode's v1 API. The sync workflow follows
+[`v1/packages/sdk/openapi.json`](https://github.com/anomalyco/opencode/blob/v1/packages/sdk/openapi.json).
+Upstream `dev` now uses a different protocol API; its `packages/protocol/openapi.json`
+is not a compatible replacement. Generation requires Elixir 1.18 or later.
 Regenerate the client with:
 
 ```bash
 mix opencode.gen.client --spec priv/opencode_openapi.json
 ```
+
+Run `mix test` to check the SDK. Server integration tests require the `opencode`
+executable on `PATH`; CI uses the latest published OpenCode 1.x release and checks compilation and tests
+before publishing an upstream sync.
 
 ## Note
 

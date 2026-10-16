@@ -1,6 +1,8 @@
 defmodule OpenCode.ServerTest do
   use ExUnit.Case, async: false
 
+  @moduletag skip: is_nil(System.find_executable("opencode"))
+
   setup do
     case System.find_executable("opencode") do
       nil ->
@@ -42,13 +44,15 @@ defmodule OpenCode.ServerTest do
               _ -> System.put_env(key, val)
             end
           end)
+
+          File.rm_rf!(base)
         end)
 
         {:ok, env: env}
     end
   end
 
-  test "create_server starts and is healthy" do
+  test "managed server supports health, config, sessions, errors, and events" do
     port = free_port()
 
     {:ok, server} =
@@ -59,6 +63,49 @@ defmodule OpenCode.ServerTest do
 
       client = OpenCode.create_client(base_url: server.url)
       assert {:ok, %{"healthy" => true}} = OpenCode.Generated.Operations.global_health(client)
+      assert {:ok, config} = OpenCode.Generated.Operations.config_get(client)
+      assert is_map(config)
+      assert {:ok, projects} = OpenCode.Generated.Operations.project_list(client)
+      assert is_list(projects)
+
+      assert {:ok, session} = OpenCode.Generated.Operations.session_create(%{title: "SDK integration"}, client)
+      session_id = session["id"]
+      assert is_binary(session_id)
+
+      try do
+        assert {:ok, %{"id" => ^session_id}} = OpenCode.Generated.Session.session_get(session_id, client)
+
+        assert {:ok, sessions} =
+                 OpenCode.Generated.Operations.session_list(Keyword.merge(client, search: "SDK integration", limit: 5))
+
+        assert Enum.any?(sessions, &(&1["id"] == session_id))
+
+        assert {:ok, %{"title" => "Updated SDK session"}} =
+                 OpenCode.Generated.Operations.session_update(session_id, %{title: "Updated SDK session"}, client)
+
+        assert {:ok, %{"info" => %{"role" => "user"}, "parts" => parts}} =
+                 OpenCode.Generated.Operations.session_prompt(
+                   session_id,
+                   %{
+                     noReply: true,
+                     model: %{providerID: "anthropic", modelID: "claude-sonnet-4-20250514"},
+                     parts: [%{type: "text", text: "SDK integration message"}]
+                   },
+                   client
+                 )
+
+        assert Enum.any?(parts, &(&1["type"] == "text" && &1["text"] == "SDK integration message"))
+        assert {:ok, messages} = OpenCode.Generated.Operations.session_messages(session_id, client)
+        assert Enum.any?(messages, &(&1["info"]["role"] == "user"))
+
+        assert {:ok, %{stream: stream}} = OpenCode.Generated.Operations.event_subscribe(client)
+        task = Task.async(fn -> Enum.take(stream, 1) end)
+        assert [%{"type" => "server.connected"}] = Task.await(task, 5_000)
+      after
+        assert {:ok, true} = OpenCode.Generated.Operations.session_delete(session_id, client)
+      end
+
+      assert {:error, {404, _}} = OpenCode.Generated.Session.session_get(session_id, client)
     after
       OpenCode.close(%{server: server})
     end

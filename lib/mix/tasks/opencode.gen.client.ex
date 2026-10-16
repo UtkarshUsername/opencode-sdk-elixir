@@ -51,6 +51,8 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
       """)
     end
 
+    validate_spec!(spec_path)
+
     Mix.shell().info("🔧 Generating OpenCode client from: #{spec_path}")
     Mix.shell().info("")
 
@@ -74,6 +76,16 @@ defmodule Mix.Tasks.Opencode.Gen.Client do
     Mix.shell().info("  3. Update your code to use the new client module")
 
     :ok
+  end
+
+  defp validate_spec!(path) do
+    with {:ok, spec} <- Jason.decode(File.read!(path)),
+         %{"openapi" => "3." <> _, "paths" => paths} when is_map(paths) <- spec,
+         true <- map_size(paths) > 0 do
+      :ok
+    else
+      _ -> Mix.raise("Invalid OpenAPI spec at #{path}: expected an OpenAPI 3 JSON document with paths")
+    end
   end
 
   defp fix_missing_types do

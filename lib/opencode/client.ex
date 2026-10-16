@@ -79,40 +79,72 @@ defmodule OpenCode.Client do
     Stream.resource(
       fn ->
         ref = make_ref()
-        pid = spawn_link(fn -> sse_run(req, self(), ref) end)
-        %{ref: ref, pid: pid, buf: ""}
+        consumer = self()
+        pid = spawn_link(fn -> sse_run(req, consumer, ref) end)
+        %{ref: ref, pid: pid, buf: "", done?: false}
       end,
-      fn state ->
-        receive do
-          {ref, :data, data} when ref == state.ref ->
-            {events, buf} = parse_sse(state.buf <> data)
-            {events, %{state | buf: buf}}
+      fn
+        %{done?: true} = state ->
+          {:halt, state}
 
-          {ref, :done} when ref == state.ref ->
-            {:halt, state}
+        state ->
+          receive do
+            {ref, :data, data} when ref == state.ref ->
+              {events, buf} = parse_sse(state.buf <> data)
+              {events, %{state | buf: buf}}
 
-          {ref, :error, error} when ref == state.ref ->
-            {[{:error, error}], state}
-        end
+            {ref, :done} when ref == state.ref ->
+              {:halt, state}
+
+            {ref, :error, error} when ref == state.ref ->
+              {[{:error, error}], %{state | done?: true}}
+          end
       end,
-      fn state ->
-        case Process.alive?(state.pid) do
-          true -> Process.exit(state.pid, :normal)
-          false -> :ok
-        end
-      end
+      &sse_stop/1
     )
+  end
+
+  defp sse_stop(%{pid: pid, ref: ref}) do
+    Process.unlink(pid)
+    monitor = Process.monitor(pid)
+    Process.exit(pid, :kill)
+
+    receive do
+      {:DOWN, ^monitor, :process, ^pid, _reason} -> :ok
+    end
+
+    drain_sse(ref)
+  end
+
+  defp drain_sse(ref) do
+    receive do
+      {^ref, kind, _data} when kind in [:data, :error] -> drain_sse(ref)
+      {^ref, :done} -> drain_sse(ref)
+    after
+      0 -> :ok
+    end
   end
 
   defp sse_run(req, pid, ref) do
     case Req.request(req,
-           into: fn {:data, data}, acc ->
-             send(pid, {ref, :data, data})
-             {:cont, acc}
+           retry: false,
+           into: fn {:data, data}, {request, response} ->
+             if response.status in 200..299 do
+               send(pid, {ref, :data, data})
+               {:cont, {request, response}}
+             else
+               {:cont, {request, %{response | body: response.body <> data}}}
+             end
            end
          ) do
-      {:ok, _} -> send(pid, {ref, :done})
-      {:error, error} -> send(pid, {ref, :error, error})
+      {:ok, %{status: status}} when status in 200..299 ->
+        send(pid, {ref, :done})
+
+      {:ok, %{status: status, body: body}} ->
+        send(pid, {ref, :error, {status, body}})
+
+      {:error, error} ->
+        send(pid, {ref, :error, error})
     end
   end
 
@@ -121,8 +153,12 @@ defmodule OpenCode.Client do
     count = length(parts)
 
     case count do
-      0 -> {[], ""}
-      1 -> {[], data}
+      0 ->
+        {[], ""}
+
+      1 ->
+        {[], data}
+
       _ ->
         events = parts |> Enum.drop(-1) |> Enum.flat_map(&decode_sse/1)
         {events, List.last(parts)}
@@ -139,7 +175,9 @@ defmodule OpenCode.Client do
       |> String.trim()
 
     case data do
-      "" -> []
+      "" ->
+        []
+
       _ ->
         case Jason.decode(data) do
           {:ok, val} -> [val]

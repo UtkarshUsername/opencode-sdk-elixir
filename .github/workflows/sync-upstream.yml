@@ -6,6 +6,10 @@ on:
     - cron: "0 6 * * *"
   workflow_dispatch: # Allow manual trigger
 
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -18,8 +22,20 @@ jobs:
 
       - name: Fetch upstream OpenAPI spec
         run: |
-          curl -sSL "https://raw.githubusercontent.com/anomalyco/opencode/dev/packages/sdk/openapi.json" \
-            -o priv/opencode_openapi.json
+          curl --fail --silent --show-error --location --retry 3 --connect-timeout 10 --max-time 60 \
+            "https://raw.githubusercontent.com/anomalyco/opencode/v1/packages/sdk/openapi.json" \
+            -o "$RUNNER_TEMP/opencode_openapi.json"
+          python3 - "$RUNNER_TEMP/opencode_openapi.json" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1]) as document:
+              spec = json.load(document)
+          assert spec.get("openapi", "").startswith("3."), "Expected an OpenAPI 3 document"
+          for path in ("/global/health", "/session", "/event"):
+              assert path in spec.get("paths", {}), f"Missing supported v1 route: {path}"
+          PY
+          mv "$RUNNER_TEMP/opencode_openapi.json" priv/opencode_openapi.json
 
       - name: Check for changes
         id: changes
@@ -34,8 +50,8 @@ jobs:
         if: steps.changes.outputs.changed == 'true'
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: "1.15"
-          otp-version: "26"
+          elixir-version: "1.18"
+          otp-version: "27"
 
       - name: Install dependencies
         if: steps.changes.outputs.changed == 'true'
@@ -44,6 +60,17 @@ jobs:
       - name: Regenerate SDK
         if: steps.changes.outputs.changed == 'true'
         run: mix opencode.gen.client --spec priv/opencode_openapi.json
+
+      - name: Install OpenCode
+        if: steps.changes.outputs.changed == 'true'
+        run: npm install --global opencode-ai@1
+
+      - name: Validate SDK before release
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          mix compile --warnings-as-errors
+          mix test --warnings-as-errors
+          MIX_ENV=prod mix compile --warnings-as-errors
 
       - name: Bump patch version
         if: steps.changes.outputs.changed == 'true'
