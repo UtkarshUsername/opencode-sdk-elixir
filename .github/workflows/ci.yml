@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.18"
+          otp-version: "27"
+      - run: mix deps.get
+      - run: npm install --global opencode-ai@1.19.3
+      - run: mix compile --warnings-as-errors
+      - run: mix test --warnings-as-errors
+      - run: MIX_ENV=prod mix compile --warnings-as-errors
