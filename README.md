@@ -392,6 +392,10 @@ Run `mix test` to check the SDK. Server integration tests require the `opencode`
 executable on `PATH`; CI uses the latest published OpenCode 1.x release and checks compilation and tests
 before publishing an upstream sync.
 
+To publish SDK fixes without a spec change, manually run the **Sync Upstream OpenAPI**
+workflow with **force_release** enabled. It validates the SDK, bumps the patch version,
+and publishes to Hex. Scheduled runs only release when the spec changes.
+
 ## Note
 
 This project is unofficial and is not affiliated with the OpenCode team.

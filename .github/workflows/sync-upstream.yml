@@ -4,7 +4,12 @@ on:
   schedule:
     # Run daily at 06:00 UTC (after upstream's generate workflow typically runs)
     - cron: "0 6 * * *"
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: Publish a patch release even when the upstream spec is unchanged
+        type: boolean
+        default: false
 
 concurrency:
   group: sync-upstream
@@ -39,8 +44,10 @@ jobs:
 
       - name: Check for changes
         id: changes
+        env:
+          FORCE_RELEASE: ${{ github.event_name == 'workflow_dispatch' && inputs.force_release }}
         run: |
-          if git diff --quiet priv/opencode_openapi.json; then
+          if [ "$FORCE_RELEASE" != "true" ] && git diff --quiet priv/opencode_openapi.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -95,7 +102,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "chore: sync upstream openapi spec (v${{ steps.version.outputs.version }})"
+          git commit -m "chore(release): v${{ steps.version.outputs.version }}"
           git tag "v${{ steps.version.outputs.version }}"
           git push origin HEAD --tags
 
