@@ -79,7 +79,8 @@ defmodule OpenCode.Client do
     Stream.resource(
       fn ->
         ref = make_ref()
-        pid = spawn_link(fn -> sse_run(req, self(), ref) end)
+        consumer = self()
+        pid = spawn_link(fn -> sse_run(req, consumer, ref) end)
         %{ref: ref, pid: pid, buf: ""}
       end,
       fn state ->
@@ -97,8 +98,12 @@ defmodule OpenCode.Client do
       end,
       fn state ->
         case Process.alive?(state.pid) do
-          true -> Process.exit(state.pid, :normal)
-          false -> :ok
+          true ->
+            Process.unlink(state.pid)
+            Process.exit(state.pid, :shutdown)
+
+          false ->
+            :ok
         end
       end
     )
@@ -121,8 +126,12 @@ defmodule OpenCode.Client do
     count = length(parts)
 
     case count do
-      0 -> {[], ""}
-      1 -> {[], data}
+      0 ->
+        {[], ""}
+
+      1 ->
+        {[], data}
+
       _ ->
         events = parts |> Enum.drop(-1) |> Enum.flat_map(&decode_sse/1)
         {events, List.last(parts)}
@@ -139,7 +148,9 @@ defmodule OpenCode.Client do
       |> String.trim()
 
     case data do
-      "" -> []
+      "" ->
+        []
+
       _ ->
         case Jason.decode(data) do
           {:ok, val} -> [val]
