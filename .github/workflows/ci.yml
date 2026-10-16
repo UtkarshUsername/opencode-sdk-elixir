@@ -18,7 +18,7 @@ jobs:
           elixir-version: "1.18"
           otp-version: "27"
       - run: mix deps.get
-      - run: npm install --global opencode-ai@1.19.3
+      - run: npm install --global opencode-ai@1
       - run: mix compile --warnings-as-errors
       - run: mix test --warnings-as-errors
       - run: MIX_ENV=prod mix compile --warnings-as-errors

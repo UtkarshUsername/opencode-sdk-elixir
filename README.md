@@ -389,7 +389,7 @@ mix opencode.gen.client --spec priv/opencode_openapi.json
 ```
 
 Run `mix test` to check the SDK. Server integration tests require the `opencode`
-executable on `PATH`; CI uses OpenCode 1.19.3 and checks compilation and tests
+executable on `PATH`; CI uses the latest published OpenCode 1.x release and checks compilation and tests
 before publishing an upstream sync.
 
 ## Note

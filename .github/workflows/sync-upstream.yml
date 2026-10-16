@@ -63,7 +63,7 @@ jobs:
 
       - name: Install OpenCode
         if: steps.changes.outputs.changed == 'true'
-        run: npm install --global opencode-ai@1.19.3
+        run: npm install --global opencode-ai@1
 
       - name: Validate SDK before release
         if: steps.changes.outputs.changed == 'true'
