@@ -100,17 +100,29 @@ defmodule OpenCode.Client do
               {[{:error, error}], %{state | done?: true}}
           end
       end,
-      fn state ->
-        case Process.alive?(state.pid) do
-          true ->
-            Process.unlink(state.pid)
-            Process.exit(state.pid, :shutdown)
-
-          false ->
-            :ok
-        end
-      end
+      &sse_stop/1
     )
+  end
+
+  defp sse_stop(%{pid: pid, ref: ref}) do
+    Process.unlink(pid)
+    monitor = Process.monitor(pid)
+    Process.exit(pid, :kill)
+
+    receive do
+      {:DOWN, ^monitor, :process, ^pid, _reason} -> :ok
+    end
+
+    drain_sse(ref)
+  end
+
+  defp drain_sse(ref) do
+    receive do
+      {^ref, kind, _data} when kind in [:data, :error] -> drain_sse(ref)
+      {^ref, :done} -> drain_sse(ref)
+    after
+      0 -> :ok
+    end
   end
 
   defp sse_run(req, pid, ref) do

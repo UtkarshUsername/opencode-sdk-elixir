@@ -78,6 +78,67 @@ defmodule OpenCode.ClientTest do
     assert {:error, :closed} = Task.await(server, 2_000)
   end
 
+  test "stopping an SSE stream drains queued messages and preserves unrelated messages" do
+    {:ok, listener} = :gen_tcp.listen(0, [:binary, active: false])
+    {:ok, {_, port}} = :inet.sockname(listener)
+    first = "data: {\"type\":\"first\"}\n\n"
+    remaining = "data: {\"type\":\"second\"}\n\ndata: {\"type\":\"third\"}\n\n"
+
+    server =
+      Task.async(fn ->
+        try do
+          {:ok, socket} = :gen_tcp.accept(listener, 2_000)
+
+          try do
+            read_request(socket, "")
+
+            :gen_tcp.send(socket, [
+              "HTTP/1.1 200 OK\r\ncontent-type: text/event-stream\r\n",
+              "content-length: #{byte_size(first) + byte_size(remaining)}\r\nconnection: close\r\n\r\n",
+              first
+            ])
+
+            receive do
+              :finish -> :gen_tcp.send(socket, remaining)
+            after
+              2_000 -> flunk("Consumer did not receive the first event")
+            end
+          after
+            :gen_tcp.close(socket)
+          end
+        after
+          :gen_tcp.close(listener)
+        end
+      end)
+
+    {:ok, %{stream: stream}} =
+      OpenCode.Generated.Operations.event_subscribe(base_url: "http://127.0.0.1:#{port}")
+
+    send(self(), :unrelated)
+    unrelated_ref = make_ref()
+    send(self(), {unrelated_ref, :data, "another stream"})
+
+    events =
+      stream
+      |> Stream.each(fn _event ->
+        send(server.pid, :finish)
+
+        receive do
+          {reference, :done} = message when is_reference(reference) -> send(self(), message)
+        after
+          2_000 -> flunk("SSE worker did not finish")
+        end
+      end)
+      |> Enum.take(1)
+
+    assert events == [%{"type" => "first"}]
+    Task.await(server)
+    assert_received :unrelated
+    assert_received {^unrelated_ref, :data, "another stream"}
+    refute_received {_reference, :data, _}
+    refute_received {_reference, :done}
+  end
+
   test "SSE HTTP errors preserve status and body without emitting events" do
     for {status, body, content_type, expected} <- [
           {401, ~s({"error":"unauthorized"}), "application/json", %{"error" => "unauthorized"}},
